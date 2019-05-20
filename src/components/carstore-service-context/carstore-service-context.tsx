@@ -7,7 +7,7 @@ interface AppContextInerface {
 const {
     Provider: CarstoreServiceProvider,
     Consumer: CarstoreServiceConsumer
-} = React.createContext<AppContextInerface | null>(null);
+} = React.createContext<any | null>(null);
 
 export {
     CarstoreServiceProvider,
