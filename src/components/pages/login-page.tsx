@@ -10,7 +10,7 @@ export const LoginPage: React.FC<Props> = (props) => {
     const {isLoggedIn, onLogin} = props;
 
     if (isLoggedIn) {
-        return <Redirect to="/"/>;
+        return <Redirect to="/products"/>;
     }
 
     return (

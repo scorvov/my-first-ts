@@ -3,7 +3,8 @@ import './app.scss';
 import {Route, Switch} from "react-router";
 import {LoginPage} from "../pages/login-page";
 import {MainPage} from "../pages/main-page";
-
+import {CreateProduct} from "../pages/create-product";
+import {CreateProperty} from "../pages/create-property";
 
 // type State = {
 //     isLoggedIn ?: boolean
@@ -26,18 +27,30 @@ render () {
         <div className="app">
             <Switch>
                 <Route
+                    exact
                     path="/login"
                     render={() => (
                         <LoginPage
                             isLoggedIn={isLoggedIn}
                             onLogin={this.onLogin}/>
-                    )}/>
+                    )} />
                 <Route
+                    exact
+                    path="/product/create"
+                    render={() => (
+                        <CreateProduct isLoggedIn={isLoggedIn} />
+                    )} />
+                <Route
+                    exact
+                    path="/property/create"
+                    render={() => (
+                        <CreateProperty isLoggedIn={isLoggedIn} />
+                    )} />
+                <Route
+                    strict
                     path="/"
                     render={() => (
-                        <MainPage
-                            isLoggedIn={isLoggedIn}
-                            />
+                        <MainPage isLoggedIn={isLoggedIn} />
                     )}/>
             </Switch>
         </div>
