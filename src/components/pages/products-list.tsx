@@ -1,32 +1,63 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {IState} from "../../store/models/iState";
 import {IProduct} from "../../store/models/iProduct";
-import {IFetchingState} from "../../store/reducers";
+import {IFetchingState} from "../../store/reducers/productsFetchReducer";
+import {withCarstoreService} from "../hoc";
+import {productsRequested, productsLoaded, productsError, IProductsLoaded} from "../../store/actions";
+import {compose} from "../../utils/compose";
+import {Spinner} from "../common/spinner";
+import {ErrorIndicator} from "../common/error-indicator";
+import "./product-list.scss"
 
-const ProductsList: React.FC<IFetchingState> = (props) => {
-    const {productList}:IFetchingState = props;
+export interface IProductList {
+    productList: IProduct[]
+}
+export const ProductsList: React.FC<IProductList> = ({productList}) => {
+    const renderRow = ((product: IProduct) => {
+        const {id, name, cost, dateUp } = product;
+        return (
+            <tr key={id}>
+                <td>#</td>
+                <td>{name}</td>
+                <td>{cost}</td>
+                <td>${dateUp}</td>
+                <td >
+                    <Link to="/product/create" className="link">Ред</Link>
+                    <Link to="/products" className="link">
+                        Удалить
+                    </Link>
+                </td>
+            </tr>
+        )
+    });
     return (
-        <>
-            <Link to="/product/create">Добавить товар</Link>
-            <div>TableListProducts</div>
-            <ul>
-                {
-                    productList.map((product:IProduct) => {
-                        return (
-                            <li key={product.id}><ProductListItem product={product} /></li>
-                        )
-                    })
-                }
-            </ul>
-        </>
+        <div className="products-list">
+            <button className="add-product btn btn-warning btn-sm">
+                <Link to="/product/create" className="link" >Добавить товар</Link>
+            </button>
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Перечень товаров</th>
+                        <th>Стоимость</th>
+                        <th>Дата изменения</th>
+                        <th>Управление</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        { productList.map(renderRow) }
+                    </tbody>
+                </table>
+
+        </div>
     );
 };
-export interface Props {
+export interface IProductProps {
     product: IProduct
 }
-export const ProductListItem: React.FC<Props> = ({product}) => {
+export const ProductListItem: React.FC<IProductProps> = ({product}) => {
     const {name, cost, dateUp} = product;
     return (
         <>
@@ -34,8 +65,43 @@ export const ProductListItem: React.FC<Props> = ({product}) => {
         </>
     );
 };
-const mapStateToProps = (state:IState) => {
-    return state
+export class ProductsListContainer extends React.Component<any> {
+    componentDidMount() {
+       this.props.fetchProducts();
+    }
+    render() {
+        const {productList, loading, error} = this.props;
+        if (loading) {
+            return <Spinner />
+        }
+        if(error) {
+            return <ErrorIndicator />
+        }
+        return <ProductsList productList={productList}/>
+    }
+}
+const mapStateToProps = ({productList, loading, error}:IFetchingState) => {
+
+    return {productList, loading, error}
 };
 
-export default connect(mapStateToProps)(ProductsList);
+const mapDispatchToProps = (dispatch:any, ownProps:any) => {
+    const {carstoreService} = ownProps;
+    return {
+        fetchProducts: () => {
+            dispatch(productsRequested());
+            carstoreService.getCars()
+                .then((data: IProduct[]):IProductsLoaded => dispatch(productsLoaded(data)))
+                .catch((err:string) => dispatch(productsError(err)));
+        }
+    }
+};
+
+export default compose(
+    withCarstoreService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(ProductsListContainer);
+
+
+// export default withCarstoreService()(
+//     connect(mapStateToProps, mapDispatchToProps)(ProductsList));

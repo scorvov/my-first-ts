@@ -3,6 +3,7 @@ import {Redirect, Route, Switch} from "react-router";
 import ProductsList from "./products-list";
 import {PropertiesList} from "./properties-list";
 import {NavLink} from "react-router-dom";
+import "./main-page.scss";
 
 type Props = {
     isLoggedIn: boolean
@@ -10,15 +11,22 @@ type Props = {
 export const MainPage: React.FC<Props> = (props) => {
     const {isLoggedIn} = props;
     if (isLoggedIn) {
-    return (
-        <>
-            <NavLink to="/products" >Листинг товаров</NavLink>
-            <NavLink to="/properties">Листинг проперти</NavLink>
-            <Switch>
-                <Route exact path="/products" component={ProductsList}/>
-                <Route exact path="/properties" component={PropertiesList}/>
-            </Switch>
-        </>
-    );}
-    return <Redirect to="/login" />;
+        return (
+            <div className="app-wrapper">
+                <div className="wrapper-header">
+                    <button>
+                        <NavLink to="/products" className="main-header">Листинг товаров</NavLink>
+                    </button>
+                    <button>
+                        <NavLink to="/properties" className="main-header">Листинг проперти</NavLink>
+                    </button>
+                </div>
+                <Switch>
+                    <Route exact path="/products" component={ProductsList}/>
+                    <Route exact path="/properties" component={PropertiesList}/>
+                </Switch>
+            </div>
+        );
+    }
+    return <Redirect to="/login"/>;
 };

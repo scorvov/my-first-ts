@@ -1,0 +1,29 @@
+.products-list {
+  //flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: stretch;
+
+  background: #FFFFFF;
+  box-shadow: 0 20px 20px rgba(40, 40, 40, 0.05);
+  border-radius: 10px;
+}
+.table .link {
+  margin-right: 10%;
+}
+.add-product {
+  align-self: flex-end;
+  margin: 1em 1em;
+  background: #FFB800;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  .link {
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+}

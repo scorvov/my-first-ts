@@ -1,25 +1,31 @@
 import { Action } from "redux";
 import {IProduct} from "../models/iProduct";
 
-export interface ISetFetchingToSuccessPayload {
-    productList: IProduct[];
+export interface IProductsLoaded extends Action {
+    payload: IProduct[];
 }
-export interface ISetFetchingToSuccess extends Action {
-    payload: ISetFetchingToSuccessPayload;
+export interface IErrorLoaded extends Action {
+    payload: string;
 }
-export const SET_FETCHING_TO_SUCCESS = "SET_FETCHING_TO_SUCCESS";
+export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
+export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
+export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
 
-export const setFetchingToSuccess = (productList: IProduct[]): ISetFetchingToSuccess =>
+export const productsLoaded = (productList: IProduct[]): IProductsLoaded =>
     ({
-        payload: {
-            productList
-        },
-        type: SET_FETCHING_TO_SUCCESS,
+        payload: productList,
+        type: FETCH_PRODUCTS_SUCCESS,
     });
+export const productsRequested = ():Action => {
+    return {
+        type: FETCH_PRODUCTS_REQUEST
+    };
+};
+export const productsError = (error:string): IErrorLoaded => {
+    return {
+        payload: error,
+        type: FETCH_PRODUCTS_FAILURE
+    };
+};
 
-// export const carsLoaded = (productList: any) => {
-//     return {
-//         type:'PRODUCTS_LOADED',
-//         payload: productList
-//     };
-// };
+

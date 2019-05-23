@@ -1,8 +1,6 @@
 
 class CarstoreService {
-
-    getCars() {
-        return[
+        data = [
             {
                 id: 1,
                 name: 'Mersedes S550 4matic',
@@ -22,6 +20,15 @@ class CarstoreService {
                 }
             }
         ];
+    getCars() {
+        return new Promise ((resolve, reject) => {
+            setTimeout(() => {
+                if(Math.random() > 0.75) {
+                    reject(new Error('Something bad happend'));
+                } else {
+                resolve(this.data);}
+            }, 300);
+        })
     }
 }
 
