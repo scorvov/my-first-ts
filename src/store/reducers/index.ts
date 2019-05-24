@@ -1,7 +1,9 @@
-// import {combineReducers} from "redux";
-// import {productsFetchReducer} from "./productsFetchReducer";
-//
-//
-// export const reducers = combineReducers({
-//     productsState: productsFetchReducer
-// });
+import {combineReducers} from "redux";
+import {productsFetchReducer} from "./productsFetchReducer";
+import {propsFetchReducer} from "./propsFetchReducer";
+
+
+export const reducers = combineReducers({
+    productsState: productsFetchReducer,
+    propsState: propsFetchReducer
+});

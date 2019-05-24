@@ -2,11 +2,11 @@ import * as React from "react";
 import {Redirect} from "react-router";
 
 
-type Props = {
+export type TProps = {
     isLoggedIn: boolean
 }
 
-export const CreateProperty: React.FC<Props> = (props) => {
+export const CreateProp: React.FC<TProps> = (props) => {
     const {isLoggedIn} = props;
     if(isLoggedIn) {
         return (

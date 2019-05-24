@@ -2,13 +2,14 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {IProduct} from "../../store/models/iProduct";
-import {IFetchingState} from "../../store/reducers/productsFetchReducer";
+import {IProductsFetchingState} from "../../store/reducers/productsFetchReducer";
 import {withCarstoreService} from "../hoc";
-import {productsRequested, productsLoaded, productsError, IProductsLoaded} from "../../store/actions";
+import {productsRequested, productsLoaded, productsError, IProductsLoaded} from "../../store/actions/fetchProducts";
 import {compose} from "../../utils/compose";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
-import "./product-list.scss"
+import "../../assests/list.scss"
+import {Dispatch} from "redux";
 
 export interface IProductList {
     productList: IProduct[]
@@ -18,12 +19,12 @@ export const ProductsList: React.FC<IProductList> = ({productList}) => {
         const {id, name, cost, dateUp } = product;
         return (
             <tr key={id}>
-                <td>#</td>
-                <td>{name}</td>
+                <td> </td>
+                <td><Link to="/product" className="link">{name}</Link></td>
                 <td>{cost}</td>
                 <td>${dateUp}</td>
                 <td >
-                    <Link to="/product/create" className="link">Ред</Link>
+                    <Link to="/products" className="link">Ред</Link>
                     <Link to="/products" className="link">
                         Удалить
                     </Link>
@@ -32,10 +33,11 @@ export const ProductsList: React.FC<IProductList> = ({productList}) => {
         )
     });
     return (
-        <div className="products-list">
-            <button className="add-product btn btn-warning btn-sm">
-                <Link to="/product/create" className="link" >Добавить товар</Link>
-            </button>
+        <div className="list">
+                <Link to="/product/create"
+                      className="add btn btn-warning btn-sm" >
+                    Добавить товар
+                </Link>
                 <table className="table">
                     <thead>
                     <tr>
@@ -50,21 +52,10 @@ export const ProductsList: React.FC<IProductList> = ({productList}) => {
                         { productList.map(renderRow) }
                     </tbody>
                 </table>
-
         </div>
     );
 };
-export interface IProductProps {
-    product: IProduct
-}
-export const ProductListItem: React.FC<IProductProps> = ({product}) => {
-    const {name, cost, dateUp} = product;
-    return (
-        <>
-            <span>{name} - {cost} - {dateUp}</span>
-        </>
-    );
-};
+
 export class ProductsListContainer extends React.Component<any> {
     componentDidMount() {
        this.props.fetchProducts();
@@ -80,17 +71,19 @@ export class ProductsListContainer extends React.Component<any> {
         return <ProductsList productList={productList}/>
     }
 }
-const mapStateToProps = ({productList, loading, error}:IFetchingState) => {
-
+export interface IMapState {
+    productsState:IProductsFetchingState;
+}
+const mapStateToProps = ({productsState}:IMapState):IProductsFetchingState => {
+    const {productList, loading, error} = productsState;
     return {productList, loading, error}
 };
-
-const mapDispatchToProps = (dispatch:any, ownProps:any) => {
+const mapDispatchToProps = (dispatch:Dispatch, ownProps: any) => {
     const {carstoreService} = ownProps;
     return {
         fetchProducts: () => {
             dispatch(productsRequested());
-            carstoreService.getCars()
+            carstoreService.getProducts()
                 .then((data: IProduct[]):IProductsLoaded => dispatch(productsLoaded(data)))
                 .catch((err:string) => dispatch(productsError(err)));
         }
@@ -101,7 +94,6 @@ export default compose(
     withCarstoreService(),
     connect(mapStateToProps, mapDispatchToProps)
 )(ProductsListContainer);
-
 
 // export default withCarstoreService()(
 //     connect(mapStateToProps, mapDispatchToProps)(ProductsList));

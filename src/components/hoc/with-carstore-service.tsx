@@ -1,12 +1,8 @@
 import * as React from 'react';
 import {CarstoreServiceConsumer} from '../carstore-service-context';
+// import {ICarstoreService} from "../../services/carstore-service";
 
-
-interface P {
-
-}
-
-export const withCarstoreService = () => (Wrapped: React.ComponentType<P>) => {
+export const withCarstoreService = () => (Wrapped: React.ComponentType) => {
     return (props: any) => {
         return (
             <CarstoreServiceConsumer>

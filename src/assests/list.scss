@@ -1,4 +1,4 @@
-.products-list {
+.list {
   //flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -13,17 +13,24 @@
 }
 .table .link {
   margin-right: 10%;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height */
+  text-decoration-line: underline;
+  color: #0258FF;
+  opacity: 0.8;
 }
-.add-product {
+.add {
   align-self: flex-end;
   margin: 1em 1em;
   background: #FFB800;
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
-  .link {
-    font-size: 16px;
-    line-height: 19px;
-    text-decoration: none;
-    color: #FFFFFF;
-  }
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration: none;
+  color: #FFFFFF;
 }

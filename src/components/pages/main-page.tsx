@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Redirect, Route, Switch} from "react-router";
 import ProductsList from "./products-list";
-import {PropertiesList} from "./properties-list";
+import PropsList from "./props-list";
 import {NavLink} from "react-router-dom";
-import "./main-page.scss";
+import "../../assests/main-page.scss";
 
 type Props = {
     isLoggedIn: boolean
@@ -23,7 +23,7 @@ export const MainPage: React.FC<Props> = (props) => {
                 </div>
                 <Switch>
                     <Route exact path="/products" component={ProductsList}/>
-                    <Route exact path="/properties" component={PropertiesList}/>
+                    <Route exact path="/properties" component={PropsList}/>
                 </Switch>
             </div>
         );

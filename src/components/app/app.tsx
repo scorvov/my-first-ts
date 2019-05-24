@@ -1,10 +1,11 @@
 import * as React from "react";
-import './app.scss';
+import '../../assests/app.scss';
 import {Route, Switch} from "react-router";
 import {LoginPage} from "../pages/login-page";
 import {MainPage} from "../pages/main-page";
 import {CreateProduct} from "../pages/create-product";
-import {CreateProperty} from "../pages/create-property";
+import {CreateProp} from "../pages/create-prop";
+import {Product} from "../pages/product";
 
 // type State = {
 //     isLoggedIn ?: boolean
@@ -42,10 +43,14 @@ render () {
                     )} />
                 <Route
                     exact
-                    path="/property/create"
+                    path="/prop/create"
                     render={() => (
-                        <CreateProperty isLoggedIn={isLoggedIn} />
+                        <CreateProp isLoggedIn={isLoggedIn} />
                     )} />
+                <Route path="/product"
+                       render={() => (
+                           <Product isLoggedIn={isLoggedIn} />
+                       )}/>
                 <Route
                     strict
                     path="/"
