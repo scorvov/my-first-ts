@@ -5,6 +5,7 @@ export interface IProduct {
     name: string;
     cost: number;
     img: string;
+    info: string;
     dateUp: string;
     props?: IProp[] | [];
 }

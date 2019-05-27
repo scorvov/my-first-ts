@@ -53,7 +53,9 @@ const PropsList: React.FC<IPropsList> = ({propsList}) => {
 
 export class PropsListContainer extends React.Component<any> {
     componentDidMount() {
-        this.props.fetchProps();
+        if(!this.props.propsList.length) {
+            this.props.fetchProps();
+        }
     }
     render() {
         const {propsList, loading, error} = this.props;

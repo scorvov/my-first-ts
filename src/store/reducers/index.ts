@@ -3,7 +3,7 @@ import {productsFetchReducer} from "./productsFetchReducer";
 import {propsFetchReducer} from "./propsFetchReducer";
 
 
-export const reducers = combineReducers({
+export const rootReducer = combineReducers({
     productsState: productsFetchReducer,
     propsState: propsFetchReducer
 });

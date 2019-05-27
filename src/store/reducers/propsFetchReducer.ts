@@ -10,7 +10,7 @@ export interface IPropsFetchingState {
 
 const initialPropsState: IPropsFetchingState = {
     propsList: [],
-    loading: true,
+    loading: false,
     error: null
 };
 type TPropAction = IPropsLoaded;

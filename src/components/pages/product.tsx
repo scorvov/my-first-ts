@@ -1,50 +1,71 @@
 import * as React from "react";
 import {Link, Redirect} from "react-router-dom";
-import {TProps} from "./create-prop";
+import {IMapState} from "./products-list";
+import {connect} from "react-redux";
+import {productSelected} from "../../store/actions/fetchProducts";
+import {IProp} from "../../store/models/iProp";
 
-// interface Props {
-//     id: number;
-//     name: string;
-//     cost: number;
-//     img: string;
-//     dateUp: string;
-//     optional?: any;
-// }
 
-export const Product:React.FC<TProps> = (props) => {
-    const {isLoggedIn} = props;
-    if(isLoggedIn) {
-        return (
-            <>
-                <Link to="/products"
-                      className="link">
-                    Вернуться
-                </Link>
-                <span>
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Mercedes-Benz_S_500_%28W_222%29_%E2%80%93_Frontansicht%2C_6._April_2014%2C_Neuss.jpg/1200px-Mercedes-Benz_S_500_%28W_222%29_%E2%80%93_Frontansicht%2C_6._April_2014%2C_Neuss.jpg"
-                    alt="auto"/>
-                <h2>Mercedes S550 4matic</h2>
-                <div><p>Information text</p></div>
-            </span>
-                <div>
-                    <h3>Цвет авто</h3>
-                    <p>синий</p>
-                </div>
-                <div>
-                    <h3>Год выпуска</h3>
-                    <p>2017</p>
-                </div>
-                <div>
-                    <h3>Тип топлива</h3>
-                    <p>Бензин</p>
-                </div>
-                <div>
-                    <h3>Стоимость</h3>
-                    <p>118 000</p>
-                </div>
-            </>
-        );
+export class Product extends React.Component<any> {
+    componentWillMount(): void {
+        const {productSelected, itemId} = this.props;
+            productSelected(itemId);
     }
-    return <Redirect to="/login" />;
+
+    showProps = (props:IProp[]) => {
+        if(props) {
+            return props.map((item:IProp) => {
+                const {id, name,type,value} = item;
+                let valueProp;
+                if(type === 'dropdown') {
+                    valueProp = <select><option>{value}</option></select>
+                } else valueProp = <p>{value}</p>;
+                return (
+                    <div key={id}>
+                        <h3>{name}</h3>
+                        {valueProp}
+                    </div>
+                )
+            })
+        }
+    };
+    render() {
+        const {isLoggedIn, selectProduct} = this.props;
+        if (isLoggedIn) {
+            if (!selectProduct) {
+                return <div>Loading...</div>;
+            }
+                const {name, cost, img, info, props} = selectProduct;
+                return (
+                    <>
+                        <Link to="/products"
+                              className="link">
+                            Вернуться
+                        </Link>
+                        <span>
+                <img
+                    src={img}
+                    alt="auto"/>
+                <h2>{name}</h2>
+                <div><p>{info}</p></div>
+            </span>
+                        {this.showProps(props)}
+                        <div>
+                            <h3>Стоимость</h3>
+                            <p>{cost}$</p>
+                        </div>
+                    </>
+                );
+            }
+
+        return <Redirect to="/login"/>;
+    }
+}
+
+const mapStateToProps = ({productsState:{selectProduct}}:IMapState) => {
+    return {selectProduct}
 };
+const mapDispatchToProps = {
+        productSelected
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

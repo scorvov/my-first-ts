@@ -4,7 +4,12 @@ import {connect} from "react-redux";
 import {IProduct} from "../../store/models/iProduct";
 import {IProductsFetchingState} from "../../store/reducers/productsFetchReducer";
 import {withCarstoreService} from "../hoc";
-import {productsRequested, productsLoaded, productsError, IProductsLoaded} from "../../store/actions/fetchProducts";
+import {
+    productsRequested,
+    productsLoaded,
+    productsError,
+    IProductsLoaded
+} from "../../store/actions/fetchProducts";
 import {compose} from "../../utils/compose";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
@@ -12,15 +17,18 @@ import "../../assests/list.scss"
 import {Dispatch} from "redux";
 
 export interface IProductList {
-    productList: IProduct[]
+    productList: IProduct[],
 }
-export const ProductsList: React.FC<IProductList> = ({productList}) => {
+
+export const ProductsList: React.FC<IProductList> = ({ productList }) => {
     const renderRow = ((product: IProduct) => {
         const {id, name, cost, dateUp } = product;
         return (
             <tr key={id}>
                 <td> </td>
-                <td><Link to="/product" className="link">{name}</Link></td>
+                <td><Link to={`/product/${id}`}
+                          // onClick = {() => productSelected(id)} вторая вариация: запись в state и адресация одновременно
+                          className="link">{name}</Link></td>
                 <td>{cost}</td>
                 <td>${dateUp}</td>
                 <td >
@@ -58,8 +66,11 @@ export const ProductsList: React.FC<IProductList> = ({productList}) => {
 
 export class ProductsListContainer extends React.Component<any> {
     componentDidMount() {
-       this.props.fetchProducts();
+        if(!this.props.productList.length) {
+            this.props.fetchProducts();
+        }
     }
+
     render() {
         const {productList, loading, error} = this.props;
         if (loading) {
@@ -68,7 +79,9 @@ export class ProductsListContainer extends React.Component<any> {
         if(error) {
             return <ErrorIndicator />
         }
-        return <ProductsList productList={productList}/>
+        return <ProductsList productList={productList}
+                             // productSelected={productSelected}
+        />
     }
 }
 export interface IMapState {
@@ -81,6 +94,7 @@ const mapStateToProps = ({productsState}:IMapState):IProductsFetchingState => {
 const mapDispatchToProps = (dispatch:Dispatch, ownProps: any) => {
     const {carstoreService} = ownProps;
     return {
+        // productSelected: (id:number) => dispatch(productSelected(id)),
         fetchProducts: () => {
             dispatch(productsRequested());
             carstoreService.getProducts()

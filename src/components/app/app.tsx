@@ -5,7 +5,7 @@ import {LoginPage} from "../pages/login-page";
 import {MainPage} from "../pages/main-page";
 import {CreateProduct} from "../pages/create-product";
 import {CreateProp} from "../pages/create-prop";
-import {Product} from "../pages/product";
+import Product from "../pages/product";
 
 // type State = {
 //     isLoggedIn ?: boolean
@@ -28,31 +28,28 @@ render () {
         <div className="app">
             <Switch>
                 <Route
-                    exact
-                    path="/login"
+                    exact path="/login"
                     render={() => (
                         <LoginPage
                             isLoggedIn={isLoggedIn}
                             onLogin={this.onLogin}/>
                     )} />
                 <Route
-                    exact
-                    path="/product/create"
+                    exact path="/product/create"
                     render={() => (
                         <CreateProduct isLoggedIn={isLoggedIn} />
                     )} />
                 <Route
-                    exact
-                    path="/prop/create"
+                    exact path="/prop/create"
                     render={() => (
                         <CreateProp isLoggedIn={isLoggedIn} />
                     )} />
-                <Route path="/product"
-                       render={() => (
-                           <Product isLoggedIn={isLoggedIn} />
-                       )}/>
+                <Route path="/product/:id"
+                       render={({ match }) => {
+                           const { id } = match.params;
+                           return <Product itemId={+id} isLoggedIn={isLoggedIn}/>
+                       }}/>
                 <Route
-                    strict
                     path="/"
                     render={() => (
                         <MainPage isLoggedIn={isLoggedIn} />
