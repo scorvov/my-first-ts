@@ -14,6 +14,7 @@ export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
 export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
 export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
 export const PRODUCT_SELECTED = "PRODUCT_SELECTED";
+export const PRODUCT_DELETED = "PRODUCT_DELETED";
 
 
 export const productsLoaded = (productList: IProduct[]): IProductsLoaded =>
@@ -38,5 +39,10 @@ export const productSelected = (id: number): ISelectProduct =>
         type: PRODUCT_SELECTED
     });
 
+export const productDeleted = (id: number): ISelectProduct =>
+    ({
+        payload: id,
+        type: PRODUCT_DELETED
+    });
 
 

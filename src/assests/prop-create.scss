@@ -1,0 +1,22 @@
+.create-prop {
+  //margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  .group-buttons {
+    align-self: flex-end;
+  }
+  h4 {
+    padding-left: 3rem;
+    margin-bottom: 3px;
+  }
+  .input-form {
+    padding-left: 3rem;
+  }
+}
+
+.line {
+  border: 1px solid #F7F9FA;
+  width: 100%;
+}
+
+

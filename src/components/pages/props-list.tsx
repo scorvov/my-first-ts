@@ -8,13 +8,14 @@ import {compose} from "../../utils/compose";
 import {withCarstoreService} from "../hoc";
 import {connect} from "react-redux";
 import {IProp} from "../../store/models/iProp";
-import {IPropsLoaded, propsError, propsLoaded, propsRequested} from "../../store/actions/fetchProps";
+import {IPropsLoaded, propDeleted, propsError, propsLoaded, propsRequested} from "../../store/actions/fetchProps";
 import "../../assests/list.scss"
 
 interface IPropsList {
     propsList: IProp[];
+    propDeleted: (id:number) => void;
 }
-const PropsList: React.FC<IPropsList> = ({propsList}) => {
+const PropsList: React.FC<IPropsList> = ({propsList, propDeleted}) => {
     const renderRow = ((prop: IProp) => {
         const {id, name, type} = prop;
         return (
@@ -23,17 +24,16 @@ const PropsList: React.FC<IPropsList> = ({propsList}) => {
                 <td>{name}</td>
                 <td>{type}</td>
                 <td >
-                    <Link to ="/products" className="link">Ред</Link>
-                    <Link to="/products" className="link">
+                    <button onClick={() => propDeleted(id)} className="link">
                         Удалить
-                    </Link>
+                    </button>
                 </td>
             </tr>
         )
     });
     return (
         <div className="list">
-                <Link to="/prop/create" className="add btn btn-warning btn-sm" >Добавить свойство</Link>
+                <Link to="/prop/create" className="btn btn-warning btn-sm" >Добавить свойство</Link>
             <table className="table">
                 <thead>
                 <tr>
@@ -58,14 +58,16 @@ export class PropsListContainer extends React.Component<any> {
         }
     }
     render() {
-        const {propsList, loading, error} = this.props;
+        const {propsList, loading, error,propDeleted} = this.props;
         if (loading) {
             return <Spinner />
         }
         if(error) {
             return <ErrorIndicator />
         }
-        return <PropsList propsList={propsList}/>
+        return <PropsList
+            propDeleted={propDeleted}
+            propsList={propsList}/>
     }
 }
 interface IMapState {
@@ -78,6 +80,7 @@ const mapStateToProps = ({propsState}:IMapState):IPropsFetchingState => {
 const mapDispatchToProps = (dispatch:Dispatch, ownProps: any) => {
     const {carstoreService} = ownProps;
     return {
+        propDeleted: (id:number) => dispatch(propDeleted(id)),
         fetchProps: () => {
             dispatch(propsRequested());
             carstoreService.getProps()

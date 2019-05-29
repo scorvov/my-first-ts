@@ -3,7 +3,7 @@ import {
     FETCH_PRODUCTS_FAILURE,
     FETCH_PRODUCTS_SUCCESS,
     FETCH_PRODUCTS_REQUEST,
-    PRODUCT_SELECTED
+    PRODUCT_SELECTED, PRODUCT_DELETED
 } from "../actions/fetchProducts";
 import {IProduct} from "../models/iProduct";
 
@@ -28,6 +28,11 @@ export const productsFetchReducer = (state: IProductsFetchingState = initialProd
             return {
                 ...state,
                 selectProduct: state.productList.find((item) => item.id === action.payload)
+            };
+        case PRODUCT_DELETED:
+            return {
+                ...state,
+                productList: state.productList.filter((item) => item.id !== action.payload)
             };
         case FETCH_PRODUCTS_REQUEST:
             return {

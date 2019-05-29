@@ -25,10 +25,10 @@ class CarstoreService implements ICarstoreService {
             {
                 id: 1,
                 name: 'Mersedes S550 4matic',
-                cost: 118000,
+                cost: '118 000',
                 img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Mercedes-Benz_S_500_%28W_222%29_%E2%80%93_Frontansicht%2C_6._April_2014%2C_Neuss.jpg/1200px-Mercedes-Benz_S_500_%28W_222%29_%E2%80%93_Frontansicht%2C_6._April_2014%2C_Neuss.jpg',
                 info: 'Не следует, однако забывать, что начало повседневной работы по формированию позиции требуют определения и уточнения существенных финансовых и административных условий. Разнообразный и богатый опыт консультация с широким активом способствует подготовки и реализации существенных финансовых и административных условий.',
-                dateUp: '18/05/2019',
+                dateUp: '20.05.2019',
                 props: [{id: 1, name: 'Цвет авто', type: 'dropdown', value: 'синий'},
                     {id: 2, name: 'Год выпуска', type: 'string', value: 2017},
                     {id: 3, name: 'Тип топлива', type: 'string', value: 'бензин'}]
@@ -36,10 +36,10 @@ class CarstoreService implements ICarstoreService {
             {
                 id: 2,
                 name: 'Mersedes S550 4matic',
-                cost: 55000,
+                cost: '55 000',
                 img: 'https://img.drivemag.net/jato_car_photos/MERCEDES%2FS-CLASS%2Fsedan%2F4%2F2009%2Fexterior-photos%2Fo%2Fmercedes-s-class-sedan-4-doors-2009-model-exterior-photos-0.jpg',
                 info: '',
-                dateUp: '18/05/2019',
+                dateUp: '20.05.2019',
                 props: [{id: 1, name: 'Цвет авто', type: 'dropdown', value: 'синий'},
                     {id: 2, name: 'Год выпуска', type: 'string', value: 2017},
                     {id: 3, name: 'Тип топлива', type: 'string', value: 'бензин'}]
@@ -68,14 +68,15 @@ class CarstoreService implements ICarstoreService {
     };
 
     _getData = (data: TData) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             setTimeout(() => {
-                if (Math.random() > 0.85) {
-                    reject(new Error('Something bad happend'));
-                }
-                else {
+                // if (Math.random() > 0.85) {
+                //     reject(new Error('Something bad happend'));
+                // }
+                // else
+                //     {
                     resolve(data);
-                }
+                // }
             }, 100);
         })
     };

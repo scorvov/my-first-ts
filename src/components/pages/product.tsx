@@ -42,6 +42,7 @@ export class Product extends React.Component<any> {
                               className="link">
                             Вернуться
                         </Link>
+                        <hr className="line"/>
                         <span>
                 <img
                     src={img}

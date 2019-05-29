@@ -8,7 +8,8 @@ import {
     productsRequested,
     productsLoaded,
     productsError,
-    IProductsLoaded
+    IProductsLoaded,
+    productDeleted
 } from "../../store/actions/fetchProducts";
 import {compose} from "../../utils/compose";
 import {Spinner} from "../common/spinner";
@@ -17,10 +18,11 @@ import "../../assests/list.scss"
 import {Dispatch} from "redux";
 
 export interface IProductList {
-    productList: IProduct[],
+    productList: IProduct[];
+    productDeleted: (id:number) => void;
 }
 
-export const ProductsList: React.FC<IProductList> = ({ productList }) => {
+export const ProductsList: React.FC<IProductList> = ({ productList, productDeleted }) => {
     const renderRow = ((product: IProduct) => {
         const {id, name, cost, dateUp } = product;
         return (
@@ -29,13 +31,15 @@ export const ProductsList: React.FC<IProductList> = ({ productList }) => {
                 <td><Link to={`/product/${id}`}
                           // onClick = {() => productSelected(id)} вторая вариация: запись в state и адресация одновременно
                           className="link">{name}</Link></td>
-                <td>{cost}</td>
-                <td>${dateUp}</td>
+                <td>{cost} $</td>
+                <td>{dateUp}</td>
                 <td >
                     <Link to="/products" className="link">Ред</Link>
-                    <Link to="/products" className="link">
+                    <button
+                          onClick={() => productDeleted(id)}
+                          className="link">
                         Удалить
-                    </Link>
+                    </button>
                 </td>
             </tr>
         )
@@ -43,7 +47,7 @@ export const ProductsList: React.FC<IProductList> = ({ productList }) => {
     return (
         <div className="list">
                 <Link to="/product/create"
-                      className="add btn btn-warning btn-sm" >
+                      className="btn btn-warning btn-sm" >
                     Добавить товар
                 </Link>
                 <table className="table">
@@ -65,14 +69,14 @@ export const ProductsList: React.FC<IProductList> = ({ productList }) => {
 };
 
 export class ProductsListContainer extends React.Component<any> {
-    componentDidMount() {
+    componentWillMount() {
         if(!this.props.productList.length) {
             this.props.fetchProducts();
         }
     }
 
     render() {
-        const {productList, loading, error} = this.props;
+        const {productList, loading, error, productDeleted} = this.props;
         if (loading) {
             return <Spinner />
         }
@@ -80,6 +84,7 @@ export class ProductsListContainer extends React.Component<any> {
             return <ErrorIndicator />
         }
         return <ProductsList productList={productList}
+                             productDeleted={productDeleted}
                              // productSelected={productSelected}
         />
     }
@@ -94,6 +99,7 @@ const mapStateToProps = ({productsState}:IMapState):IProductsFetchingState => {
 const mapDispatchToProps = (dispatch:Dispatch, ownProps: any) => {
     const {carstoreService} = ownProps;
     return {
+        productDeleted: (id:number) => dispatch(productDeleted(id)),
         // productSelected: (id:number) => dispatch(productSelected(id)),
         fetchProducts: () => {
             dispatch(productsRequested());

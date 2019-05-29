@@ -4,7 +4,7 @@ import {Route, Switch} from "react-router";
 import {LoginPage} from "../pages/login-page";
 import {MainPage} from "../pages/main-page";
 import {CreateProduct} from "../pages/create-product";
-import {CreateProp} from "../pages/create-prop";
+import {MyEnhancedForm} from "../pages/create-prop";
 import Product from "../pages/product";
 
 // type State = {
@@ -42,7 +42,8 @@ render () {
                 <Route
                     exact path="/prop/create"
                     render={() => (
-                        <CreateProp isLoggedIn={isLoggedIn} />
+                        <MyEnhancedForm isLoggedIn={isLoggedIn}/>
+                        // <CreateProp isLoggedIn={isLoggedIn} />
                     )} />
                 <Route path="/product/:id"
                        render={({ match }) => {

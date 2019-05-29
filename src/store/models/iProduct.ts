@@ -3,7 +3,7 @@ import {IProp} from "./iProp";
 export interface IProduct {
     id: number;
     name: string;
-    cost: number;
+    cost: string;
     img: string;
     info: string;
     dateUp: string;
