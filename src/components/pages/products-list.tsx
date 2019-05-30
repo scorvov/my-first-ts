@@ -8,7 +8,7 @@ import {
     productsRequested,
     productsLoaded,
     productsError,
-    IProductsLoaded,
+    ILoadedProductsAction,
     productDeleted
 } from "../../store/actions/fetchProducts";
 import {compose} from "../../utils/compose";
@@ -104,7 +104,7 @@ const mapDispatchToProps = (dispatch:Dispatch, ownProps: any) => {
         fetchProducts: () => {
             dispatch(productsRequested());
             carstoreService.getProducts()
-                .then((data: IProduct[]):IProductsLoaded => dispatch(productsLoaded(data)))
+                .then((data: IProduct[]):ILoadedProductsAction => dispatch(productsLoaded(data)))
                 .catch((err:string) => dispatch(productsError(err)));
         }
     }

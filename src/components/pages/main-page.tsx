@@ -5,10 +5,10 @@ import PropsList from "./props-list";
 import {NavLink} from "react-router-dom";
 import "../../assests/main-page.scss";
 
-type Props = {
+export interface ILogin {
     isLoggedIn: boolean
 }
-export const MainPage: React.FC<Props> = (props) => {
+export const MainPage: React.FC<ILogin> = (props) => {
     const {isLoggedIn} = props;
     if (isLoggedIn) {
         return (

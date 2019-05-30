@@ -3,42 +3,24 @@ import {Redirect} from "react-router";
 import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
 import {Input} from "../common/input/input";
-import {Form, withFormik} from "formik";
+import {Field, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
+import {RadioButton, RadioButtonGroup} from "../common/radio-button-group/radio-button-group";
+import {connect} from "react-redux";
+import {propCreated} from "../../store/actions/fetchProps";
+import {ILogin} from "./main-page";
 
 
-export type TProps = {
-    // isLoggedIn: boolean
-}
-const formikEnhancer = withFormik({
-    validationSchema: Yup.object().shape({
-        text: Yup.string()
-            .min(2, "Название свойство должно быть не менее 2 символов")
-            .max(30, "Слишком длинное название")
-            .required("First name is required."),
-    }),
-
-    mapPropsToValues: ({text, radio}: any) => ({
-        text: text || '',
-        radio: radio || 'radio1'
-    }),
-    handleSubmit: (values: any, {setSubmitting}: any) => {
-        console.log(values);
-        setSubmitting(false);
-    },
-    // displayName: "MyForm"
-});
-
-export const CreateProp: React.FC<any> = (props) => {
+const CreatePropView: React.FC<ILogin&FormikProps<ICreatePropValues>> = (props) => {
     const {
         isLoggedIn,
         touched,
         errors,
         isSubmitting,
-        // handleSubmit,
-        // values
+        values
     } = props;
     if (isLoggedIn) {
+        console.log(props);
         return (
             <Form className="create-prop">
                 <div className="group-buttons">
@@ -61,14 +43,36 @@ export const CreateProp: React.FC<any> = (props) => {
                     <Input
                         label={"Название свойства"}
                         placeholder={"Цвет авто"}
-                        name="text"
-                        errors={errors}
-                        touched={touched}
+                        name="name"
+                        error={errors.name}
+                        touched={touched.name}
                     />
-                    <label>Укажите тип свойства</label><br/>
-                    <input type="radio" name="radio1" id="radio1"/> Dropdown<br/>
-                    <input type="radio" name="radio2" id="radio2"/> Number<br/>
-                    <input type="radio" name="radio3" id="radio3"/> String<br/>
+                    <RadioButtonGroup
+                        id="radio"
+                        label= "Укажите тип свойства"
+                        value={values.type}
+                        error={errors.type}
+                        touched={touched.type}
+                    >
+                        <Field
+                            component={RadioButton}
+                            name="type"
+                            id="dropdown"
+                            label="Dropdown"
+                        />
+                        <Field
+                            component={RadioButton}
+                            name="type"
+                            id="number"
+                            label="Number"
+                        />
+                        <Field
+                            component={RadioButton}
+                            name="type"
+                            id="string"
+                            label="String"
+                        />
+                    </RadioButtonGroup>
                 </div>
             </Form>
         );
@@ -76,4 +80,34 @@ export const CreateProp: React.FC<any> = (props) => {
     return <Redirect to="/login"/>;
 };
 
-export const MyEnhancedForm = formikEnhancer(CreateProp);
+export interface ICreatePropValues {
+    name: string;
+    type: string;
+}
+
+const formikEnhancer = withFormik({
+    validationSchema: Yup.object().shape({
+        name: Yup.string()
+            .min(2, "Название свойство должно быть не менее 2 символов")
+            .max(30, "Слишком длинное название")
+            .required("First name is required."),
+        type: Yup.string().required("A radio option is required")
+    }),
+
+    mapPropsToValues: ({name, type}:any) => ({
+        name: name || '',
+        type: type || ''
+    }),
+    handleSubmit: (values: ICreatePropValues, {props:{propCreated},resetForm,setSubmitting}) => {
+        propCreated(values);
+        resetForm();
+        setSubmitting(false);
+    },
+    // displayName: "MyForm"
+})(CreatePropView);
+
+const mapDispatchToProps = {
+    propCreated
+};
+
+export const CreateProp = connect(null, mapDispatchToProps)(formikEnhancer);

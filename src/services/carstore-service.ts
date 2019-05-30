@@ -49,20 +49,17 @@ class CarstoreService implements ICarstoreService {
             {
                 id: 1,
                 name: 'Цвет авто',
-                type: 'dropdown',
-                value: 'синий'
+                type: 'dropdown'
             },
             {
                 id: 2,
                 name: 'Год выпуска',
-                type: 'number',
-                value: 1995
+                type: 'number'
             },
             {
                 id: 3,
                 name: 'Тип топлива',
-                type: 'string',
-                value: 'бензин'
+                type: 'string'
             }
         ]
     };

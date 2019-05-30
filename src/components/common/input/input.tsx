@@ -1,20 +1,20 @@
 import * as React from "react";
-import "./input.scss";
+import "../../../assests/input.scss";
 import {Field} from "formik";
 
-const Input = ({label, name, errors, touched, ...props}: any) => {
+const Input = ({label, name, error, touched, ...props}: any) => {
     return (
         <div className="input-group" >
             <label className={"label"}>
                 {label}
             </label>
             <Field
-                className={ errors.text && touched.text ? 'text-input error' : 'text-input'}
+                className={ error && touched ? 'text-input error' : 'text-input'}
                 type="text"
                 name={name}
                 {...props}
             />
-                <div className="input-feedback">{errors.text}</div>
+                <div className="input-feedback">{error}</div>
 
         </div>
     );

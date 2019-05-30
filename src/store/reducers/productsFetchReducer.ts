@@ -1,5 +1,5 @@
 import {
-    IProductsLoaded,
+    ILoadedProductsAction,
     FETCH_PRODUCTS_FAILURE,
     FETCH_PRODUCTS_SUCCESS,
     FETCH_PRODUCTS_REQUEST,
@@ -20,7 +20,7 @@ const initialProductState: IProductsFetchingState = {
     loading: false,
     error: null,
 };
-type TProductAction = IProductsLoaded;
+type TProductAction = ILoadedProductsAction;
 
 export const productsFetchReducer = (state: IProductsFetchingState = initialProductState, action:TProductAction) => {
     switch (action.type) {

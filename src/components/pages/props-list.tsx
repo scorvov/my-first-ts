@@ -8,7 +8,7 @@ import {compose} from "../../utils/compose";
 import {withCarstoreService} from "../hoc";
 import {connect} from "react-redux";
 import {IProp} from "../../store/models/iProp";
-import {IPropsLoaded, propDeleted, propsError, propsLoaded, propsRequested} from "../../store/actions/fetchProps";
+import {ILoadedPropsAction, propDeleted, propsError, propsLoaded, propsRequested} from "../../store/actions/fetchProps";
 import "../../assests/list.scss"
 
 interface IPropsList {
@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch:Dispatch, ownProps: any) => {
         fetchProps: () => {
             dispatch(propsRequested());
             carstoreService.getProps()
-                .then((data: IProp[]):IPropsLoaded => dispatch(propsLoaded(data)))
+                .then((data: IProp[]):ILoadedPropsAction => dispatch(propsLoaded(data)))
                 .catch((err:string) => dispatch(propsError(err)));
         }
     }
