@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-interface AppContextInerface {
-    // name: string
-}
+// interface AppContextInerface {
+//     // name: string
+// }
 
 const {
     Provider: CarstoreServiceProvider,

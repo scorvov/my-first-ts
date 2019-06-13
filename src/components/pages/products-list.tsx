@@ -5,24 +5,20 @@ import {IProduct} from "../../store/models/iProduct";
 import {IProductsFetchingState} from "../../store/reducers/productsFetchReducer";
 import {withCarstoreService} from "../hoc";
 import {
-    productsRequested,
-    productsLoaded,
-    productsError,
-    ILoadedProductsAction,
-    productDeleted
+    productDelete,
+    fetchProducts
 } from "../../store/actions/fetchProducts";
 import {compose} from "../../utils/compose";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import "../../assests/list.scss"
-import {Dispatch} from "redux";
 
 export interface IProductList {
     productList: IProduct[];
-    productDeleted: (id:number) => void;
+    productDelete: (id:number) => void;
 }
 
-export const ProductsList: React.FC<IProductList> = ({ productList, productDeleted }) => {
+export const ProductsList: React.FC<IProductList> = ({ productList, productDelete }) => {
     const renderRow = ((product: IProduct) => {
         const {id, name, cost, dateUp } = product;
         return (
@@ -36,7 +32,7 @@ export const ProductsList: React.FC<IProductList> = ({ productList, productDelet
                 <td >
                     <Link to="/products" className="link">Ред</Link>
                     <button
-                          onClick={() => productDeleted(id)}
+                          onClick={() => productDelete(id)}
                           className="link">
                         Удалить
                     </button>
@@ -69,14 +65,14 @@ export const ProductsList: React.FC<IProductList> = ({ productList, productDelet
 };
 
 export class ProductsListContainer extends React.Component<any> {
-    componentWillMount() {
+    componentDidMount() {
         if(!this.props.productList.length) {
             this.props.fetchProducts();
         }
     }
 
     render() {
-        const {productList, loading, error, productDeleted} = this.props;
+        const {productList, loading, error, productDelete} = this.props;
         if (loading) {
             return <Spinner />
         }
@@ -84,8 +80,7 @@ export class ProductsListContainer extends React.Component<any> {
             return <ErrorIndicator />
         }
         return <ProductsList productList={productList}
-                             productDeleted={productDeleted}
-                             // productSelected={productSelected}
+                            productDelete={productDelete}
         />
     }
 }
@@ -96,24 +91,9 @@ const mapStateToProps = ({productsState}:IMapState):IProductsFetchingState => {
     const {productList, loading, error} = productsState;
     return {productList, loading, error}
 };
-const mapDispatchToProps = (dispatch:Dispatch, ownProps: any) => {
-    const {carstoreService} = ownProps;
-    return {
-        productDeleted: (id:number) => dispatch(productDeleted(id)),
-        // productSelected: (id:number) => dispatch(productSelected(id)),
-        fetchProducts: () => {
-            dispatch(productsRequested());
-            carstoreService.getProducts()
-                .then((data: IProduct[]):ILoadedProductsAction => dispatch(productsLoaded(data)))
-                .catch((err:string) => dispatch(productsError(err)));
-        }
-    }
-};
 
 export default compose(
     withCarstoreService(),
-    connect(mapStateToProps, mapDispatchToProps)
+    connect(mapStateToProps, {productDelete, fetchProducts})
 )(ProductsListContainer);
 
-// export default withCarstoreService()(
-//     connect(mapStateToProps, mapDispatchToProps)(ProductsList));

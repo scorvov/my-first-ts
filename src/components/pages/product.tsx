@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Link, Redirect} from "react-router-dom";
+import {Link, Redirect, withRouter} from "react-router-dom";
 import {IMapState} from "./products-list";
 import {connect} from "react-redux";
 import {productSelected} from "../../store/actions/fetchProducts";
@@ -7,9 +7,10 @@ import {IProp} from "../../store/models/iProp";
 
 
 export class Product extends React.Component<any> {
-    componentWillMount(): void {
-        const {productSelected, itemId} = this.props;
-            productSelected(itemId);
+    componentDidMount(): void {
+        const {id} = this.props.match.params;
+        const {productSelected} = this.props;
+            productSelected(+id);
     }
 
     showProps = (props:IProp[]) => {
@@ -63,10 +64,10 @@ export class Product extends React.Component<any> {
     }
 }
 
-const mapStateToProps = ({productsState:{selectProduct}}:IMapState) => {
-    return {selectProduct}
+const mapStateToProps = ({productsState:selectProduct}:IMapState) => {
+     return selectProduct
 };
 const mapDispatchToProps = {
         productSelected
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Product));

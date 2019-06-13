@@ -77,6 +77,7 @@ class CarstoreService implements ICarstoreService {
             }, 100);
         })
     };
+    deleteProduct = async (id:any) => await {result:0};
     getProducts = async () => await this._getData(this.data.products);
     getProps = async () => await this._getData(this.data.props);
 }

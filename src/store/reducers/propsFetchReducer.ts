@@ -9,8 +9,8 @@ import {
 
 export interface IPropsFetchingState {
     propsList: IProp[];
-    loading: boolean;
-    error: any;
+    loading?: boolean;
+    error?: any;
 }
 
 const initialPropsState: IPropsFetchingState = {

@@ -14,7 +14,7 @@ const Input = ({label, name, error, touched, ...props}: any) => {
                 name={name}
                 {...props}
             />
-                <div className="input-feedback">{error}</div>
+               {error && touched && <div className="input-feedback">{error}</div>} 
 
         </div>
     );

@@ -9,7 +9,7 @@
   box-sizing: border-box;
   border-radius: 4px;
   line-height: 16px;
-  width: 20rem;
+  min-width: 20rem;
   font:{
     family: Roboto;
     style: normal;
@@ -26,7 +26,7 @@
   outline: none;
 }
 .label {
-  font-weight: bold;
+  // font-weight: bold;
   display: block;
   margin-bottom: .5rem;
 }

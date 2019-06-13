@@ -45,10 +45,9 @@ render () {
                         <CreateProp isLoggedIn={isLoggedIn} />
                     )} />
                 <Route path="/product/:id"
-                       render={({ match }) => {
-                           const { id } = match.params;
-                           return <Product itemId={+id} isLoggedIn={isLoggedIn}/>
-                       }}/>
+                       render={() => (
+                        <Product isLoggedIn={isLoggedIn}/>
+                       )}/>
                 <Route
                     path="/"
                     render={() => (

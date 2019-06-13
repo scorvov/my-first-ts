@@ -39,12 +39,9 @@ export const propDeleted = (id: number): IDeletePropAction =>
         payload: id,
         type: PROP_DELETED
     });
-export const propCreated = ({name, type}:ICreatePropValues): ICreatePropAction =>
+export const propCreated = (values:ICreatePropValues): ICreatePropAction =>
     ({
-        payload: {
-            name,
-            type
-        },
+        payload: values,
         type: PROP_CREATED
     });
 

@@ -20,7 +20,6 @@ const CreatePropView: React.FC<ILogin&FormikProps<ICreatePropValues>> = (props) 
         values
     } = props;
     if (isLoggedIn) {
-        console.log(props);
         return (
             <Form className="create-prop">
                 <div className="group-buttons">
@@ -88,9 +87,9 @@ export interface ICreatePropValues {
 const formikEnhancer = withFormik({
     validationSchema: Yup.object().shape({
         name: Yup.string()
-            .min(2, "Название свойство должно быть не менее 2 символов")
+            .min(2, "Название свойства должно быть не менее 2 символов")
             .max(30, "Слишком длинное название")
-            .required("First name is required."),
+            .required("Требуется ввести название"),
         type: Yup.string().required("A radio option is required")
     }),
 
