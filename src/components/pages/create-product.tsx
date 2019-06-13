@@ -88,20 +88,32 @@ const CreateProductView: React.FC<ILogin&any&IPropsFetchingState&FormikProps<ICr
                             name="productProps[0]"
                             component="select"
                         >
-                            {/*<option value={productProps} label="Select" />*/}
-                            <option value={propsList[0]} label={propsList[0].name} />
-                            <option value={propsList[1]} label={propsList[1].name} />
-                            <option value={propsList[2]} label={propsList[2].name} />
+                            <option label="Select" />
+                            <option value={propsList[0].name} label={propsList[0].name} />
+                            <option value={propsList[1].name} label={propsList[1].name} />
+                            <option value={propsList[2].name} label={propsList[2].name} />
                         </Field>
+                        <Input
+                            label={"Значение"}
+                            placeholder={"Введите значение свойства"}
+                            name="productProps[0].value"
+                        />
+
                         <Field
                             name="productProps[1]"
                             component="select"
                         >
-                            {/*<option value={productProps} label="Select" />*/}
-                            <option value={propsList[0].id} label={propsList[0].name} />
-                            <option value={propsList[1].id} label={propsList[1].name} />
-                            <option value={propsList[2].id} label={propsList[2].name} />
+                            <option label="Select" />
+                            <option value={propsList[0]} label={propsList[0].name} />
+                            <option value={propsList[1]} label={propsList[1].name} />
+                            <option value={propsList[2]} label={propsList[2].name} />
                         </Field>
+                        <Input
+                            label={"Значение"}
+                            placeholder={"Введите значение свойства"}
+                            name="productProps[0].value"
+                        />
+
                     </div>
                 </div>
 
@@ -147,7 +159,7 @@ const formikEnhancer = withFormik({
         img: img || '',
         info: info || '',
         color: color || '',
-        productProps: productProps || [],
+        productProps: productProps,
         dateUp: new Date().toLocaleDateString()
     }),
     handleSubmit: (values: any, {props:{productCreated},resetForm,setSubmitting}) => {
