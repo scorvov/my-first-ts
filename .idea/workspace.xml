@@ -1,46 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6bd0fd37-e0de-4155-a52d-51f2f392d10f" name="Default Changelist" comment="CreateProduct0">
+    <list default="true" id="6bd0fd37-e0de-4155-a52d-51f2f392d10f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assests/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assests/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assests/input.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assests/input.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assests/list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assests/list.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assests/main-page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assests/main-page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assests/prop-create.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assests/prop-create.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/carstore-service-context/carstore-service-context.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/carstore-service-context/carstore-service-context.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/carstore-service-context/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/carstore-service-context/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/error-boundry/error-boundry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/error-boundry/error-boundry.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/error-boundry/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/error-boundry/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/error-indicator/error-indicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/error-indicator/error-indicator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/error-indicator/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/error-indicator/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/input/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/input/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/radio-button-group/radio-button-group.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/radio-button-group/radio-button-group.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/spinner/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/spinner/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/spinner/spinner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/spinner/spinner.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hoc/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hoc/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hoc/with-carstore-service.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hoc/with-carstore-service.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/create-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/create-product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/create-prop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/create-prop.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/login-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/login-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/main-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/main-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/products-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/products-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/props-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/props-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react-app-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/react-app-env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/carstore-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/carstore-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/fetchProducts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/fetchProducts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/fetchProps.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/fetchProps.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/models/iProduct.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/models/iProduct.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/models/iProp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/models/iProp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/models/iState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/models/iState.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/productsFetchReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/productsFetchReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/propsFetchReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/propsFetchReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/compose.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/compose.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/pages/create-product.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+            <state relative-caret-position="-688">
+              <caret line="108" column="55" selection-start-line="108" selection-start-column="55" selection-end-line="108" selection-end-column="55" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -66,10 +29,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/actions/fetchProducts.ts">
+        <entry file="file://$PROJECT_DIR$/src/components/pages/products-list.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="79" column="2" selection-start-line="79" selection-start-column="2" selection-end-line="79" selection-end-column="2" />
+            <state relative-caret-position="658">
+              <caret line="69" column="41" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -78,43 +41,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/services/carstore-service.ts">
+        <entry file="file://$PROJECT_DIR$/src/store/actions/fetchProps.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="80" column="55" lean-forward="true" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
-              <folding>
-                <element signature="e#0#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/carstore-service-context/carstore-service-context.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" selection-start-line="2" selection-start-column="3" selection-end-line="4" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/reducers/propsFetchReducer.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="9" column="36" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/pages/props-list.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1407">
-              <caret line="78" column="2" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
+            <state relative-caret-position="441">
+              <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -167,8 +97,6 @@
         <option value="$PROJECT_DIR$/src/components/pages/prop-create.scss" />
         <option value="$PROJECT_DIR$/src/components/common/input/input.ts" />
         <option value="$PROJECT_DIR$/src/assests/list.scss" />
-        <option value="$PROJECT_DIR$/src/components/pages/products-list.tsx" />
-        <option value="$PROJECT_DIR$/src/components/pages/props-list.tsx" />
         <option value="$PROJECT_DIR$/src/components/common/input/input.scss" />
         <option value="$PROJECT_DIR$/src/components/pages/create-prop-0.ts" />
         <option value="$PROJECT_DIR$/src/components/pages/create-prop0.tsx" />
@@ -180,16 +108,18 @@
         <option value="$PROJECT_DIR$/src/components/common/radio-button-group/radio-button-group.tsx" />
         <option value="$PROJECT_DIR$/src/components/common/input/input.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/main-page.tsx" />
-        <option value="$PROJECT_DIR$/src/store/actions/fetchProps.ts" />
         <option value="$PROJECT_DIR$/src/store/index.ts" />
         <option value="$PROJECT_DIR$/src/components/pages/create-prop.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/product.tsx" />
         <option value="$PROJECT_DIR$/src/store/reducers/productsFetchReducer.ts" />
         <option value="$PROJECT_DIR$/src/store/reducers/propsFetchReducer.ts" />
         <option value="$PROJECT_DIR$/src/components/carstore-service-context/carstore-service-context.tsx" />
-        <option value="$PROJECT_DIR$/src/components/pages/create-product.tsx" />
-        <option value="$PROJECT_DIR$/src/store/actions/fetchProducts.ts" />
         <option value="$PROJECT_DIR$/src/services/carstore-service.ts" />
+        <option value="$PROJECT_DIR$/src/components/pages/create-product.tsx" />
+        <option value="$PROJECT_DIR$/src/components/pages/props-list.tsx" />
+        <option value="$PROJECT_DIR$/src/components/pages/products-list.tsx" />
+        <option value="$PROJECT_DIR$/src/store/actions/fetchProducts.ts" />
+        <option value="$PROJECT_DIR$/src/store/actions/fetchProps.ts" />
       </list>
     </option>
   </component>
@@ -251,6 +181,13 @@
               <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
@@ -367,7 +304,7 @@
       <workItem from="1560246694973" duration="11560000" />
       <workItem from="1560337090771" duration="2881000" />
       <workItem from="1560352769800" duration="7010000" />
-      <workItem from="1560386513645" duration="3923000" />
+      <workItem from="1560386513645" duration="8210000" />
     </task>
     <task id="LOCAL-00001" summary="second_preinstall">
       <created>1558098338124</created>
@@ -432,11 +369,39 @@
       <option name="project" value="LOCAL" />
       <updated>1559174954268</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="CreateProduct0">
+      <created>1560425910454</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560425910454</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixFetch0">
+      <created>1560430433398</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1560430433398</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixFetch0">
+      <created>1560430469348</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1560430469349</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixFetch0">
+      <created>1560430493668</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1560430493668</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="282989000" />
+    <option name="totallyTimeSpent" value="287276000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -463,9 +428,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32932165" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32881355" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005834" side_tool="true" weight="0.32932165" />
-      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.32768363" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4989259" weight="0.32881355" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50107414" side_tool="true" weight="0.32881355" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32768363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -526,7 +491,8 @@
     <MESSAGE value="CreateProp1" />
     <MESSAGE value="withFormikCreateProp" />
     <MESSAGE value="CreateProduct0" />
-    <option name="LAST_COMMIT_MESSAGE" value="CreateProduct0" />
+    <MESSAGE value="fixFetch0" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixFetch0" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/store.js" />
@@ -765,16 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/actions/fetchProps.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="18" column="43" lean-forward="true" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/app/app.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -800,16 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/products-list.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1021">
-          <caret line="112" selection-start-line="112" selection-end-line="115" selection-end-column="25" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -853,33 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/productsFetchReducer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="34" column="64" lean-forward="true" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/propsFetchReducer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/props-list.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1407">
-          <caret line="78" column="2" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/carstore-service-context/carstore-service-context.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -887,20 +806,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/create-product.tsx">
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/productsFetchReducer.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        <state relative-caret-position="567">
+          <caret line="34" column="64" lean-forward="true" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/propsFetchReducer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="36" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/actions/fetchProducts.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/pages/create-product.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="79" column="2" selection-start-line="79" selection-start-column="2" selection-end-line="79" selection-end-column="2" />
+        <state relative-caret-position="-688">
+          <caret line="108" column="55" selection-start-line="108" selection-start-column="55" selection-end-line="108" selection-end-column="55" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -909,10 +835,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/services/carstore-service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="80" column="55" lean-forward="true" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
+        <state relative-caret-position="581">
+          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/props-list.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="53" column="2" lean-forward="true" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/products-list.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="69" column="41" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions/fetchProducts.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions/fetchProps.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import {IProp} from "../models/iProp";
-import {ILoadedErrorAction, productsRequested} from "./fetchProducts";
+import {ILoadedErrorAction} from "./fetchProducts";
 import {ICreatePropValues} from "../../components/pages/create-prop";
 import {CarstoreService} from "../../services/carstore-service";
 
@@ -39,7 +39,7 @@ export const propsError = (error:string): ILoadedErrorAction => {
 };
 export const fetchProps = ():any => {
     return (dispatch:any) => {
-        dispatch(productsRequested());
+        dispatch(propsRequested());
         carstoreService.getProps()
             .then((data:any) => dispatch(propsLoaded(data)))
             .catch((err) => dispatch(propsError(err)));
