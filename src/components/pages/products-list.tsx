@@ -12,6 +12,7 @@ import {compose} from "../../utils/compose";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import "../../assests/list.scss"
+import {fetchProps} from "../../store/actions/fetchProps";
 
 export interface IProductList {
     productList: IProduct[];
@@ -67,6 +68,7 @@ export const ProductsList: React.FC<IProductList> = ({ productList, productDelet
 export class ProductsListContainer extends React.Component<any> {
     componentDidMount() {
         if(!this.props.productList.length) {
+            this.props.fetchProps();
             this.props.fetchProducts();
         }
     }
@@ -94,6 +96,6 @@ const mapStateToProps = ({productsState}:IMapState):IProductsFetchingState => {
 
 export default compose(
     withCarstoreService(),
-    connect(mapStateToProps, {productDelete, fetchProducts})
+    connect(mapStateToProps, {productDelete, fetchProducts, fetchProps})
 )(ProductsListContainer);
 
