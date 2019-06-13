@@ -1,7 +1,10 @@
 import { Action } from "redux";
 import {IProp} from "../models/iProp";
-import {ILoadedErrorAction} from "./fetchProducts";
+import {ILoadedErrorAction, productsRequested} from "./fetchProducts";
 import {ICreatePropValues} from "../../components/pages/create-prop";
+import {CarstoreService} from "../../services/carstore-service";
+
+const carstoreService = new CarstoreService();
 
 export interface ILoadedPropsAction extends Action {
     payload: any;
@@ -33,6 +36,14 @@ export const propsError = (error:string): ILoadedErrorAction => {
         payload: error,
         type: FETCH_PROPS_FAILURE
     };
+};
+export const fetchProps = ():any => {
+    return (dispatch:any) => {
+        dispatch(productsRequested());
+        carstoreService.getProps()
+            .then((data:any) => dispatch(propsLoaded(data)))
+            .catch((err) => dispatch(propsError(err)));
+    }
 };
 export const propDeleted = (id: number): IDeletePropAction =>
     ({
