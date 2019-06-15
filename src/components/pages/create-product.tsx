@@ -3,35 +3,57 @@ import {Redirect} from "react-router";
 import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
 import {Input} from "../common/input/input";
-import {Form, FormikProps, withFormik, Field} from "formik";
+import {Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
 import {connect} from "react-redux";
 import {productCreated} from "../../store/actions/fetchProducts";
 import {ILogin} from "./main-page";
 import {IPropsFetchingState} from "../../store/reducers/propsFetchReducer";
-// import {IMapState} from "./products-list";
 import {IProp} from "../../store/models/iProp";
+import {Select} from "../common/select/select";
 
 
-const CreateProductView: React.FC<ILogin&any&IPropsFetchingState&FormikProps<ICreateProductValues>> = (props) => {
+const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> = (props) => {
     const {
         isLoggedIn,
         touched,
         errors,
         propsList,
-        // productProps,
         isSubmitting,
-        values
     } = props;
-    if (isLoggedIn) {
-        if((errors.cost) && errors.cost.includes("cost must be a")){
-            errors.cost="Стоимость должна состоять из цифр"
+    // console.log(props.values.productProps);
+    const optionRow = (option: any) => {
+        return (
+            <option key={option.id} value={option.name} label={option.name}/>
+        )
+    };
+    let {productProps} = props.values;
+    console.log(productProps[0]);
+    const productPropsShow = (productProps: any) => {
+        if (productProps) {
+
+            return (
+                <li key={productProps[0].id}>
+                <Select
+                    name={"productProps[0].name"}
+                    component="select"
+                    label={"Свойство"}
+                >
+                    {propsList.map(optionRow)}
+                </Select>
+                <Input
+                    label={"Значение"}
+                    placeholder={"Введите значение свойства"}
+                    name={"productProps[0].value"}
+                    // value={productProp.value}
+                />
+            </li>)
         }
-        console.log(propsList);
-        console.log(values.productProps);
-        // if( values.cost !== '' ) {
-        //     values.cost = (+values.cost.replace(/\s/g, '')).toLocaleString();
-        // }
+    };
+    if (isLoggedIn) {
+        if ((errors.cost) && errors.cost.includes("cost must be a")) {
+            errors.cost = "Стоимость должна состоять из цифр"
+        }
         return (
             <Form className="create-prop">
                 <div className="group-buttons">
@@ -63,7 +85,7 @@ const CreateProductView: React.FC<ILogin&any&IPropsFetchingState&FormikProps<ICr
                         name="cost"
                         error={errors.cost}
                         touched={touched.cost}
-                    />    
+                    />
                     <Input
                         label={"Изображение"}
                         placeholder={"image"}
@@ -83,37 +105,11 @@ const CreateProductView: React.FC<ILogin&any&IPropsFetchingState&FormikProps<ICr
                     />
                     <div className="add-props">
                         <h5>Добавление товару свойств</h5>
-                        <button onClick={() => {}}>Add</button><br/>
-                        <Field
-                            name="productProps[0]"
-                            component="select"
-                        >
-                            <option label="Select" />
-                            <option value={propsList[0].name} label={propsList[0].name} />
-                            <option value={propsList[1].name} label={propsList[1].name} />
-                            <option value={propsList[2].name} label={propsList[2].name} />
-                        </Field>
-                        <Input
-                            label={"Значение"}
-                            placeholder={"Введите значение свойства"}
-                            name="productProps[0].value"
-                        />
-
-                        <Field
-                            name="productProps[1]"
-                            component="select"
-                        >
-                            <option label="Select" />
-                            <option value={propsList[0]} label={propsList[0].name} />
-                            <option value={propsList[1]} label={propsList[1].name} />
-                            <option value={propsList[2]} label={propsList[2].name} />
-                        </Field>
-                        <Input
-                            label={"Значение"}
-                            placeholder={"Введите значение свойства"}
-                            name="productProps[0].value"
-                        />
-
+                        <button type="button" onClick={() => {
+                        }}>Add
+                        </button>
+                        <br/>
+                        {productPropsShow(productProps)}
                     </div>
                 </div>
 
@@ -147,22 +143,27 @@ const formikEnhancer = withFormik({
             .required("Требуется ввести стоимость"),
         img: Yup.string()
             .min(2, "Ссылка файла изображения должна быть не менее 2 символов")
-            .required("Требуется указать ссылку файла изображения"),    
+            .required("Требуется указать ссылку файла изображения"),
         info: Yup.string()
             .max(1000, "Описание не должно превышать 1000 символов"),
-        
+
     }),
 
-    mapPropsToValues: ({name, cost, img, info, color,productProps}:any) => ({
-        name: name || '',
-        cost: cost || '',
-        img: img || '',
-        info: info || '',
-        color: color || '',
-        productProps: productProps,
-        dateUp: new Date().toLocaleDateString()
-    }),
-    handleSubmit: (values: any, {props:{productCreated},resetForm,setSubmitting}) => {
+    mapPropsToValues: ({name, cost, img, info, color, productProps, propsList}: any) => {
+        if (!productProps || productProps.length === 0) {
+            productProps = propsList.map((prop: any) => ({...prop, value: ''}));
+        }
+        return {
+            name: name || '',
+            cost: cost || '',
+            img: img || '',
+            info: info || '',
+            color: color || '',
+            productProps: productProps || [],
+            dateUp: new Date().toLocaleDateString()
+        }
+    },
+    handleSubmit: (values: any, {props: {productCreated}, resetForm, setSubmitting}) => {
         productCreated(values);
         resetForm();
         setSubmitting(false);
@@ -173,7 +174,7 @@ const formikEnhancer = withFormik({
 // type IProps= {
 //     IProp[];
 // };
-const mapStateToProps = ({propsState}:any):IPropsFetchingState => {
+const mapStateToProps = ({propsState}: any): IPropsFetchingState => {
     const {propsList} = propsState;
     return {propsList}
 };
