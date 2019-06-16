@@ -2,7 +2,7 @@ import * as React from "react";
 import "../../../assests/input.scss";
 import {Field} from "formik";
 
-const Input = ({label, name, error, touched, ...props}: any) => {
+const Input = ({label, name, error, value, touched, ...props}: any) => {
     return (
         <div className="input-group" >
             <label className={"label"}>

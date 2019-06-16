@@ -2,6 +2,7 @@ import * as React from "react";
 import {Redirect} from "react-router";
 import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
+import "../pages/create-product.scss";
 import {Input} from "../common/input/input";
 import {Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
@@ -13,6 +14,7 @@ import {IProp} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
 
 
+
 const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> = (props) => {
     const {
         isLoggedIn,
@@ -21,21 +23,13 @@ const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikPro
         propsList,
         isSubmitting,
     } = props;
-    // console.log(props.values.productProps);
-    const optionRow = (option: any) => {
-        return (
-            <option key={option.id} value={option.name} label={option.name}/>
-        )
-    };
-    let {productProps} = props.values;
-    console.log(productProps[0]);
-    const productPropsShow = (productProps: any) => {
-        if (productProps) {
 
-            return (
-                <li key={productProps[0].id}>
+    const {productProps} = props.values;
+    const productPropsShow = ((productProp: any, index: number) => {
+        console.log(productProp);
+        return (<span key={productProp.id} className={"add-props-product"}>
                 <Select
-                    name={"productProps[0].name"}
+                    name={`productProps[${index}].name`}
                     component="select"
                     label={"Свойство"}
                 >
@@ -44,14 +38,17 @@ const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikPro
                 <Input
                     label={"Значение"}
                     placeholder={"Введите значение свойства"}
-                    name={"productProps[0].value"}
-                    // value={productProp.value}
+                    name={`productProps[${index}].value`}
                 />
-            </li>)
-        }
+            </span>)
+    });
+    const optionRow = (option: any) => {
+        return (
+            <option key={option.id} value={option.name} label={option.name}/>
+        )
     };
     if (isLoggedIn) {
-        if ((errors.cost) && errors.cost.includes("cost must be a")) {
+        if ((errors.cost) && errors.cost.includes("cost must")) {
             errors.cost = "Стоимость должна состоять из цифр"
         }
         return (
@@ -103,13 +100,13 @@ const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikPro
                         error={errors.info}
                         touched={touched.info}
                     />
-                    <div className="add-props">
+                    <div>
                         <h5>Добавление товару свойств</h5>
                         <button type="button" onClick={() => {
                         }}>Add
                         </button>
                         <br/>
-                        {productPropsShow(productProps)}
+                        {productProps.map(productPropsShow)}
                     </div>
                 </div>
 

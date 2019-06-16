@@ -1,6 +1,7 @@
 .input-group {
   margin-bottom: 1rem;
   display: block;
+  margin-right: 10rem;
 }
 .text-input {
   padding: .7rem;
@@ -29,6 +30,8 @@
   // font-weight: bold;
   display: block;
   margin-bottom: .5rem;
+  margin-right: 10rem;
+  width: auto;
 }
 .input-feedback {
   color: red;
