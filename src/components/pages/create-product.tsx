@@ -14,6 +14,16 @@ import {IProp} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
 
 
+type ProductProps = IProp[] | [];
+
+export interface ICreateProductValues {
+    name: string;
+    cost: string;
+    img: string;
+    info: string;
+    dateUp: string;
+    productProps?: ProductProps;
+}
 
 const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> = (props) => {
     const {
@@ -21,28 +31,48 @@ const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikPro
         touched,
         errors,
         propsList,
-        isSubmitting,
+        isSubmitting
     } = props;
-
-    const {productProps} = props.values;
-    const productPropsShow = ((productProp: any, index: number) => {
-        console.log(productProp);
-        return (<span key={productProp.id} className={"add-props-product"}>
+    let {productProps} = props.values;
+    console.log(productProps);
+    // запись id и type объекта property в массив productProps по name из propsList
+    if(productProps.length !== 0){
+        productProps.map((propProduct:any) => {
+            propsList.map((prop:any) => {
+                if(propProduct.name === prop.name){
+                    propProduct.id = prop.id;
+                    propProduct.type = prop.type;
+                }
+            });
+            return propProduct;
+        })
+    }
+    const addProp = () => {
+        if(!productProps) {
+        }
+        productProps.push({id: undefined, name:'', type: '', value: ''});
+    };
+    const productPropsShow = ((productProp: IProp, index: number) => {
+        // console.log(productProps);
+        return (<span key={index} className={"add-props-product"}>
                 <Select
                     name={`productProps[${index}].name`}
                     component="select"
                     label={"Свойство"}
                 >
+                    <option value={0} label={"select"} />
                     {propsList.map(optionRow)}
                 </Select>
                 <Input
                     label={"Значение"}
                     placeholder={"Введите значение свойства"}
                     name={`productProps[${index}].value`}
+                    // error={errors.productProps ? errors.productProps[index].value : null}
+                    // touched={touched.productProps ? touched.productProps[index].value : null}
                 />
             </span>)
     });
-    const optionRow = (option: any) => {
+    const optionRow = (option: IProp) => {
         return (
             <option key={option.id} value={option.name} label={option.name}/>
         )
@@ -102,8 +132,7 @@ const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikPro
                     />
                     <div>
                         <h5>Добавление товару свойств</h5>
-                        <button type="button" onClick={() => {
-                        }}>Add
+                        <button type="submit" onClick={addProp}>Add
                         </button>
                         <br/>
                         {productProps.map(productPropsShow)}
@@ -115,17 +144,6 @@ const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikPro
     }
     return <Redirect to="/login"/>;
 };
-
-type ProductProps = IProp[] | [];
-
-export interface ICreateProductValues {
-    name: string;
-    cost: string;
-    img: string;
-    info: string;
-    dateUp: string;
-    productProps?: ProductProps;
-}
 
 const formikEnhancer = withFormik({
     validationSchema: Yup.object().shape({
@@ -143,14 +161,19 @@ const formikEnhancer = withFormik({
             .required("Требуется указать ссылку файла изображения"),
         info: Yup.string()
             .max(1000, "Описание не должно превышать 1000 символов"),
+        productProps: Yup.array().of(
+            Yup.object().shape({
+                value: Yup.string()
+                    .required("Требуется ввести свойство"),
+                name: Yup.string()
+                    .required("Требуется ввести имя")
+            })
+        )
+
 
     }),
 
-    mapPropsToValues: ({name, cost, img, info, color, productProps, propsList}: any) => {
-        if (!productProps || productProps.length === 0) {
-            productProps = propsList.map((prop: any) => ({...prop, value: ''}));
-        }
-        return {
+    mapPropsToValues: ({name, cost, img, info, color, productProps}: any) => ({
             name: name || '',
             cost: cost || '',
             img: img || '',
@@ -158,27 +181,20 @@ const formikEnhancer = withFormik({
             color: color || '',
             productProps: productProps || [],
             dateUp: new Date().toLocaleDateString()
-        }
-    },
+        }),
     handleSubmit: (values: any, {props: {productCreated}, resetForm, setSubmitting}) => {
         productCreated(values);
         resetForm();
         setSubmitting(false);
     },
-    // displayName: "MyForm"
 })(CreateProductView);
 
-// type IProps= {
-//     IProp[];
-// };
 const mapStateToProps = ({propsState}: any): IPropsFetchingState => {
     const {propsList} = propsState;
     return {propsList}
 };
-
 const mapDispatchToProps = {
     productCreated
 };
-
 export const CreateProduct = connect(mapStateToProps, mapDispatchToProps)(formikEnhancer);
 

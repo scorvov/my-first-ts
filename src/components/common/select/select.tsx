@@ -9,7 +9,6 @@ const Select = ({label, name, error, touched, ...props}: any) => {
                 {label}
             </label>
             <Field
-                type="select"
                 name={name}
                 {...props}
             />

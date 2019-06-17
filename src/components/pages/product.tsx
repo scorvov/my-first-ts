@@ -13,9 +13,9 @@ export class Product extends React.Component<any> {
             productSelected(+id);
     }
 
-    showProps = (props:IProp[]) => {
-        if(props) {
-            return props.map((item:IProp) => {
+    showProps = (productProps:IProp[]) => {
+        if(productProps) {
+            return productProps.map((item:IProp) => {
                 const {id, name,type,value} = item;
                 let valueProp;
                 if(type === 'dropdown') {
@@ -36,7 +36,7 @@ export class Product extends React.Component<any> {
             if (!selectProduct) {
                 return <div>Loading...</div>;
             }
-                const {name, cost, img, info, props} = selectProduct;
+                const {name, cost, img, info, productProps} = selectProduct;
                 return (
                     <>
                         <Link to="/products"
@@ -51,7 +51,7 @@ export class Product extends React.Component<any> {
                 <h2>{name}</h2>
                 <div><p>{info}</p></div>
             </span>
-                        {this.showProps(props)}
+                        {this.showProps(productProps)}
                         <div>
                             <h3>Стоимость</h3>
                             <p>{cost}$</p>
