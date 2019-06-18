@@ -4,10 +4,7 @@ import {connect} from "react-redux";
 import {IProduct} from "../../store/models/iProduct";
 import {IProductsFetchingState} from "../../store/reducers/productsFetchReducer";
 import {withCarstoreService} from "../hoc";
-import {
-    productDelete,
-    fetchProducts
-} from "../../store/actions/fetchProducts";
+import {productDelete, fetchProducts} from "../../store/actions/fetchProducts";
 import {compose} from "../../utils/compose";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";

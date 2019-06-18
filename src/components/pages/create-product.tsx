@@ -25,42 +25,58 @@ export interface ICreateProductValues {
     productProps?: ProductProps;
 }
 
-const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> = (props) => {
-    const {
-        isLoggedIn,
-        touched,
-        errors,
-        propsList,
-        isSubmitting
-    } = props;
-    let {productProps} = props.values;
-    console.log(productProps);
-    // запись id и type объекта property в массив productProps по name из propsList
-    if(productProps.length !== 0){
-        productProps.map((propProduct:any) => {
-            propsList.map((prop:any) => {
-                if(propProduct.name === prop.name){
-                    propProduct.id = prop.id;
-                    propProduct.type = prop.type;
-                }
+export class CreateProductView extends React.Component<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> {
+
+    componentDidUpdate(): void {
+        const {propsList} = this.props;
+        let {productProps} = this.props.values;
+        // запись id и type объекта property в массив productProps по name из propsList
+        if (productProps.length !== 0) {
+            this.props.values.productProps = productProps.map((propProduct: IProp) => {
+                let prop = propsList.find((item: IProp) => item.name === propProduct.name);
+                return {...propProduct, ...prop};
             });
-            return propProduct;
-        })
-    }
-    const addProp = () => {
-        if(!productProps) {
         }
-        productProps.push({id: undefined, name:'', type: '', value: ''});
+    }
+    incProp = () => {
+        if (!this.props.values.productProps) {
+            this.props.values.productProps = [{id: Math.floor(Math.random() * 1000), name: '', type: '', value: ''}];
+        }
+        this.props.values.productProps.push({id: Math.floor(Math.random() * 1000), name: '', type: '', value: ''});
     };
-    const productPropsShow = ((productProp: IProp, index: number) => {
-        // console.log(productProps);
-        return (<span key={index} className={"add-props-product"}>
+    decProp = (index: number) => {
+        this.props.values.productProps.splice(index, 1);
+    };
+    handlingError = () => {
+        const {errors} = this.props;
+        if ((errors.cost) && errors.cost.includes("cost must")) {
+            errors.cost = "Стоимость должна состоять из цифр"
+        }
+    };
+
+    render() {
+        const {incProp, decProp, handlingError} = this;
+        const {isLoggedIn, touched, errors, isSubmitting} = this.props;
+        const {productProps} = this.props.values;
+        handlingError();
+
+        if (!isLoggedIn) return <Redirect to="/login"/>;
+        const productPropsShow = ((productProp: IProp, index: number) => {
+            console.log(this.props.values.productProps);
+            const {propsList} = this.props;
+            const optionRow = (option: IProp) => {
+                return (
+                    <option key={option.id} value={option.name} label={option.name}/>
+                )
+            };
+            return (<span key={index} className={"add-props-product"}>
+            <button type={"submit"} onClick={() => decProp(index)}>–</button>
                 <Select
                     name={`productProps[${index}].name`}
                     component="select"
                     label={"Свойство"}
                 >
-                    <option value={0} label={"select"} />
+                    <option value={0} label={"select"}/>
                     {propsList.map(optionRow)}
                 </Select>
                 <Input
@@ -71,16 +87,7 @@ const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikPro
                     // touched={touched.productProps ? touched.productProps[index].value : null}
                 />
             </span>)
-    });
-    const optionRow = (option: IProp) => {
-        return (
-            <option key={option.id} value={option.name} label={option.name}/>
-        )
-    };
-    if (isLoggedIn) {
-        if ((errors.cost) && errors.cost.includes("cost must")) {
-            errors.cost = "Стоимость должна состоять из цифр"
-        }
+        });
         return (
             <Form className="create-prop">
                 <div className="group-buttons">
@@ -132,18 +139,15 @@ const CreateProductView: React.FC<ILogin & any & IPropsFetchingState & FormikPro
                     />
                     <div>
                         <h5>Добавление товару свойств</h5>
-                        <button type="submit" onClick={addProp}>Add
-                        </button>
+                        <input type="submit" onClick={incProp} value={"Add"}/>
                         <br/>
                         {productProps.map(productPropsShow)}
                     </div>
                 </div>
-
             </Form>
         );
     }
-    return <Redirect to="/login"/>;
-};
+}
 
 const formikEnhancer = withFormik({
     validationSchema: Yup.object().shape({
@@ -158,7 +162,7 @@ const formikEnhancer = withFormik({
             .required("Требуется ввести стоимость"),
         img: Yup.string()
             .min(2, "Ссылка файла изображения должна быть не менее 2 символов")
-            .required("Требуется указать ссылку файла изображения"),
+            .required("Требуется указать ссылку файла"),
         info: Yup.string()
             .max(1000, "Описание не должно превышать 1000 символов"),
         productProps: Yup.array().of(
@@ -167,34 +171,28 @@ const formikEnhancer = withFormik({
                     .required("Требуется ввести свойство"),
                 name: Yup.string()
                     .required("Требуется ввести имя")
-            })
-        )
-
-
+            }))
     }),
-
-    mapPropsToValues: ({name, cost, img, info, color, productProps}: any) => ({
+    mapPropsToValues: ({name, cost, img, info, productProps}: any) => {
+        return {
             name: name || '',
             cost: cost || '',
             img: img || '',
             info: info || '',
-            color: color || '',
             productProps: productProps || [],
             dateUp: new Date().toLocaleDateString()
-        }),
+        }
+    },
     handleSubmit: (values: any, {props: {productCreated}, resetForm, setSubmitting}) => {
         productCreated(values);
         resetForm();
         setSubmitting(false);
-    },
+    }
 })(CreateProductView);
 
 const mapStateToProps = ({propsState}: any): IPropsFetchingState => {
     const {propsList} = propsState;
     return {propsList}
 };
-const mapDispatchToProps = {
-    productCreated
-};
-export const CreateProduct = connect(mapStateToProps, mapDispatchToProps)(formikEnhancer);
+export const CreateProduct = connect(mapStateToProps, {productCreated})(formikEnhancer);
 
