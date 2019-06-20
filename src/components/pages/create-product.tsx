@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
 import "../pages/create-product.scss";
 import {Input} from "../common/input/input";
-import {Form, FormikProps, withFormik} from "formik";
+import {FieldArray, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
 import {connect} from "react-redux";
 import {productCreated} from "../../store/actions/fetchProducts";
@@ -28,6 +28,16 @@ export interface ICreateProductValues {
 export class CreateProductView extends React.Component<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> {
 
     componentDidUpdate(): void {
+        this.rewriteProductProps();
+        this.handlingError();
+    }
+    handlingError = () => {
+        const {errors} = this.props;
+        if ((errors.cost) && errors.cost.includes("cost must")) {
+            errors.cost = "Стоимость должна состоять из цифр"
+        }
+    };
+    rewriteProductProps = () => {
         const {propsList} = this.props;
         let {productProps} = this.props.values;
         // запись id и type объекта property в массив productProps по name из propsList
@@ -37,52 +47,14 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
                 return {...propProduct, ...prop};
             });
         }
-    }
-
-    handlingError = () => {
-        const {errors} = this.props;
-        if ((errors.cost) && errors.cost.includes("cost must")) {
-            errors.cost = "Стоимость должна состоять из цифр"
-        }
     };
 
     render() {
-        const {handlingError} = this;
-        const {isLoggedIn, touched, errors, isSubmitting} = this.props;
-        const {productProps, onDecrease, onIncrease} = this.props.values;
-        handlingError();
-        console.log(this.props.values.productProps);
+        const {isLoggedIn, touched, errors, isSubmitting, propsList} = this.props;
+        let {productProps} = this.props.values;
 
-        if (!isLoggedIn) return <Redirect to="/login"/>;
-        const productPropsShow = ((productProp: IProp, index: number) => {
-            // console.log(this.props.values.propsOptions);
-            const {propsList} = this.props;
-            const optionRow = (option: IProp) => {
-                return (
-                    <option key={option.id} value={option.name} label={option.name}/>
-                )
-            };
-            return (<span key={index} className={"add-props-product"}>
-            <button type={"submit"} onClick={() => onDecrease(index)}>–</button>
-                <Select
-                    name={`productProps[${index}].name`}
-                    component="select"
-                    label={"Свойство"}
-                >
-                    <option value={0} label={"select"}/>
-                    {propsList.map(optionRow)}
-                </Select>
-                <Input
-                    label={"Значение"}
-                    placeholder={"Введите значение свойства"}
-                    name={`productProps[${index}].value`}
-                    // error={errors.productProps ? errors.productProps[index].value : null}
-                    // touched={touched.productProps ? touched.productProps[index].value : null}
-                />
-            </span>)
-        });
-        return (
-            <Form className="create-prop" >
+        if(!isLoggedIn) return <Redirect to="/login"/>;
+            return (<Form className="create-prop">
                 <div className="group-buttons">
                     <Link to="/products"
                           className="btn btn-danger btn-sm">
@@ -130,15 +102,55 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
                         error={errors.info}
                         touched={touched.info}
                     />
-                    <div>
-                        <h5>Добавление товару свойств</h5>
-                        <input type="submit" onClick={onIncrease} value={"Add"}/>
-                        <br/>
-                        {productProps.map(productPropsShow)}
-                    </div>
+                    <h5>Добавление товару свойств</h5>
+                    <br/>
+                    <FieldArray name={"productProps"} render={arrayHelpers => (
+                        <>
+                            <button
+                                type={"button"}
+                                onClick={() => arrayHelpers.push({
+                                    id: Math.floor(Math.random() * 1000),
+                                    name: '',
+                                    type: '',
+                                    value: ''
+                                })}>Add</button>
+                            {productProps && productProps.length > 0 ?
+                                (productProps.map((productProp: IProp, index: number) => (
+                                    <span key={index} className={"add-props-product"}>
+                                    <button type={"button"}
+                                            onClick={() => arrayHelpers.remove(index)}>–
+                                    </button>
+                                    <Select
+                                        name={`productProps[${index}].name`}
+                                        component="select"
+                                        label={"Свойство"}
+                                    >
+                                        {(productProps[index].name) ?
+                                            (<option value={index} label={productProps[index].name} />)
+                                            : (<option value={-1} label={"Select"} />)}
+                                        {propsList.map((option: any) =>
+                                            (!productProps.find((item:any) => item.name === option.name) ?
+                                                <option key={option.id} value={option.name} label={option.name} />
+                                                : null))}
+                                    </Select>
+                                    <Input
+                                        label={"Значение"}
+                                        placeholder={"Введите значение свойства"}
+                                        name={`productProps[${index}].value`}
+                                        // error={errors.productProps ? errors.productProps[index].value : null}
+                                        // touched={touched.productProps ? touched.productProps[index].value : null}
+                                    />
+                                        {/*{(productProps[index].type === "dropdown") ?
+                                            (<button type="button" onClick={() => arrayHelpers.insert(index, '')}>
+                                                +
+                                            </button>) : null
+                                        }*/}
+                                </span>)))
+                            : null}
+                        </>
+                    )}/>
                 </div>
-            </Form>
-        );
+            </Form>)
     }
 }
 
@@ -166,27 +178,13 @@ const formikEnhancer = withFormik({
                     .required("Требуется ввести имя")
             }))
     }),
-    mapPropsToValues: ({name, cost, img, info, productProps = [], propsOptions, propsList}: any) => {
-        if (!propsOptions) {
-            propsOptions = propsList.map((item: any) => {
-                return {...item, selected: false};
-            })
-        }
-        const onDecrease = (index: number) => {
-            productProps.splice(index, 1);
-        };
-        const onIncrease = () => {
-            productProps.push({id: Math.floor(Math.random() * 1000), name: '', type: '', value: ''});
-        };
+    mapPropsToValues: ({name, cost, img, info, productProps}: any) => {
         return {
             name: name || '',
             cost: cost || '',
             img: img || '',
             info: info || '',
             productProps: productProps || [],
-            propsOptions: propsOptions,
-            onDecrease: onDecrease,
-            onIncrease: onIncrease,
             dateUp: new Date().toLocaleDateString()
         }
     },

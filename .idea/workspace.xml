@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6bd0fd37-e0de-4155-a52d-51f2f392d10f" name="Default Changelist" comment="">
+    <list default="true" id="6bd0fd37-e0de-4155-a52d-51f2f392d10f" name="Default Changelist" comment="selectAddProp3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/create-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/create-product.tsx" afterDir="false" />
     </list>
@@ -19,10 +19,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/carstore-service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1638">
+            <state relative-caret-position="777">
               <caret line="79" column="27" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="27" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
+                <element signature="e#485#2574#0" />
               </folding>
             </state>
           </provider>
@@ -31,20 +32,24 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/pages/create-product.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="134" column="43" selection-start-line="134" selection-start-column="43" selection-end-line="134" selection-end-column="43" />
+            <state relative-caret-position="2541">
+              <caret line="148" column="35" lean-forward="true" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#3035#3302#0" />
+                <element signature="e#3323#3578#0" />
+                <element signature="e#3599#3844#0" />
+                <element signature="e#3865#4221#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/pages/products-list.tsx">
+        <entry file="file://$PROJECT_DIR$/src/components/app/app.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="71" selection-start-line="71" selection-end-line="71" />
+            <state relative-caret-position="530">
+              <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -69,7 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/index.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/add-product.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/create-property.tsx" />
         <option value="$PROJECT_DIR$/src/store/models/iOptional.ts" />
@@ -97,7 +101,6 @@
         <option value="$PROJECT_DIR$/src/components/common/radio-button-group.ts" />
         <option value="$PROJECT_DIR$/src/components/common/radio-button-group/radio-button-group.ts" />
         <option value="$PROJECT_DIR$/src/components/app/app.tsx" />
-        <option value="$PROJECT_DIR$/src/store/models/iProp.ts" />
         <option value="$PROJECT_DIR$/src/components/common/radio-button-group/radio-button-group.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/main-page.tsx" />
         <option value="$PROJECT_DIR$/src/store/index.ts" />
@@ -119,6 +122,8 @@
         <option value="$PROJECT_DIR$/src/components/common/select/select.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/products-list.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/login-page.tsx" />
+        <option value="$PROJECT_DIR$/src/store/models/iProp.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/pages/create-product.tsx" />
       </list>
     </option>
@@ -130,9 +135,10 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="871" />
-    <option name="height" value="1044" />
+    <option name="x" value="931" />
+    <option name="y" value="2" />
+    <option name="width" value="997" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -140,7 +146,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,69 +193,20 @@
               <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
               <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="input" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="select" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-first-ts-correct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-first-ts-correct" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="reducers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test-react-app(1st dex)" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -303,6 +259,21 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.watch" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -347,7 +318,8 @@
       <workItem from="1560850107522" duration="14993000" />
       <workItem from="1560954022295" duration="2843000" />
       <workItem from="1560966393415" duration="595000" />
-      <workItem from="1561002057659" duration="3143000" />
+      <workItem from="1561002057659" duration="10215000" />
+      <workItem from="1561033066598" duration="20134000" />
     </task>
     <task id="LOCAL-00001" summary="second_preinstall">
       <created>1558098338124</created>
@@ -475,11 +447,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560868070983</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="selectAddProp3">
+      <created>1561020222526</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1561020222526</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="376078000" />
+    <option name="totallyTimeSpent" value="403284000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -494,26 +473,26 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49834985" visible="true" weight="0.1913646" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49751243" visible="true" weight="0.1652452" />
       <window_info id="Structure" order="1" sideWeight="0.50165015" side_tool="true" weight="0.18123667" />
-      <window_info id="npm" order="2" sideWeight="0.50082916" side_tool="true" weight="0.10714286" />
+      <window_info id="npm" order="2" sideWeight="0.50248754" side_tool="true" weight="0.1652452" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32995495" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32887402" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3277592" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32932165" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4989259" weight="0.32441473" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.4989259" visible="true" weight="0.32441473" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50107414" side_tool="true" weight="0.32881355" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32664436" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Terminal" order="3" sideWeight="0.49174917" visible="true" weight="0.26652452" />
-      <window_info anchor="right" id="TypeScript" order="4" sideWeight="0.50825083" side_tool="true" weight="0.26652452" />
+      <window_info anchor="right" id="Terminal" order="3" sideWeight="0.49052396" visible="true" weight="0.24733475" />
+      <window_info anchor="right" id="TypeScript" order="4" sideWeight="0.509476" side_tool="true" weight="0.26652452" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,13 +557,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="selectAddProp3" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/common/error-indicator/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/common/error-indicator/error-indicator.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -721,13 +693,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/create-prop-0.ts" />
     <entry file="file://$PROJECT_DIR$/src/components/pages/create-prop0.tsx" />
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/hoc/with-carstore-service.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -786,13 +751,6 @@
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/models/iProp.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
@@ -865,16 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/select/select.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/props-list.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -922,16 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/app/app.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/login-page.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -942,19 +880,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/carstore-service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="79" column="27" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/products-list.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
+        <state relative-caret-position="668">
           <caret line="71" selection-start-line="71" selection-end-line="71" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -962,12 +890,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/create-product.tsx">
+    <entry file="file://$PROJECT_DIR$/src/store/models/iProp.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="134" column="43" selection-start-line="134" selection-start-column="43" selection-end-line="134" selection-end-column="43" />
+        <state relative-caret-position="84">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/formik/dist/Field.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/select/select.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/app/app.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/carstore-service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="79" column="27" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#485#2574#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="27" column="35" lean-forward="true" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/create-product.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2541">
+          <caret line="148" column="35" lean-forward="true" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#3035#3302#0" />
+            <element signature="e#3323#3578#0" />
+            <element signature="e#3599#3844#0" />
+            <element signature="e#3865#4221#0" />
           </folding>
         </state>
       </provider>
