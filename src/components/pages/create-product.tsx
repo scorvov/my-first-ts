@@ -38,15 +38,7 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
             });
         }
     }
-    incProp = () => {
-        if (!this.props.values.productProps) {
-            this.props.values.productProps = [{id: Math.floor(Math.random() * 1000), name: '', type: '', value: ''}];
-        }
-        this.props.values.productProps.push({id: Math.floor(Math.random() * 1000), name: '', type: '', value: ''});
-    };
-    decProp = (index: number) => {
-        this.props.values.productProps.splice(index, 1);
-    };
+
     handlingError = () => {
         const {errors} = this.props;
         if ((errors.cost) && errors.cost.includes("cost must")) {
@@ -55,14 +47,15 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
     };
 
     render() {
-        const {incProp, decProp, handlingError} = this;
+        const {handlingError} = this;
         const {isLoggedIn, touched, errors, isSubmitting} = this.props;
-        const {productProps} = this.props.values;
+        const {productProps, onDecrease, onIncrease} = this.props.values;
         handlingError();
+        console.log(this.props.values.productProps);
 
         if (!isLoggedIn) return <Redirect to="/login"/>;
         const productPropsShow = ((productProp: IProp, index: number) => {
-            console.log(this.props.values.productProps);
+            // console.log(this.props.values.propsOptions);
             const {propsList} = this.props;
             const optionRow = (option: IProp) => {
                 return (
@@ -70,7 +63,7 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
                 )
             };
             return (<span key={index} className={"add-props-product"}>
-            <button type={"submit"} onClick={() => decProp(index)}>–</button>
+            <button type={"submit"} onClick={() => onDecrease(index)}>–</button>
                 <Select
                     name={`productProps[${index}].name`}
                     component="select"
@@ -89,7 +82,7 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
             </span>)
         });
         return (
-            <Form className="create-prop">
+            <Form className="create-prop" >
                 <div className="group-buttons">
                     <Link to="/products"
                           className="btn btn-danger btn-sm">
@@ -139,7 +132,7 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
                     />
                     <div>
                         <h5>Добавление товару свойств</h5>
-                        <input type="submit" onClick={incProp} value={"Add"}/>
+                        <input type="submit" onClick={onIncrease} value={"Add"}/>
                         <br/>
                         {productProps.map(productPropsShow)}
                     </div>
@@ -173,13 +166,27 @@ const formikEnhancer = withFormik({
                     .required("Требуется ввести имя")
             }))
     }),
-    mapPropsToValues: ({name, cost, img, info, productProps}: any) => {
+    mapPropsToValues: ({name, cost, img, info, productProps = [], propsOptions, propsList}: any) => {
+        if (!propsOptions) {
+            propsOptions = propsList.map((item: any) => {
+                return {...item, selected: false};
+            })
+        }
+        const onDecrease = (index: number) => {
+            productProps.splice(index, 1);
+        };
+        const onIncrease = () => {
+            productProps.push({id: Math.floor(Math.random() * 1000), name: '', type: '', value: ''});
+        };
         return {
             name: name || '',
             cost: cost || '',
             img: img || '',
             info: info || '',
             productProps: productProps || [],
+            propsOptions: propsOptions,
+            onDecrease: onDecrease,
+            onIncrease: onIncrease,
             dateUp: new Date().toLocaleDateString()
         }
     },
