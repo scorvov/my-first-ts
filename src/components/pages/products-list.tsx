@@ -3,13 +3,10 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {IProduct} from "../../store/models/iProduct";
 import {IProductsFetchingState} from "../../store/reducers/productsFetchReducer";
-import {withCarstoreService} from "../hoc";
-import {productDelete, fetchProducts} from "../../store/actions/fetchProducts";
-import {compose} from "../../utils/compose";
+import {productDelete} from "../../store/actions/fetchProducts";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import "../../assests/list.scss"
-import {fetchProps} from "../../store/actions/fetchProps";
 
 export interface IProductList {
     productList: IProduct[];
@@ -63,12 +60,6 @@ export const ProductsList: React.FC<IProductList> = ({ productList, productDelet
 };
 
 export class ProductsListContainer extends React.Component<any> {
-    componentDidMount() {
-        if(!this.props.productList.length) {
-            this.props.fetchProps();
-            this.props.fetchProducts();
-        }
-    }
 
     render() {
         const {productList, loading, error, productDelete} = this.props;
@@ -91,8 +82,5 @@ const mapStateToProps = ({productsState}:IMapState):IProductsFetchingState => {
     return {productList, loading, error}
 };
 
-export default compose(
-    withCarstoreService(),
-    connect(mapStateToProps, {productDelete, fetchProducts, fetchProps})
-)(ProductsListContainer);
+export default connect(mapStateToProps, {productDelete})(ProductsListContainer);
 

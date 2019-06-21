@@ -3,14 +3,9 @@ import {Link} from "react-router-dom";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import {IPropsFetchingState} from "../../store/reducers/propsFetchReducer";
-import {compose} from "../../utils/compose";
-import {withCarstoreService} from "../hoc";
 import {connect} from "react-redux";
 import {IProp} from "../../store/models/iProp";
-import {
-    fetchProps,
-    propDeleted
-} from "../../store/actions/fetchProps";
+import {propDeleted} from "../../store/actions/fetchProps";
 import "../../assests/list.scss"
 
 interface IPropsList {
@@ -54,11 +49,7 @@ const PropsList: React.FC<IPropsList> = ({propsList, propDeleted}) => {
 };
 
 export class PropsListContainer extends React.Component<any> {
-    componentDidMount() {
-        if(!this.props.propsList.length) {
-            this.props.fetchProps();
-        }
-    }
+
     render() {
         const {propsList, loading, error,propDeleted} = this.props;
         if (loading) {
@@ -80,13 +71,6 @@ const mapStateToProps = ({propsState}:IMapState):IPropsFetchingState => {
     return {propsList, loading, error}
 };
 
-const mapDispatchToProps = {
-    fetchProps, propDeleted
-};
-
-export default compose(
-    withCarstoreService(),
-    connect(mapStateToProps, mapDispatchToProps)
-)(PropsListContainer);
+export default connect(mapStateToProps, {propDeleted})(PropsListContainer);
 
 

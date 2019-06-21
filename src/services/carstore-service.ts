@@ -1,5 +1,6 @@
 import {IProduct} from "../store/models/iProduct";
 import {IProp} from "../store/models/iProp";
+import {ICreateProductValues} from "../components/pages/create-product";
 
 export interface IData {
     products: IProduct[];
@@ -77,7 +78,8 @@ class CarstoreService implements ICarstoreService {
             }, 100);
         })
     };
-    deleteProduct = async (id:any) => await {result:0};
+    deleteProduct = async (id:any) => await {ok: true};
+    createProduct = async (paramsForCreateProduct:ICreateProductValues) => await {ok: true};
     getProducts = async () => await this._getData(this.data.products);
     getProps = async () => await this._getData(this.data.props);
 }

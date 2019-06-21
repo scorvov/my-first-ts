@@ -1,4 +1,6 @@
+/*
 import * as React from "react";
+import {Redirect} from "react-router";
 import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
 import "../pages/create-product.scss";
@@ -6,12 +8,11 @@ import {Input} from "../common/input/input";
 import {FieldArray, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
 import {connect} from "react-redux";
-import {productCreate, fetchProducts} from "../../store/actions/fetchProducts";
+import {productCreated} from "../../store/actions/fetchProducts";
 import {ILogin} from "./main-page";
 import {IPropsFetchingState} from "../../store/reducers/propsFetchReducer";
 import {IProp} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
-import {fetchProps} from "../../store/actions/fetchProps";
 
 
 type ProductProps = IProp[] | [];
@@ -25,12 +26,7 @@ export interface ICreateProductValues {
     productProps?: ProductProps;
 }
 
-export class CreateProductView extends React.Component<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> {
-
-    componentDidMount(): void {
-        this.props.fetchProducts();
-        this.props.fetchProps();
-    }
+export class UpdateProductView extends React.Component<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> {
 
     componentDidUpdate(): void {
         this.rewriteProductProps();
@@ -58,70 +54,70 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
         const {isLoggedIn, touched, errors, isSubmitting, propsList} = this.props;
         let {productProps} = this.props.values;
 
-        // if(!isLoggedIn) return <Redirect to="/login"/>;
-            return (<Form className="create-prop">
-                <div className="group-buttons">
-                    <Link to="/products"
-                          className="btn btn-danger btn-sm">
-                        Вернуться
-                    </Link>
-                    <button
-                        type={"submit"}
-                        disabled={isSubmitting}
-                        className="btn btn-success btn-sm">
-                        Сохранить
-                    </button>
-                </div>
-                <hr className="line"/>
-                <h4>Добавление товара</h4>
-                <hr className="line"/>
-                <div className={"input-form"}>
-                    <Input
-                        label={"Название товара"}
-                        placeholder={"Mersedes S550 4matic"}
-                        name="name"
-                        error={errors.name}
-                        touched={touched.name}
-                    />
-                    <Input
-                        label={"Стоимость товара"}
-                        placeholder={"113 000"}
-                        name="cost"
-                        error={errors.cost}
-                        touched={touched.cost}
-                    />
-                    <Input
-                        label={"Изображение"}
-                        placeholder={"image"}
-                        name="img"
-                        error={errors.img}
-                        touched={touched.img}
-                    />
-                    <Input
-                        component="textarea"
-                        cols="80"
-                        rows="5"
-                        label={"Описание"}
-                        placeholder={"info"}
-                        name="info"
-                        error={errors.info}
-                        touched={touched.info}
-                    />
-                    <h5>Добавление товару свойств</h5>
-                    <br/>
-                    <FieldArray name={"productProps"} render={arrayHelpers => (
-                        <>
-                            <button
-                                type={"button"}
-                                onClick={() => arrayHelpers.push({
-                                    id: Math.floor(Math.random() * 1000),
-                                    name: '',
-                                    type: '',
-                                    value: ''
-                                })}>Add</button>
-                            {productProps && productProps.length > 0 ?
-                                (productProps.map((productProp: IProp, index: number) => (
-                                    <span key={index} className={"add-props-product"}>
+        if(!isLoggedIn) return <Redirect to="/login"/>;
+        return (<Form className="create-prop">
+            <div className="group-buttons">
+                <Link to="/products"
+                      className="btn btn-danger btn-sm">
+                    Вернуться
+                </Link>
+                <button
+                    type={"submit"}
+                    disabled={isSubmitting}
+                    className="btn btn-success btn-sm">
+                    Сохранить
+                </button>
+            </div>
+            <hr className="line"/>
+            <h4>Добавление товара</h4>
+            <hr className="line"/>
+            <div className={"input-form"}>
+                <Input
+                    label={"Название товара"}
+                    placeholder={"Mersedes S550 4matic"}
+                    name="name"
+                    error={errors.name}
+                    touched={touched.name}
+                />
+                <Input
+                    label={"Стоимость товара"}
+                    placeholder={"113 000"}
+                    name="cost"
+                    error={errors.cost}
+                    touched={touched.cost}
+                />
+                <Input
+                    label={"Изображение"}
+                    placeholder={"image"}
+                    name="img"
+                    error={errors.img}
+                    touched={touched.img}
+                />
+                <Input
+                    component="textarea"
+                    cols="80"
+                    rows="5"
+                    label={"Описание"}
+                    placeholder={"info"}
+                    name="info"
+                    error={errors.info}
+                    touched={touched.info}
+                />
+                <h5>Добавление товару свойств</h5>
+                <br/>
+                <FieldArray name={"productProps"} render={arrayHelpers => (
+                    <>
+                        <button
+                            type={"button"}
+                            onClick={() => arrayHelpers.push({
+                                id: Math.floor(Math.random() * 1000),
+                                name: '',
+                                type: '',
+                                value: ''
+                            })}>Add</button>
+                        {productProps && productProps.length > 0 ?
+                            (productProps.map((productProp: IProp, index: number) => (
+                                <span key={index} className={"add-props-product"}>
                                     <button type={"button"}
                                             onClick={() => arrayHelpers.remove(index)}>–
                                     </button>
@@ -147,14 +143,14 @@ export class CreateProductView extends React.Component<ILogin & any & IPropsFetc
                                     />
                                 </span>)))
                             : null}
-                        </>
-                    )}/>
-                </div>
-            </Form>)
+                    </>
+                )}/>
+            </div>
+        </Form>)
     }
 }
 
-const formikEnhancer = withFormik({
+const formikEnhancerUpdate = withFormik({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойство должно быть не менее 2 символов")
@@ -188,16 +184,17 @@ const formikEnhancer = withFormik({
             dateUp: new Date().toLocaleDateString()
         }
     },
-    handleSubmit: (values: any, {props: {productCreate}, resetForm, setSubmitting}) => {
-        productCreate(values);
+    handleSubmit: (values: any, {props: {productCreated}, resetForm, setSubmitting}) => {
+        productCreated(values);
         resetForm();
         setSubmitting(false);
     }
-})(CreateProductView);
+})(UpdateProductView);
 
 const mapStateToProps = ({propsState}: any): IPropsFetchingState => {
     const {propsList} = propsState;
     return {propsList}
 };
-export const CreateProduct = connect(mapStateToProps, {productCreate, fetchProducts, fetchProps})(formikEnhancer);
+export const UpdateProduct = connect(mapStateToProps, {productCreated})(formikEnhancer);
 
+*/

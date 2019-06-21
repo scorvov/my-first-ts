@@ -1,5 +1,4 @@
 import * as React from "react";
-import {Redirect} from "react-router";
 import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
 import {Input} from "../common/input/input";
@@ -19,7 +18,7 @@ const CreatePropView: React.FC<ILogin&FormikProps<ICreatePropValues>> = (props) 
         isSubmitting,
         values
     } = props;
-    if (isLoggedIn) {
+    // if (!isLoggedIn) return <Redirect to="/login"/>;
         return (
             <Form className="create-prop">
                 <div className="group-buttons">
@@ -75,8 +74,7 @@ const CreatePropView: React.FC<ILogin&FormikProps<ICreatePropValues>> = (props) 
                 </div>
             </Form>
         );
-    }
-    return <Redirect to="/login"/>;
+
 };
 
 export interface ICreatePropValues {
@@ -105,8 +103,4 @@ const formikEnhancer = withFormik({
     // displayName: "MyForm"
 })(CreatePropView);
 
-const mapDispatchToProps = {
-    propCreated
-};
-
-export const CreateProp = connect(null, mapDispatchToProps)(formikEnhancer);
+export const CreateProp = connect(null, {propCreated})(formikEnhancer);

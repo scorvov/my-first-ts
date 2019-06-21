@@ -1,4 +1,4 @@
-import { Action } from "redux";
+import {Action, Dispatch} from "redux";
 import {IProduct} from "../models/iProduct";
 import { CarstoreService } from "../../services/carstore-service";
 import { ICreateProductValues } from "../../components/pages/create-product";
@@ -42,7 +42,7 @@ export const productsError = (error:string): ILoadedErrorAction =>
     });
 
 export const fetchProducts = ():any => {
-    return (dispatch:any) => {
+    return (dispatch:Dispatch) => {
     dispatch(productsRequested());
     carstoreService.getProducts()
         .then((data:any) => dispatch(productsLoaded(data)))
@@ -63,21 +63,34 @@ export const productDeleted = (id: number): ISelectProductAction =>
     });
 
 export const productDelete = (id:number):any => {
-    return (dispatch:any) => {
+    return (dispatch:Dispatch) => {
     carstoreService.deleteProduct(id)
         .then(((response:any) => {
-            if(response.result === 0) {
+            if(response.ok) {
                 dispatch(productDeleted(id));
+                // dispatch(fetchProducts);
             }
         }));
     }
 };
 
-export const productCreated = (values:ICreateProductValues):ICreateProductAction => 
+export const productCreated = (paramsForCreateProduct:ICreateProductValues):ICreateProductAction =>
 ({
-    payload: values,
+    payload: paramsForCreateProduct,
     type: PRODUCT_CREATED
 });
+
+export const productCreate = (paramsForCreateProduct: ICreateProductValues):any => {
+    return (dispatch:any) => {
+        carstoreService.createProduct(paramsForCreateProduct)
+            .then(((response:any) => {
+                if(response.ok) {
+                    dispatch(productCreated(paramsForCreateProduct));
+                    // dispatch(fetchProducts);
+                }
+            }));
+    }
+};
 
 
 

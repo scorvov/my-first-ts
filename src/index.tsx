@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import {App} from './components/app';
+import App from './components/app';
 import { ErrorBoundry } from "./components/common/error-boundry";
 import { CarstoreService } from "./services/carstore-service";
 import { CarstoreServiceProvider } from "./components/carstore-service-context";

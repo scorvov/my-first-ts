@@ -7,6 +7,6 @@ export interface IProduct {
     img: string;
     info: string;
     dateUp: string;
-    props?: IProp[] | [];
+    productProps?: IProp[] | [];
 }
 

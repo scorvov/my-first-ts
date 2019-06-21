@@ -7,7 +7,7 @@ import {
     PROP_DELETED
 } from "../actions/fetchProps";
 
-export interface IPropsFetchingState {
+    export interface IPropsFetchingState {
     propsList: IProp[];
     loading?: boolean;
     error?: any;
