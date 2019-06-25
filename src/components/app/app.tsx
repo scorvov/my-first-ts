@@ -5,68 +5,45 @@ import {LoginPage} from "../pages/login-page";
 import {MainPage} from "../pages/main-page";
 import {CreateProduct} from "../pages/create-product";
 import {CreateProp} from "../pages/create-prop";
-import Product from "../pages/product";
+import {ProductContainer} from "../pages/product";
 import {connect} from "react-redux";
 import {fetchProducts} from "../../store/actions/fetchProducts";
 import {fetchProps} from "../../store/actions/fetchProps";
+import {UpdateProduct} from "../pages/update-product";
 
-// type State = {
-//     isLoggedIn ?: boolean
-// };
+interface IDispatchProps {
+    fetchProducts: () => void;
+    fetchProps: () => void;
+}
 
-export class App extends React.Component<any> {
+class App extends React.Component<IDispatchProps> {
 
     componentDidMount() {
         this.props.fetchProps();
         this.props.fetchProducts();
     }
 
-    state = {
-        isLoggedIn: false
-    };
-
-    onLogin = () => {
-        this.setState({
-            isLoggedIn: true
-        });
-    };
-
     render() {
-        const {isLoggedIn} = this.state;
         return (
             <div className="app">
                 <Switch>
                     <Route
-                        exact path="/login"
-                        render={() => (
-                            <LoginPage
-                                isLoggedIn={isLoggedIn}
-                                onLogin={this.onLogin}/>
-                        )}/>
+                        exact path = "/login"
+                        component = {LoginPage} />
                     <Route
-                        exact path="/product/create"
-                        render={() => (
-                            <CreateProduct isLoggedIn={isLoggedIn}/>
-                        )}/>
+                        exact path = "/product/create"
+                        component = {CreateProduct} />
                     <Route
-                        exact path="/prop/create"
-                        render={() => (
-                            <CreateProp isLoggedIn={isLoggedIn}/>
-                        )}/>
-                    {/*<Route
-                    exact path="/prop/update"
-                    render={() => (
-                        <UpdateProp isLoggedIn={isLoggedIn} />
-                    )} />*/}
-                    <Route path="/product/:id"
-                           render={() => (
-                               <Product isLoggedIn={isLoggedIn}/>
-                           )}/>
+                        exact path = "/product/update/:id"
+                        component = {UpdateProduct} />
                     <Route
-                        path="/"
-                        render={() => (
-                            <MainPage isLoggedIn={isLoggedIn}/>
-                        )}/>
+                        exact path = "/prop/create"
+                        component = {CreateProp}/>
+                    <Route path = "/product/:id"
+                           component = {ProductContainer}/>
+                    <Route
+                        path = "/"
+                        component = {MainPage}/>
                 </Switch>
             </div>
         );

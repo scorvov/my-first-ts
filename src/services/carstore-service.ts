@@ -31,7 +31,7 @@ class CarstoreService implements ICarstoreService {
                 info: 'Не следует, однако забывать, что начало повседневной работы по формированию позиции требуют определения и уточнения существенных финансовых и административных условий. Разнообразный и богатый опыт консультация с широким активом способствует подготовки и реализации существенных финансовых и административных условий.',
                 dateUp: '20.05.2019',
                 productProps: [{id: 1, name: 'Цвет авто', type: 'dropdown', value: 'синий'},
-                    {id: 2, name: 'Год выпуска', type: 'string', value: 2017},
+                    {id: 2, name: 'Год выпуска', type: 'string', value: '2017'},
                     {id: 3, name: 'Тип топлива', type: 'string', value: 'бензин'}]
             },
             {
@@ -42,7 +42,7 @@ class CarstoreService implements ICarstoreService {
                 info: '',
                 dateUp: '20.05.2019',
                 productProps: [{id: 1, name: 'Цвет авто', type: 'dropdown', value: 'синий'},
-                    {id: 2, name: 'Год выпуска', type: 'string', value: 2017},
+                    {id: 2, name: 'Год выпуска', type: 'string', value: '2017'},
                     {id: 3, name: 'Тип топлива', type: 'string', value: 'бензин'}]
             },
         ],
@@ -65,23 +65,60 @@ class CarstoreService implements ICarstoreService {
         ]
     };
 
+
     _getData = (data: TData) => {
         return new Promise((resolve) => {
             setTimeout(() => {
-                // if (Math.random() > 0.85) {
-                //     reject(new Error('Something bad happend'));
-                // }
-                // else
-                //     {
-                    resolve(data);
+                /*if (Math.random() > 0.85) {
+                    reject(new Error('Something bad happend'));
+                }
+                else
+                    {*/
+                resolve(data);
                 // }
             }, 100);
         })
     };
-    deleteProduct = async (id:any) => await {ok: true};
-    createProduct = async (paramsForCreateProduct:ICreateProductValues) => await {ok: true};
-    getProducts = async () => await this._getData(this.data.products);
+
+    deleteProp = async (id:number) => {
+        this.data.props = this.data.props.filter((item) => item.id !== id);
+        return {ok: true};
+    };
+    createProp = async (paramsForCreateProp:IProp) => {
+        const maxId = Math.max.apply(Math, this.data.props.map(item => item.id));
+        const newItem = {id: maxId+1, ...paramsForCreateProp};
+        this.data.props.push(newItem);
+        return {ok: true}
+    };
+    deleteProduct = async (id:number) => {
+        this.data.products = this.data.products.filter((item) => item.id !== id);
+        return {ok: true};
+    };
+    createProduct = async (paramsForCreateProduct:ICreateProductValues) => {
+        const maxId = Math.max.apply(Math, this.data.products.map(item => item.id));
+        const newItem:IProduct = {
+            id: maxId+1,
+            cost: ((+paramsForCreateProduct.cost.replace(/\s/g, ''))).toLocaleString(),
+            ...paramsForCreateProduct
+        };
+
+        // @ts-ignore
+        this.data.products.push(newItem);
+        return {ok: true}
+    };
+    getProducts = async () => {
+        const data = await this._getData(this.data.products);
+        // @ts-ignore
+        return data.map(({id, name, cost, dateUp}:IProduct) => {
+            return {id, name, cost, dateUp};
+        });
+
+    };
     getProps = async () => await this._getData(this.data.props);
+    getProductById = async (id: number) => {
+        const product = this.data.products.find((product: IProduct) => id === product.id);
+        if(product) return product;
+    };
 }
 
 export {

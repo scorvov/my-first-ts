@@ -3,11 +3,9 @@ import {
     FETCH_PROPS_FAILURE,
     FETCH_PROPS_REQUEST,
     FETCH_PROPS_SUCCESS,
-    ILoadedPropsAction, PROP_CREATED,
-    PROP_DELETED
-} from "../actions/fetchProps";
+    ILoadedPropsAction} from "../actions/fetchProps";
 
-    export interface IPropsFetchingState {
+export interface IPropsFetchingState {
     propsList: IProp[];
     loading?: boolean;
     error?: any;
@@ -22,18 +20,18 @@ type TPropAction = ILoadedPropsAction;
 
 export const propsFetchReducer = (state: IPropsFetchingState = initialPropsState, action:TPropAction) => {
     switch (action.type) {
-        case PROP_CREATED:
+        /*case PROP_CREATED:
             const maxId = Math.max.apply(Math, state.propsList.map(item => item.id));
             const newItem = {id: maxId+1, name: action.payload.name, type: action.payload.type};
             return {
                 ...state,
                 propsList: [...state.propsList, newItem]
-            };
-        case PROP_DELETED:
+            };*/
+        /*case PROP_DELETED:
             return {
                 ...state,
                 propsList: state.propsList.filter((item) => item.id !== action.payload)
-            };
+            };*/
         case FETCH_PROPS_REQUEST:
             return {
                 ...state,

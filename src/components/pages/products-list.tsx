@@ -20,15 +20,15 @@ export const ProductsList: React.FC<IProductList> = ({ productList, productDelet
             <tr key={id}>
                 <td> </td>
                 <td><Link to={`/product/${id}`}
-                          // onClick = {() => productSelected(id)} вторая вариация: запись в state и адресация одновременно
                           className="link">{name}</Link></td>
                 <td>{cost} $</td>
                 <td>{dateUp}</td>
                 <td >
-                    <Link to="/products" className="link">Ред</Link>
+                    <Link to={`/product/update/${id}`}
+                          className="link">Ред</Link>
                     <button
-                          onClick={() => productDelete(id)}
-                          className="link">
+                        onClick={() => productDelete(id)}
+                        className="link">
                         Удалить
                     </button>
                 </td>
@@ -37,24 +37,24 @@ export const ProductsList: React.FC<IProductList> = ({ productList, productDelet
     });
     return (
         <div className="list">
-                <Link to="/product/create"
-                      className="btn btn-warning btn-sm" >
-                    Добавить товар
-                </Link>
-                <table className="table">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Перечень товаров</th>
-                        <th>Стоимость</th>
-                        <th>Дата изменения</th>
-                        <th>Управление</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        { productList.map(renderRow) }
-                    </tbody>
-                </table>
+            <Link to="/product/create"
+                  className="btn btn-warning btn-sm" >
+                Добавить товар
+            </Link>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Перечень товаров</th>
+                    <th>Стоимость</th>
+                    <th>Дата изменения</th>
+                    <th>Управление</th>
+                </tr>
+                </thead>
+                <tbody>
+                { productList.map(renderRow) }
+                </tbody>
+            </table>
         </div>
     );
 };
@@ -70,7 +70,7 @@ export class ProductsListContainer extends React.Component<any> {
             return <ErrorIndicator />
         }
         return <ProductsList productList={productList}
-                            productDelete={productDelete}
+                             productDelete={productDelete}
         />
     }
 }

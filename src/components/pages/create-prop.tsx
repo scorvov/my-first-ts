@@ -6,74 +6,70 @@ import {Field, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
 import {RadioButton, RadioButtonGroup} from "../common/radio-button-group/radio-button-group";
 import {connect} from "react-redux";
-import {propCreated} from "../../store/actions/fetchProps";
-import {ILogin} from "./main-page";
+import {propCreate} from "../../store/actions/fetchProps";
 
 
-const CreatePropView: React.FC<ILogin&FormikProps<ICreatePropValues>> = (props) => {
+const CreatePropView: React.FC<FormikProps<ICreatePropValues>> = (props) => {
     const {
-        isLoggedIn,
         touched,
         errors,
         isSubmitting,
         values
     } = props;
-    // if (!isLoggedIn) return <Redirect to="/login"/>;
-        return (
-            <Form className="create-prop">
-                <div className="group-buttons">
-                    <Link to="/properties"
-                          className="btn btn-danger btn-sm">
-                        Вернуться
-                    </Link>
-                    <button
-                        type={"submit"}
-                        disabled={isSubmitting}
-                        // onClick={handleSubmit}
-                        className="btn btn-success btn-sm">
-                        Сохранить
-                    </button>
-                </div>
-                <hr className="line"/>
-                <h4>Добавление свойства</h4>
-                <hr className="line"/>
-                <div className={"input-form"}>
-                    <Input
-                        label={"Название свойства"}
-                        placeholder={"Цвет авто"}
-                        name="name"
-                        error={errors.name}
-                        touched={touched.name}
+    return (
+        <Form className="create-prop">
+            <div className="group-buttons">
+                <Link to="/properties"
+                      className="btn btn-danger btn-sm">
+                    Вернуться
+                </Link>
+                <button
+                    type={"submit"}
+                    disabled={isSubmitting}
+                    className="btn btn-success btn-sm">
+                    Сохранить
+                </button>
+            </div>
+            <hr className="line"/>
+            <h4>Добавление свойства</h4>
+            <hr className="line"/>
+            <div className={"input-form"}>
+                <Input
+                    label={"Название свойства"}
+                    placeholder={"Цвет авто"}
+                    name="name"
+                    error={errors.name}
+                    touched={touched.name}
+                />
+                <RadioButtonGroup
+                    id="radio"
+                    label= "Укажите тип свойства"
+                    value={values.type}
+                    error={errors.type}
+                    touched={touched.type}
+                >
+                    <Field
+                        component={RadioButton}
+                        name="type"
+                        id="dropdown"
+                        label="Dropdown"
                     />
-                    <RadioButtonGroup
-                        id="radio"
-                        label= "Укажите тип свойства"
-                        value={values.type}
-                        error={errors.type}
-                        touched={touched.type}
-                    >
-                        <Field
-                            component={RadioButton}
-                            name="type"
-                            id="dropdown"
-                            label="Dropdown"
-                        />
-                        <Field
-                            component={RadioButton}
-                            name="type"
-                            id="number"
-                            label="Number"
-                        />
-                        <Field
-                            component={RadioButton}
-                            name="type"
-                            id="string"
-                            label="String"
-                        />
-                    </RadioButtonGroup>
-                </div>
-            </Form>
-        );
+                    <Field
+                        component={RadioButton}
+                        name="type"
+                        id="number"
+                        label="Number"
+                    />
+                    <Field
+                        component={RadioButton}
+                        name="type"
+                        id="string"
+                        label="String"
+                    />
+                </RadioButtonGroup>
+            </div>
+        </Form>
+    );
 
 };
 
@@ -95,12 +91,12 @@ const formikEnhancer = withFormik({
         name: name || '',
         type: type || ''
     }),
-    handleSubmit: (values: ICreatePropValues, {props:{propCreated},resetForm,setSubmitting}) => {
-        propCreated(values);
+    handleSubmit: (values: ICreatePropValues, {props:{propCreate},resetForm,setSubmitting}) => {
+        propCreate(values);
         resetForm();
         setSubmitting(false);
     },
     // displayName: "MyForm"
 })(CreatePropView);
 
-export const CreateProp = connect(null, {propCreated})(formikEnhancer);
+export const CreateProp = connect(null, {propCreate})(formikEnhancer);

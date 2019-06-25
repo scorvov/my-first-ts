@@ -1,18 +1,16 @@
-/*
 import * as React from "react";
-import {Redirect} from "react-router";
 import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
-import "../pages/create-product.scss";
+import "../../assests/create-product.scss";
 import {Input} from "../common/input/input";
 import {FieldArray, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
 import {connect} from "react-redux";
-import {productCreated} from "../../store/actions/fetchProducts";
-import {ILogin} from "./main-page";
+import {productCreate} from "../../store/actions/fetchProducts";
 import {IPropsFetchingState} from "../../store/reducers/propsFetchReducer";
 import {IProp} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
+import {IProductsFetchingState} from "../../store/reducers/productsFetchReducer";
 
 
 type ProductProps = IProp[] | [];
@@ -26,11 +24,12 @@ export interface ICreateProductValues {
     productProps?: ProductProps;
 }
 
-export class UpdateProductView extends React.Component<ILogin & any & IPropsFetchingState & FormikProps<ICreateProductValues>> {
+export class UpdateProductView extends React.Component<any & IPropsFetchingState & FormikProps<ICreateProductValues>> {
 
     componentDidUpdate(): void {
         this.rewriteProductProps();
         this.handlingError();
+        console.log(this.props);
     }
     handlingError = () => {
         const {errors} = this.props;
@@ -51,10 +50,10 @@ export class UpdateProductView extends React.Component<ILogin & any & IPropsFetc
     };
 
     render() {
-        const {isLoggedIn, touched, errors, isSubmitting, propsList} = this.props;
+        const {touched, errors, isSubmitting, propsList} = this.props;
         let {productProps} = this.props.values;
 
-        if(!isLoggedIn) return <Redirect to="/login"/>;
+
         return (<Form className="create-prop">
             <div className="group-buttons">
                 <Link to="/products"
@@ -184,17 +183,21 @@ const formikEnhancerUpdate = withFormik({
             dateUp: new Date().toLocaleDateString()
         }
     },
-    handleSubmit: (values: any, {props: {productCreated}, resetForm, setSubmitting}) => {
-        productCreated(values);
+    handleSubmit: (values: any, {props: {productCreate}, resetForm, setSubmitting}) => {
+        productCreate(values);
         resetForm();
         setSubmitting(false);
     }
 })(UpdateProductView);
-
-const mapStateToProps = ({propsState}: any): IPropsFetchingState => {
+interface IMapState {
+    propsList: IPropsFetchingState;
+    productList: IProductsFetchingState;
+}
+const mapStateToProps = ({propsState,productsState}: any): IMapState => {
     const {propsList} = propsState;
-    return {propsList}
-};
-export const UpdateProduct = connect(mapStateToProps, {productCreated})(formikEnhancer);
+    const {productList} = productsState;
 
-*/
+    return {propsList,productList}
+};
+export const UpdateProduct = connect(mapStateToProps, {productCreate})(formikEnhancerUpdate);
+

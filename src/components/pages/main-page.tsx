@@ -5,13 +5,7 @@ import PropsList from "./props-list";
 import {NavLink} from "react-router-dom";
 import "../../assests/main-page.scss";
 
-export interface ILogin {
-    isLoggedIn: boolean
-}
-
-export const MainPage: React.FC<ILogin> = (props) => {
-    const {isLoggedIn} = props;
-    // if (!isLoggedIn) return <Redirect to="/login"/>;
+export const MainPage: React.FC = () => {
     return (
         <div className="app-wrapper">
             <div className="wrapper-header">

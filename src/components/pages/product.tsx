@@ -1,21 +1,30 @@
 import * as React from "react";
-import {Link, withRouter} from "react-router-dom";
+import {Link, RouteComponentProps} from "react-router-dom";
 import {IMapState} from "./products-list";
 import {connect} from "react-redux";
-import {productSelected} from "../../store/actions/fetchProducts";
+import {fetchProductSelected} from "../../store/actions/fetchProducts";
 import {IProp} from "../../store/models/iProp";
+import {IProduct} from "../../store/models/iProduct";
 
+interface PathParamsType {
+    id: string;
+}
+interface IStateProps {
+    selectProduct:IProduct | undefined;
+}
+interface DispatchProps {
+    fetchProductSelected: (id:number) => void
+}
+type TRoute = RouteComponentProps<PathParamsType>;
+type TProductProps = IStateProps&TRoute;
 
-export class Product extends React.Component<any> {
+class Product extends React.Component<TProductProps&DispatchProps> {
     componentDidMount(): void {
         const {id} = this.props.match.params;
-        const {productSelected} = this.props;
-        productSelected(+id);
+        this.props.fetchProductSelected(+id);
     }
-
     render() {
-        const {isLoggedIn, selectProduct} = this.props;
-        // if (!isLoggedIn) return <Redirect to="/login"/>;
+        const {selectProduct} = this.props;
         if (!selectProduct) return <div>Loading...</div>;
         const {name, cost, img, info, productProps} = selectProduct;
         const showProps = (productProps: IProp[]) => {
@@ -51,7 +60,7 @@ export class Product extends React.Component<any> {
                 <h2>{name}</h2>
                 <div><p>{info}</p></div>
             </span>
-                {showProps(productProps)}
+                {productProps ? showProps(productProps) : null}
                 <div>
                     <h3>Стоимость</h3>
                     <p>{cost}$</p>
@@ -62,10 +71,10 @@ export class Product extends React.Component<any> {
     }
 }
 
-const mapStateToProps = ({productsState: selectProduct}: IMapState) => {
-    return selectProduct
-};
-const mapDispatchToProps = {
-    productSelected
-};
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Product));
+const mapStateToProps = (state:IMapState):IStateProps => ({
+    selectProduct: state.productsState.selectProduct
+});
+
+export const ProductContainer = connect(mapStateToProps, {fetchProductSelected})(Product);
+
+

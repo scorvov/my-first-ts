@@ -5,14 +5,14 @@ import {ErrorIndicator} from "../common/error-indicator";
 import {IPropsFetchingState} from "../../store/reducers/propsFetchReducer";
 import {connect} from "react-redux";
 import {IProp} from "../../store/models/iProp";
-import {propDeleted} from "../../store/actions/fetchProps";
+import {propDelete} from "../../store/actions/fetchProps";
 import "../../assests/list.scss"
 
 interface IPropsList {
     propsList: IProp[];
-    propDeleted: (id:number) => void;
+    propDelete: (id:number) => void;
 }
-const PropsList: React.FC<IPropsList> = ({propsList, propDeleted}) => {
+const PropsList: React.FC<IPropsList> = ({propsList, propDelete}) => {
     const renderRow = ((prop: IProp) => {
         const {id, name, type} = prop;
         return (
@@ -21,7 +21,7 @@ const PropsList: React.FC<IPropsList> = ({propsList, propDeleted}) => {
                 <td>{name}</td>
                 <td>{type}</td>
                 <td >
-                    <button onClick={() => propDeleted(id)} className="link">
+                    <button onClick={() => propDelete(id)} className="link">
                         Удалить
                     </button>
                 </td>
@@ -30,7 +30,7 @@ const PropsList: React.FC<IPropsList> = ({propsList, propDeleted}) => {
     });
     return (
         <div className="list">
-                <Link to="/prop/create" className="btn btn-warning btn-sm" >Добавить свойство</Link>
+            <Link to="/prop/create" className="btn btn-warning btn-sm" >Добавить свойство</Link>
             <table className="table">
                 <thead>
                 <tr>
@@ -51,7 +51,7 @@ const PropsList: React.FC<IPropsList> = ({propsList, propDeleted}) => {
 export class PropsListContainer extends React.Component<any> {
 
     render() {
-        const {propsList, loading, error,propDeleted} = this.props;
+        const {propsList, loading, error,propDelete} = this.props;
         if (loading) {
             return <Spinner />
         }
@@ -59,7 +59,7 @@ export class PropsListContainer extends React.Component<any> {
             return <ErrorIndicator />
         }
         return <PropsList
-            propDeleted={propDeleted}
+            propDelete={propDelete}
             propsList={propsList}/>
     }
 }
@@ -71,6 +71,6 @@ const mapStateToProps = ({propsState}:IMapState):IPropsFetchingState => {
     return {propsList, loading, error}
 };
 
-export default connect(mapStateToProps, {propDeleted})(PropsListContainer);
+export default connect(mapStateToProps, {propDelete})(PropsListContainer);
 
 

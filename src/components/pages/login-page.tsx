@@ -26,3 +26,5 @@ export const LoginPage: React.FC<Props> = (props) => {
     );
 };
 
+// if(!isLoggedIn) return <Redirect to="/login"/>;
+

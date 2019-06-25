@@ -12,20 +12,23 @@ export interface ILoadedErrorAction extends Action {
     payload: string;
 }
 export interface ISelectProductAction extends Action {
-    payload: number;
+    payload: IProduct;
 }
-export interface ICreateProductAction extends Action {
+/*export interface ICreateProductAction extends Action {
     payload: ICreateProductValues;
 }
+export interface IDeleteProductAction extends Action {
+    payload: number;
+}*/
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
 export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
 export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
 export const PRODUCT_SELECTED = "PRODUCT_SELECTED";
-export const PRODUCT_DELETED = "PRODUCT_DELETED";
-export const PRODUCT_CREATED = "PRODUCT_CREATED";
+/*export const PRODUCT_DELETED = "PRODUCT_DELETED";
+export const PRODUCT_CREATED = "PRODUCT_CREATED";*/
 
-
-export const productsLoaded = (productList: IProduct[]): ILoadedProductsAction =>
+type TProductList = IProduct[] | undefined;
+export const productsLoaded = (productList: TProductList): ILoadedProductsAction =>
     ({
         payload: productList,
         type: FETCH_PRODUCTS_SUCCESS
@@ -43,50 +46,57 @@ export const productsError = (error:string): ILoadedErrorAction =>
 
 export const fetchProducts = ():any => {
     return (dispatch:Dispatch) => {
-    dispatch(productsRequested());
-    carstoreService.getProducts()
-        .then((data:any) => dispatch(productsLoaded(data)))
-        .catch((err) => dispatch(productsError(err)));
+        dispatch(productsRequested());
+        carstoreService.getProducts()
+            .then((data:any) => dispatch(productsLoaded(data)))
+            .catch((err) => dispatch(productsError(err)));
     }
 };
 
-export const productSelected = (id: number): ISelectProductAction =>
+export const productSelected = (product: IProduct): ISelectProductAction =>
     ({
-        payload: id,
+        payload: product,
         type: PRODUCT_SELECTED
     });
-
-export const productDeleted = (id: number): ISelectProductAction =>
-    ({
-        payload: id,
-        type: PRODUCT_DELETED
-    });
-
-export const productDelete = (id:number):any => {
+export const fetchProductSelected = (id:number) => {
     return (dispatch:Dispatch) => {
-    carstoreService.deleteProduct(id)
-        .then(((response:any) => {
-            if(response.ok) {
-                dispatch(productDeleted(id));
-                // dispatch(fetchProducts);
-            }
-        }));
+        carstoreService.getProductById(id)
+            .then((product:any) => dispatch(productSelected(product)))
+            .catch((err) => dispatch(productsError(err)));
     }
 };
 
-export const productCreated = (paramsForCreateProduct:ICreateProductValues):ICreateProductAction =>
+// export const productDeleted = (id: number): IDeleteProductAction =>
+//     ({
+//         payload: id,
+//         type: PRODUCT_DELETED
+//     });
+
+export const productDelete = (id:number) => {
+    return (dispatch:Dispatch) => {
+        carstoreService.deleteProduct(id)
+            .then(((response:any) => {
+                if(response.ok) {
+                    // dispatch(productDeleted(id));
+                    dispatch(fetchProducts());
+                }
+            }));
+    }
+};
+
+/*export const productCreated = (paramsForCreateProduct:ICreateProductValues):ICreateProductAction =>
 ({
     payload: paramsForCreateProduct,
     type: PRODUCT_CREATED
-});
+});*/
 
 export const productCreate = (paramsForCreateProduct: ICreateProductValues):any => {
-    return (dispatch:any) => {
+    return (dispatch:Dispatch) => {
         carstoreService.createProduct(paramsForCreateProduct)
             .then(((response:any) => {
                 if(response.ok) {
-                    dispatch(productCreated(paramsForCreateProduct));
-                    // dispatch(fetchProducts);
+                    // dispatch(productCreated(paramsForCreateProduct));
+                    dispatch(fetchProducts());
                 }
             }));
     }
