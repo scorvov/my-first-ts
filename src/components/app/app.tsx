@@ -7,20 +7,17 @@ import {CreateProduct} from "../pages/create-product";
 import {CreateProp} from "../pages/create-prop";
 import {ProductContainer} from "../pages/product";
 import {connect} from "react-redux";
-import {fetchProducts} from "../../store/actions/fetchProducts";
-import {fetchProps} from "../../store/actions/fetchProps";
 import {UpdateProduct} from "../pages/update-product";
+import {fetchData} from "../../store/actions/fetchingActions";
 
 interface IDispatchProps {
-    fetchProducts: () => void;
-    fetchProps: () => void;
+    fetchData: () => void;
 }
 
 class App extends React.Component<IDispatchProps> {
 
     componentDidMount() {
-        this.props.fetchProps();
-        this.props.fetchProducts();
+        this.props.fetchData();
     }
 
     render() {
@@ -50,5 +47,5 @@ class App extends React.Component<IDispatchProps> {
     };
 }
 
-export default connect(null, {fetchProducts, fetchProps})(App);
+export default connect(null, {fetchData})(App);
 

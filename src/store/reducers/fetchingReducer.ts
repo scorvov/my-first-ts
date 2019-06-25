@@ -2,50 +2,38 @@ import {
     ILoadedProductsAction,
     FETCH_PRODUCTS_FAILURE,
     FETCH_PRODUCTS_SUCCESS,
-    FETCH_PRODUCTS_REQUEST,
-    PRODUCT_SELECTED} from "../actions/fetchProducts";
-import {IProduct} from "../models/iProduct";
+    FETCH_PRODUCTS_REQUEST} from "../actions/productActions";
+
 
 //разобраться с типом для error
-export interface IProductsFetchingState {
-    productList: IProduct[];
+export interface IFetchingState {
     loading: boolean;
     error: any;
-    selectProduct?: IProduct
 }
 
-const initialProductState: IProductsFetchingState = {
-    productList: [],
+const initialFetchingState: IFetchingState = {
     loading: false,
     error: null,
 };
 type TProductAction = ILoadedProductsAction;
 
-export const productsFetchReducer = (state: IProductsFetchingState = initialProductState, action:TProductAction) => {
+export const fetchingReducer = (state = initialFetchingState, action:TProductAction) => {
     switch (action.type) {
-        case PRODUCT_SELECTED:
-            return {
-                ...state,
-                selectProduct: action.payload
-            };
         case FETCH_PRODUCTS_REQUEST:
             return {
                 ...state,
-                productList: [],
                 loading: true,
                 error: null
             };
         case FETCH_PRODUCTS_SUCCESS:
             return {
                 ...state,
-                productList: action.payload,
                 loading: false,
                 error: null
             };
         case FETCH_PRODUCTS_FAILURE:
             return {
                 ...state,
-                productList: [],
                 loading: false,
                 error: action.payload
             };

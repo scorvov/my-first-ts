@@ -6,8 +6,15 @@ import {Field, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
 import {RadioButton, RadioButtonGroup} from "../common/radio-button-group/radio-button-group";
 import {connect} from "react-redux";
-import {propCreate} from "../../store/actions/fetchProps";
+import {propCreate} from "../../store/actions/propsActions";
 
+interface IPropCreate {
+    propCreate: ({name, type}:ICreatePropValues) => void;
+}
+export interface ICreatePropValues {
+    name: string;
+    type: string;
+}
 
 const CreatePropView: React.FC<FormikProps<ICreatePropValues>> = (props) => {
     const {
@@ -73,12 +80,7 @@ const CreatePropView: React.FC<FormikProps<ICreatePropValues>> = (props) => {
 
 };
 
-export interface ICreatePropValues {
-    name: string;
-    type: string;
-}
-
-const formikEnhancer = withFormik({
+const MyEnhancedForm = withFormik<ICreatePropValues&IPropCreate, ICreatePropValues>({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойства должно быть не менее 2 символов")
@@ -87,16 +89,15 @@ const formikEnhancer = withFormik({
         type: Yup.string().required("A radio option is required")
     }),
 
-    mapPropsToValues: ({name, type}:any) => ({
+    mapPropsToValues: ({name, type}) => ({
         name: name || '',
         type: type || ''
     }),
-    handleSubmit: (values: ICreatePropValues, {props:{propCreate},resetForm,setSubmitting}) => {
-        propCreate(values);
+    handleSubmit: ({name, type}, {props:{propCreate},resetForm,setSubmitting}) => {
+        propCreate({name, type});
         resetForm();
         setSubmitting(false);
     },
-    // displayName: "MyForm"
 })(CreatePropView);
 
-export const CreateProp = connect(null, {propCreate})(formikEnhancer);
+export const CreateProp = connect(null, {propCreate})(MyEnhancedForm);

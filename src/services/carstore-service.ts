@@ -1,6 +1,7 @@
 import {IProduct} from "../store/models/iProduct";
 import {IProp} from "../store/models/iProp";
 import {ICreateProductValues} from "../components/pages/create-product";
+import {ICreatePropValues} from "../components/pages/create-prop";
 
 export interface IData {
     products: IProduct[];
@@ -14,10 +15,9 @@ export interface ICarstoreService {
     data: IData;
 
     _getData(data: TData): TData | Object;
-
-    getProducts(): Object;
-
-    getProps(): Object;
+    _getProducts:() => Promise<Object>;
+    _getProps:() =>  Promise<Object>;
+    // getData: () => IData;
 }
 
 class CarstoreService implements ICarstoreService {
@@ -69,22 +69,25 @@ class CarstoreService implements ICarstoreService {
     _getData = (data: TData) => {
         return new Promise((resolve) => {
             setTimeout(() => {
-                /*if (Math.random() > 0.85) {
-                    reject(new Error('Something bad happend'));
-                }
-                else
-                    {*/
                 resolve(data);
-                // }
             }, 100);
         })
     };
+    _getProducts = async () => {
+        const data = await this._getData(this.data.products);
+        // @ts-ignore
+        return data.map(({id, name, cost, dateUp}:IProduct) => {
+            return {id, name, cost, dateUp};
+        });
+
+    };
+    _getProps = async () => await this._getData(this.data.props);
 
     deleteProp = async (id:number) => {
         this.data.props = this.data.props.filter((item) => item.id !== id);
         return {ok: true};
     };
-    createProp = async (paramsForCreateProp:IProp) => {
+    createProp = async (paramsForCreateProp:ICreatePropValues) => {
         const maxId = Math.max.apply(Math, this.data.props.map(item => item.id));
         const newItem = {id: maxId+1, ...paramsForCreateProp};
         this.data.props.push(newItem);
@@ -101,20 +104,17 @@ class CarstoreService implements ICarstoreService {
             cost: ((+paramsForCreateProduct.cost.replace(/\s/g, ''))).toLocaleString(),
             ...paramsForCreateProduct
         };
-
         // @ts-ignore
         this.data.products.push(newItem);
         return {ok: true}
     };
-    getProducts = async () => {
-        const data = await this._getData(this.data.products);
-        // @ts-ignore
-        return data.map(({id, name, cost, dateUp}:IProduct) => {
-            return {id, name, cost, dateUp};
-        });
 
+    getData = async () => {
+        return {
+            products: await this._getProducts(),
+            props: await this._getProps()
+        };
     };
-    getProps = async () => await this._getData(this.data.props);
     getProductById = async (id: number) => {
         const product = this.data.products.find((product: IProduct) => id === product.id);
         if(product) return product;

@@ -2,11 +2,12 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {IProduct} from "../../store/models/iProduct";
-import {IProductsFetchingState} from "../../store/reducers/productsFetchReducer";
-import {productDelete} from "../../store/actions/fetchProducts";
+import {IProductsFetchingState} from "../../store/reducers/dataFetchReducer";
+import {productDelete} from "../../store/actions/productActions";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import "../../assests/list.scss"
+import {IFetchingState} from "../../store/reducers/fetchingReducer";
 
 export interface IProductList {
     productList: IProduct[];
@@ -75,10 +76,17 @@ export class ProductsListContainer extends React.Component<any> {
     }
 }
 export interface IMapState {
-    productsState:IProductsFetchingState;
+    dataState:IProductsFetchingState;
+    fetchState: IFetchingState;
 }
-const mapStateToProps = ({productsState}:IMapState):IProductsFetchingState => {
-    const {productList, loading, error} = productsState;
+interface IStateProps {
+    productList: IProduct[];
+    loading: boolean;
+    error: any;
+}
+const mapStateToProps = ({dataState,fetchState}:IMapState):IStateProps => {
+    const {productList} = dataState;
+    const {loading, error} = fetchState;
     return {productList, loading, error}
 };
 

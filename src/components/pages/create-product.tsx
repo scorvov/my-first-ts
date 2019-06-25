@@ -6,11 +6,11 @@ import {Input} from "../common/input/input";
 import {FieldArray, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
 import {connect} from "react-redux";
-import {productCreate, fetchProducts} from "../../store/actions/fetchProducts";
-import {IPropsFetchingState} from "../../store/reducers/propsFetchReducer";
+import {productCreate} from "../../store/actions/productActions";
 import {IProp} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
-import {fetchProps} from "../../store/actions/fetchProps";
+import {IMapState} from "./products-list";
+import {fetchData} from "../../store/actions/fetchingActions";
 
 export interface ICreateProductValues {
     name: string;
@@ -21,11 +21,10 @@ export interface ICreateProductValues {
     productProps: IProp[] | [];
 }
 
-export class CreateProductView extends React.Component< any & IPropsFetchingState & FormikProps<ICreateProductValues>> {
+export class CreateProductView extends React.Component< any & FormikProps<ICreateProductValues>> {
 
     componentDidMount(): void {
-        this.props.fetchProducts();
-        this.props.fetchProps();
+        this.props.fetchData();
     }
 
     componentDidUpdate(): void {
@@ -149,7 +148,7 @@ export class CreateProductView extends React.Component< any & IPropsFetchingStat
     }
 }
 
-const formikEnhancer = withFormik({
+const MyEnhancedForm = withFormik({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойство должно быть не менее 2 символов")
@@ -190,9 +189,10 @@ const formikEnhancer = withFormik({
     }
 })(CreateProductView);
 
-const mapStateToProps = ({propsState}: any): IPropsFetchingState => {
-    const {propsList} = propsState;
-    return {propsList}
+const mapStateToProps = ({dataState}: IMapState): any => {
+    const {propsList} = dataState;
+    return {propsList};
 };
-export const CreateProduct = connect(mapStateToProps, {productCreate, fetchProducts, fetchProps})(formikEnhancer);
+export const CreateProduct = connect(mapStateToProps,
+    {productCreate, fetchData})(MyEnhancedForm);
 

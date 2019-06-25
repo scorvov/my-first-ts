@@ -6,11 +6,10 @@ import {Input} from "../common/input/input";
 import {FieldArray, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";
 import {connect} from "react-redux";
-import {productCreate} from "../../store/actions/fetchProducts";
-import {IPropsFetchingState} from "../../store/reducers/propsFetchReducer";
+import {productCreate} from "../../store/actions/productActions";
 import {IProp} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
-import {IProductsFetchingState} from "../../store/reducers/productsFetchReducer";
+import {IProductsFetchingState} from "../../store/reducers/dataFetchReducer";
 
 
 type ProductProps = IProp[] | [];
@@ -24,7 +23,7 @@ export interface ICreateProductValues {
     productProps?: ProductProps;
 }
 
-export class UpdateProductView extends React.Component<any & IPropsFetchingState & FormikProps<ICreateProductValues>> {
+export class UpdateProductView extends React.Component<any & FormikProps<ICreateProductValues>> {
 
     componentDidUpdate(): void {
         this.rewriteProductProps();
@@ -190,7 +189,7 @@ const formikEnhancerUpdate = withFormik({
     }
 })(UpdateProductView);
 interface IMapState {
-    propsList: IPropsFetchingState;
+    propsList: IProductsFetchingState;
     productList: IProductsFetchingState;
 }
 const mapStateToProps = ({propsState,productsState}: any): IMapState => {

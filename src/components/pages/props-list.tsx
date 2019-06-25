@@ -2,11 +2,11 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
-import {IPropsFetchingState} from "../../store/reducers/propsFetchReducer";
 import {connect} from "react-redux";
 import {IProp} from "../../store/models/iProp";
-import {propDelete} from "../../store/actions/fetchProps";
+import {propDelete} from "../../store/actions/propsActions";
 import "../../assests/list.scss"
+import {IMapState} from "./products-list";
 
 interface IPropsList {
     propsList: IProp[];
@@ -63,11 +63,10 @@ export class PropsListContainer extends React.Component<any> {
             propsList={propsList}/>
     }
 }
-interface IMapState {
-    propsState:IPropsFetchingState;
-}
-const mapStateToProps = ({propsState}:IMapState):IPropsFetchingState => {
-    const {propsList, loading, error} = propsState;
+
+const mapStateToProps = ({dataState, fetchState}:IMapState):any => {
+    const {propsList} = dataState;
+    const {loading, error} = fetchState;
     return {propsList, loading, error}
 };
 

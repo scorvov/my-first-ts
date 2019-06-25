@@ -2,7 +2,7 @@ import * as React from "react";
 import {Link, RouteComponentProps} from "react-router-dom";
 import {IMapState} from "./products-list";
 import {connect} from "react-redux";
-import {fetchProductSelected} from "../../store/actions/fetchProducts";
+import {fetchProductSelected} from "../../store/actions/productActions";
 import {IProp} from "../../store/models/iProp";
 import {IProduct} from "../../store/models/iProduct";
 
@@ -70,10 +70,13 @@ class Product extends React.Component<TProductProps&DispatchProps> {
 
     }
 }
-
-const mapStateToProps = (state:IMapState):IStateProps => ({
-    selectProduct: state.productsState.selectProduct
-});
+interface IStateProps {
+    selectProduct: IProduct | undefined;
+}
+const mapStateToProps = ({dataState}:IMapState):IStateProps => {
+    const {selectProduct} = dataState;
+    return {selectProduct};
+};
 
 export const ProductContainer = connect(mapStateToProps, {fetchProductSelected})(Product);
 
