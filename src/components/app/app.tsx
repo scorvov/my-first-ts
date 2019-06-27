@@ -5,12 +5,12 @@ import {LoginPage} from "../pages/login-page";
 import {MainPage} from "../pages/main-page";
 import {CreateProduct} from "../pages/create-product";
 import {CreateProp} from "../pages/create-prop";
-import {ProductContainer} from "../pages/product";
+import {Product} from "../pages/product";
 import {connect} from "react-redux";
 import {UpdateProduct} from "../pages/update-product";
 import {fetchData} from "../../store/actions/fetchingActions";
 
-interface IDispatchProps {
+export interface IDispatchProps {
     fetchData: () => void;
 }
 
@@ -37,7 +37,7 @@ class App extends React.Component<IDispatchProps> {
                         exact path = "/prop/create"
                         component = {CreateProp}/>
                     <Route path = "/product/:id"
-                           component = {ProductContainer}/>
+                           component = {Product}/>
                     <Route
                         path = "/"
                         component = {MainPage}/>

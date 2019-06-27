@@ -5,3 +5,6 @@ export interface IProp {
     value?: string;
 }
 
+export interface IPropsList {
+    propsList: IProp[];
+}

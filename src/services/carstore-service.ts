@@ -4,8 +4,8 @@ import {ICreateProductValues} from "../components/pages/create-product";
 import {ICreatePropValues} from "../components/pages/create-prop";
 
 export interface IData {
-    products: IProduct[];
-    props: IProp[];
+    productsList: IProduct[];
+    propsList: IProp[];
 }
 
 export type TData = IProduct[] | IProp[];
@@ -15,14 +15,15 @@ export interface ICarstoreService {
     data: IData;
 
     _getData(data: TData): TData | Object;
-    _getProducts:() => Promise<Object>;
-    _getProps:() =>  Promise<Object>;
+
+    _getProducts: () => Promise<Object>;
+    _getProps: () => Promise<Object>;
     // getData: () => IData;
 }
 
 class CarstoreService implements ICarstoreService {
     data = {
-        products: [
+        productsList: [
             {
                 id: 1,
                 name: 'Mersedes S550 4matic',
@@ -46,7 +47,7 @@ class CarstoreService implements ICarstoreService {
                     {id: 3, name: 'Тип топлива', type: 'string', value: 'бензин'}]
             },
         ],
-        props: [
+        propsList: [
             {
                 id: 1,
                 name: 'Цвет авто',
@@ -65,7 +66,6 @@ class CarstoreService implements ICarstoreService {
         ]
     };
 
-
     _getData = (data: TData) => {
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -74,53 +74,52 @@ class CarstoreService implements ICarstoreService {
         })
     };
     _getProducts = async () => {
-        const data = await this._getData(this.data.products);
         // @ts-ignore
-        return data.map(({id, name, cost, dateUp}:IProduct) => {
+        /*return data.map(({id, name, cost, dateUp}: IProduct) => {
             return {id, name, cost, dateUp};
-        });
+        });*/
+        return await this._getData(this.data.productsList);
 
     };
-    _getProps = async () => await this._getData(this.data.props);
+    _getProps = async () => await this._getData(this.data.propsList);
 
-    deleteProp = async (id:number) => {
-        this.data.props = this.data.props.filter((item) => item.id !== id);
+    getData = async () => {
+        return {
+            productsList: await this._getProducts(),
+            propsList: await this._getProps()
+        };
+    };
+    getProductById = async (id: number) => {
+        const product = this.data.productsList.find((product: IProduct) => id === product.id);
+        if (product) return product;
+    };
+
+    deleteProp = async (id: number) => {
+        this.data.propsList = this.data.propsList.filter((item) => item.id !== id);
         return {ok: true};
     };
-    createProp = async (paramsForCreateProp:ICreatePropValues) => {
-        const maxId = Math.max.apply(Math, this.data.props.map(item => item.id));
-        const newItem = {id: maxId+1, ...paramsForCreateProp};
-        this.data.props.push(newItem);
+    createProp = async (paramsForCreateProp: ICreatePropValues) => {
+        const maxId = Math.max.apply(Math, this.data.propsList.map(item => item.id));
+        const newItem = {id: maxId + 1, ...paramsForCreateProp};
+        this.data.propsList.push(newItem);
         return {ok: true}
     };
-    deleteProduct = async (id:number) => {
-        this.data.products = this.data.products.filter((item) => item.id !== id);
+    deleteProduct = async (id: number) => {
+        this.data.productsList = this.data.productsList.filter((item) => item.id !== id);
         return {ok: true};
     };
-    createProduct = async (paramsForCreateProduct:ICreateProductValues) => {
-        const maxId = Math.max.apply(Math, this.data.products.map(item => item.id));
-        const newItem:IProduct = {
-            id: maxId+1,
+    createProduct = async (paramsForCreateProduct: ICreateProductValues) => {
+        const maxId = Math.max.apply(Math, this.data.productsList.map(item => item.id));
+        const newItem: IProduct = {
+            id: maxId + 1,
             cost: ((+paramsForCreateProduct.cost.replace(/\s/g, ''))).toLocaleString(),
             ...paramsForCreateProduct
         };
         // @ts-ignore
-        this.data.products.push(newItem);
+        this.data.productsList.push(newItem);
         return {ok: true}
     };
 
-    getData = async () => {
-        return {
-            products: await this._getProducts(),
-            props: await this._getProps()
-        };
-    };
-    getProductById = async (id: number) => {
-        const product = this.data.products.find((product: IProduct) => id === product.id);
-        if(product) return product;
-    };
 }
 
-export {
-    CarstoreService
-}
+export {CarstoreService};

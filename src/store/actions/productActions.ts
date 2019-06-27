@@ -1,32 +1,13 @@
-import {Action, Dispatch} from "redux";
-import {IProduct} from "../models/iProduct";
+import {Dispatch} from "redux";
 import {ICreateProductValues} from "../../components/pages/create-product";
 import {carstoreService, fetchData} from "./fetchingActions";
-
-export interface ILoadedProductsAction extends Action {
-    payload: any;
-}
-
-export interface ISelectProductAction extends Action {
-    payload: IProduct;
-}
 
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
 export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
 export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
-export const PRODUCT_SELECTED = "PRODUCT_SELECTED";
+export const FETCH_PRODUCT_BY_ID_SUCCESS = "FETCH_PRODUCT_BY_ID_SUCCESS";
 
-export const productSelected = (product: IProduct): ISelectProductAction =>
-    ({
-        payload: product,
-        type: PRODUCT_SELECTED
-    });
-export const fetchProductSelected = (id: number) => {
-    return (dispatch: Dispatch) => {
-        carstoreService.getProductById(id)
-            .then((product: any) => dispatch(productSelected(product)))
-    }
-};
+
 
 export const productDelete = (id: number) => {
     return (dispatch: Dispatch) => {

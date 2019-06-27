@@ -1,19 +1,7 @@
-import {IProduct} from "./iProduct";
-import {IProp} from "./iProp";
+import {IProductsFetchingState} from "../reducers/dataReducer";
+import {IFetchingState} from "../reducers/fetchingReducer";
 
-export interface IProductsState {
-    productList: IProduct[];
-    loading: boolean;
-    error: string | null;
-}
-
-export interface IPropsState {
-    propsList: IProp[];
-    loading: boolean;
-    error: string | null;
-}
-
-export interface IState {
-    productsState: IProductsState;
-    propsState: IPropsState;
+export interface IMapState {
+    dataState:IProductsFetchingState;
+    fetchState: IFetchingState;
 }

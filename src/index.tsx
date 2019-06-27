@@ -5,8 +5,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from './components/app';
 import { ErrorBoundry } from "./components/common/error-boundry";
 
-import { store } from "./store";
+import {applyMiddleware, createStore} from "redux";
 
+import thunk from "redux-thunk";
+import {composeWithDevTools} from "redux-devtools-extension";
+import {rootReducer} from "./store/reducers";
+
+export const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>

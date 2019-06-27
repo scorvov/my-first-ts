@@ -10,3 +10,6 @@ export interface IProduct {
     productProps: IProp[] | [];
 }
 
+export interface IProductsList {
+    productsList: IProduct[];
+}

@@ -2,12 +2,11 @@ import {Dispatch} from "redux";
 import {ICreatePropValues} from "../../components/pages/create-prop";
 import {carstoreService, fetchData} from "./fetchingActions";
 
-
-export const propDelete = (id:number) => {
-    return (dispatch:Dispatch) => {
+export const propDelete = (id: number) => {
+    return (dispatch: Dispatch) => {
         carstoreService.deleteProp(id)
-            .then(((response:any) => {
-                if(response.ok) {
+            .then(((response: any) => {
+                if (response.ok) {
                     dispatch(fetchData());
                 }
             }));
@@ -15,10 +14,10 @@ export const propDelete = (id:number) => {
 };
 
 export const propCreate = (paramsForCreateProp: ICreatePropValues) => {
-    return (dispatch:Dispatch) => {
+    return (dispatch: Dispatch) => {
         carstoreService.createProp(paramsForCreateProp)
-            .then(((response:any) => {
-                if(response.ok) {
+            .then(((response: any) => {
+                if (response.ok) {
                     dispatch(fetchData());
                 }
             }));

@@ -1,31 +1,39 @@
 import {Action, Dispatch} from "redux";
 import { CarstoreService } from "../../services/carstore-service";
-import {IProductsFetchingState} from "../reducers/dataFetchReducer";
+import {IProductsFetchingState} from "../reducers/dataReducer";
+import {IFetchAction} from "../reducers/fetchingReducer";
+import {IProduct} from "../models/iProduct";
+import {FETCH_PRODUCT_BY_ID_SUCCESS} from "./productActions";
+
+export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
+export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
+export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
 
 export const carstoreService = new CarstoreService();
 
 export interface ILoadedProductsAction extends Action {
     payload: IProductsFetchingState;
 }
-export interface ILoadedErrorAction extends Action {
-    payload: string;
+export interface ISelectProductAction extends Action {
+    payload: IProduct;
 }
-
-export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
-export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
-export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
 
 const dataLoaded = (data: IProductsFetchingState): ILoadedProductsAction =>
     ({
         payload: data,
         type: FETCH_PRODUCTS_SUCCESS
     });
+const productLoaded = (product: IProduct): ISelectProductAction =>
+    ({
+        payload: product,
+        type: FETCH_PRODUCT_BY_ID_SUCCESS
+    });
 const dataRequested = ():Action => {
     return {
         type: FETCH_PRODUCTS_REQUEST
     };
 };
-const dataError = (error:string): ILoadedErrorAction =>
+const dataError = (error:string): IFetchAction =>
     ({
         payload: error,
         type: FETCH_PRODUCTS_FAILURE
@@ -40,4 +48,11 @@ export const fetchData = ():any => {
     }
 };
 
-
+export const fetchProductById = (id: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(dataRequested());
+        carstoreService.getProductById(id)
+            .then((product: any) => dispatch(productLoaded(product)))
+            .catch((err) => dispatch(dataError(err)));
+    }
+};

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Route, Switch} from "react-router";
-import ProductsList from "./products-list";
-import PropsList from "./props-list";
+import ProductsListContainer from "./products-list";
+import PropsListContainer from "./props-list";
 import {NavLink} from "react-router-dom";
 import "../../assests/main-page.scss";
 
@@ -17,8 +17,8 @@ export const MainPage: React.FC = () => {
                 </button>
             </div>
             <Switch>
-                <Route exact path="/products" component={ProductsList}/>
-                <Route exact path="/properties" component={PropsList}/>
+                <Route exact path="/products" component={ProductsListContainer}/>
+                <Route exact path="/properties" component={PropsListContainer}/>
             </Switch>
         </div>
     );

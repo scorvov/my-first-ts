@@ -3,16 +3,15 @@ import {Link} from "react-router-dom";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import {connect} from "react-redux";
-import {IProp} from "../../store/models/iProp";
+import {IProp, IPropsList} from "../../store/models/iProp";
 import {propDelete} from "../../store/actions/propsActions";
 import "../../assests/list.scss"
-import {IMapState} from "./products-list";
+import {IMapState} from "../../store/models/iState";
+import {IFetchingState} from "../../store/reducers/fetchingReducer";
 
-interface IPropsList {
-    propsList: IProp[];
-    propDelete: (id:number) => void;
-}
-const PropsList: React.FC<IPropsList> = ({propsList, propDelete}) => {
+interface IDispatchProps {propDelete: (id:number) => void;}
+
+const PropsList: React.FC<IPropsList&IDispatchProps> = ({propsList, propDelete}) => {
     const renderRow = ((prop: IProp) => {
         const {id, name, type} = prop;
         return (
@@ -48,23 +47,18 @@ const PropsList: React.FC<IPropsList> = ({propsList, propDelete}) => {
     );
 };
 
-export class PropsListContainer extends React.Component<any> {
-
+class PropsListContainer extends React.Component<IPropsList&IDispatchProps&IFetchingState> {
     render() {
         const {propsList, loading, error,propDelete} = this.props;
-        if (loading) {
-            return <Spinner />
-        }
-        if(error) {
-            return <ErrorIndicator />
-        }
+        if (loading) return <Spinner />;
+        if(error) return <ErrorIndicator />;
         return <PropsList
             propDelete={propDelete}
             propsList={propsList}/>
     }
 }
 
-const mapStateToProps = ({dataState, fetchState}:IMapState):any => {
+const mapStateToProps = ({dataState, fetchState}:IMapState):IPropsList&IFetchingState => {
     const {propsList} = dataState;
     const {loading, error} = fetchState;
     return {propsList, loading, error}

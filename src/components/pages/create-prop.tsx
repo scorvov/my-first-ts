@@ -9,8 +9,9 @@ import {connect} from "react-redux";
 import {propCreate} from "../../store/actions/propsActions";
 
 interface IPropCreate {
-    propCreate: ({name, type}:ICreatePropValues) => void;
+    propCreate: ({name, type}: ICreatePropValues) => void;
 }
+
 export interface ICreatePropValues {
     name: string;
     type: string;
@@ -50,7 +51,7 @@ const CreatePropView: React.FC<FormikProps<ICreatePropValues>> = (props) => {
                 />
                 <RadioButtonGroup
                     id="radio"
-                    label= "Укажите тип свойства"
+                    label="Укажите тип свойства"
                     value={values.type}
                     error={errors.type}
                     touched={touched.type}
@@ -77,10 +78,9 @@ const CreatePropView: React.FC<FormikProps<ICreatePropValues>> = (props) => {
             </div>
         </Form>
     );
-
 };
 
-const MyEnhancedForm = withFormik<ICreatePropValues&IPropCreate, ICreatePropValues>({
+const MyEnhancedForm = withFormik<ICreatePropValues & IPropCreate, ICreatePropValues>({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойства должно быть не менее 2 символов")
@@ -93,7 +93,7 @@ const MyEnhancedForm = withFormik<ICreatePropValues&IPropCreate, ICreatePropValu
         name: name || '',
         type: type || ''
     }),
-    handleSubmit: ({name, type}, {props:{propCreate},resetForm,setSubmitting}) => {
+    handleSubmit: ({name, type}, {props: {propCreate}, resetForm, setSubmitting}) => {
         propCreate({name, type});
         resetForm();
         setSubmitting(false);

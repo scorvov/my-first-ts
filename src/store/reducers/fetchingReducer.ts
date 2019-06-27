@@ -1,23 +1,26 @@
 import {
-    ILoadedProductsAction,
     FETCH_PRODUCTS_FAILURE,
     FETCH_PRODUCTS_SUCCESS,
-    FETCH_PRODUCTS_REQUEST} from "../actions/productActions";
-
+    FETCH_PRODUCTS_REQUEST,
+    FETCH_PRODUCT_BY_ID_SUCCESS
+} from "../actions/productActions";
+import {Action} from "redux";
 
 //разобраться с типом для error
 export interface IFetchingState {
     loading: boolean;
-    error: any;
+    error: string | null;
+}
+export interface IFetchAction extends Action {
+    payload: string | null;
 }
 
 const initialFetchingState: IFetchingState = {
     loading: false,
     error: null,
 };
-type TProductAction = ILoadedProductsAction;
 
-export const fetchingReducer = (state = initialFetchingState, action:TProductAction) => {
+export const fetchingReducer = (state = initialFetchingState, action:IFetchAction) => {
     switch (action.type) {
         case FETCH_PRODUCTS_REQUEST:
             return {
@@ -26,6 +29,7 @@ export const fetchingReducer = (state = initialFetchingState, action:TProductAct
                 error: null
             };
         case FETCH_PRODUCTS_SUCCESS:
+        case FETCH_PRODUCT_BY_ID_SUCCESS:
             return {
                 ...state,
                 loading: false,

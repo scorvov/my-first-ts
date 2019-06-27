@@ -3,14 +3,16 @@ import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
 import "../../assests/create-product.scss";
 import {Input} from "../common/input/input";
-import {FieldArray, Form, FormikProps, withFormik} from "formik";
+import {FieldArray, Form, FormikHandlers, FormikProps, FormikValues, withFormik} from "formik";
 import * as Yup from "yup";
 import {connect} from "react-redux";
 import {productCreate} from "../../store/actions/productActions";
-import {IProp} from "../../store/models/iProp";
+import {IProp, IPropsList} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
-import {IMapState} from "./products-list";
-import {fetchData} from "../../store/actions/fetchingActions";
+import {IMapState} from "../../store/models/iState";
+import {Spinner} from "../common/spinner";
+import {ErrorIndicator} from "../common/error-indicator";
+import {ISelectProductProps} from "./product";
 
 export interface ICreateProductValues {
     name: string;
@@ -20,102 +22,107 @@ export interface ICreateProductValues {
     dateUp: string;
     productProps: IProp[] | [];
 }
+type TProps = FormikProps<ICreateProductValues>;
+class CreateProductContainer extends React.Component<any&FormikHandlers&FormikValues,IStateProps,TProps> {
 
-export class CreateProductView extends React.Component< any & FormikProps<ICreateProductValues>> {
-
-    componentDidMount(): void {
-        this.props.fetchData();
-    }
-
-    componentDidUpdate(): void {
-        this.rewriteProductProps();
-        this.handlingError();
-    }
-    handlingError = () => {
-        const {errors} = this.props;
+    handlingError = (errors:any) => {
         if ((errors.cost) && errors.cost.includes("cost must")) {
             errors.cost = "Стоимость должна состоять из цифр"
         }
     };
-    rewriteProductProps = () => {
-        const {propsList} = this.props;
-        let {productProps} = this.props.values;
+
+    rewriteProductProps = (propsList:IProp[], productProps:IProp[]) => {
         // запись id и type объекта property в массив productProps по name из propsList
         if (productProps.length !== 0) {
-            this.props.values.productProps = productProps.map((propProduct: IProp) => {
+            productProps = productProps.map((propProduct: IProp) => {
                 let prop = propsList.find((item: IProp) => item.name === propProduct.name);
                 return {...propProduct, ...prop};
             });
         }
+        return productProps;
     };
 
     render() {
-        const {touched, errors, isSubmitting, propsList} = this.props;
-        let {productProps} = this.props.values;
+        const {loading, error} = this.props;
+        if (loading) return <Spinner />;
+        if(error) return <ErrorIndicator />;
+        return <EnhancedCreateProductView propsList={this.props.propsList}
+                                          selectProduct={this.props.selectProduct}
+                                          productCreate={this.props.productCreate}
+                                          handlingError={this.handlingError}
+                                          rewriteProductProps={this.rewriteProductProps} />;
+    }
+}
 
-        return (<Form className="create-prop">
-            <div className="group-buttons">
-                <Link to="/products"
-                      className="btn btn-danger btn-sm">
-                    Вернуться
-                </Link>
-                <button
-                    type={"submit"}
-                    disabled={isSubmitting}
-                    className="btn btn-success btn-sm">
-                    Сохранить
-                </button>
-            </div>
-            <hr className="line"/>
-            <h4>Добавление товара</h4>
-            <hr className="line"/>
-            <div className={"input-form"}>
-                <Input
-                    label={"Название товара"}
-                    placeholder={"Mersedes S550 4matic"}
-                    name="name"
-                    error={errors.name}
-                    touched={touched.name}
-                />
-                <Input
-                    label={"Стоимость товара"}
-                    placeholder={"113 000"}
-                    name="cost"
-                    error={errors.cost}
-                    touched={touched.cost}
-                />
-                <Input
-                    label={"Изображение"}
-                    placeholder={"image"}
-                    name="img"
-                    error={errors.img}
-                    touched={touched.img}
-                />
-                <Input
-                    component="textarea"
-                    cols="80"
-                    rows="5"
-                    label={"Описание"}
-                    placeholder={"info"}
-                    name="info"
-                    error={errors.info}
-                    touched={touched.info}
-                />
-                <h5>Добавление товару свойств</h5>
-                <br/>
-                <FieldArray name={"productProps"} render={arrayHelpers => (
-                    <>
-                        <button
-                            type={"button"}
-                            onClick={() => arrayHelpers.push({
-                                id: Math.floor(Math.random() * 1000),
-                                name: '',
-                                type: '',
-                                value: ''
-                            })}>Add</button>
-                        {productProps && productProps.length > 0 ?
-                            (productProps.map((productProp: IProp, index: number) => (
-                                <span key={index} className={"add-props-product"}>
+const CreateProductView:React.FC<any&FormikProps<ICreateProductValues>> = (props) => {
+    const {touched, errors, isSubmitting, handlingError, rewriteProductProps, propsList} = props;
+    const {productProps} = props.values;
+    handlingError(errors);
+    props.values.productProps = rewriteProductProps(propsList, productProps);
+    return (<Form className="create-prop">
+        <div className="group-buttons">
+            <Link to="/products"
+                  className="btn btn-danger btn-sm">
+                Вернуться
+            </Link>
+            <button
+                type={"submit"}
+                disabled={isSubmitting}
+                className="btn btn-success btn-sm">
+                Сохранить
+            </button>
+        </div>
+        <hr className="line"/>
+        <h4>Добавление товара</h4>
+        <hr className="line"/>
+        <div className={"input-form"}>
+            <Input
+                label={"Название товара"}
+                placeholder={"Mersedes S550 4matic"}
+                name="name"
+                error={errors.name}
+                touched={touched.name}
+            />
+            <Input
+                label={"Стоимость товара"}
+                placeholder={"113 000"}
+                name="cost"
+                error={errors.cost}
+                touched={touched.cost}
+            />
+            <Input
+                label={"Изображение"}
+                placeholder={"image"}
+                name="img"
+                error={errors.img}
+                touched={touched.img}
+            />
+            <Input
+                component="textarea"
+                cols="80"
+                rows="5"
+                label={"Описание"}
+                placeholder={"info"}
+                name="info"
+                error={errors.info}
+                touched={touched.info}
+            />
+            <h5>Добавление товару свойств</h5>
+            <br/>
+            <FieldArray name={"productProps"} render={arrayHelpers => (
+                <>
+                    <button
+                        type={"button"}
+                        onClick={() => arrayHelpers.push({
+                            id: Math.floor(Math.random() * 1000),
+                            name: '',
+                            type: '',
+                            value: ''
+                        })}>Add
+                    </button>
+                    {productProps && productProps.length > 0 ?
+                        (productProps.map((productProp: IProp, index: number) => (
+                            <span key={index} className={"add-props-product"}>
                                     <button type={"button"}
                                             onClick={() => arrayHelpers.remove(index)}>–
                                     </button>
@@ -125,11 +132,11 @@ export class CreateProductView extends React.Component< any & FormikProps<ICreat
                                         label={"Свойство"}
                                     >
                                         {(productProps[index].name) ?
-                                            (<option value={index} label={productProps[index].name} />)
-                                            : (<option value={-1} label={"Select"} />)}
+                                            (<option value={index} label={productProps[index].name}/>)
+                                            : (<option value={-1} label={"Select"}/>)}
                                         {propsList.map((option: any) =>
-                                            (!productProps.find((item:any) => item.name === option.name) ?
-                                                <option key={option.id} value={option.name} label={option.name} />
+                                            (!productProps.find((item: any) => item.name === option.name) ?
+                                                <option key={option.id} value={option.name} label={option.name}/>
                                                 : null))}
                                     </Select>
                                     <Input
@@ -140,15 +147,14 @@ export class CreateProductView extends React.Component< any & FormikProps<ICreat
                                         touched={touched.productProps && touched.productProps[index] ? touched.productProps[index].value : null}
                                     />
                                 </span>)))
-                            : null}
-                    </>
-                )}/>
-            </div>
-        </Form>)
-    }
-}
+                        : null}
+                </>
+            )}/>
+        </div>
+    </Form>)
+};
 
-const MyEnhancedForm = withFormik({
+const EnhancedCreateProductView = withFormik<any&ICreateProductValues & IProductCreate, ICreateProductValues>({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойство должно быть не менее 2 символов")
@@ -172,27 +178,28 @@ const MyEnhancedForm = withFormik({
                     .required("Требуется ввести имя")
             }))
     }),
-    mapPropsToValues: ({name, cost, img, info, productProps}: any) => {
-        return {
-            name: name || '',
-            cost: cost || '',
-            img: img || '',
-            info: info || '',
-            productProps: productProps || [],
-            dateUp: new Date().toLocaleDateString()
-        }
+    mapPropsToValues: ({selectProduct}) => {
+        return selectProduct;
     },
-    handleSubmit: (values: any, {props: {productCreate}, resetForm, setSubmitting}) => {
+    handleSubmit: (values, {props: {productCreate}, resetForm, setSubmitting}) => {
         productCreate(values);
         resetForm();
         setSubmitting(false);
     }
 })(CreateProductView);
 
-const mapStateToProps = ({dataState}: IMapState): any => {
-    const {propsList} = dataState;
-    return {propsList};
+interface IProductCreate {
+    productCreate: (values: ICreateProductValues) => void;
+}
+
+interface IStateProps {
+    propsList: IPropsList;
+}
+
+const mapStateToProps = ({dataState}: IMapState): IPropsList & ISelectProductProps => {
+    const {propsList, selectProduct} = dataState;
+    return {propsList, selectProduct};
 };
 export const CreateProduct = connect(mapStateToProps,
-    {productCreate, fetchData})(MyEnhancedForm);
+    {productCreate})(CreateProductContainer);
 
