@@ -1,4 +1,4 @@
-import {FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCT_BY_ID_SUCCESS} from "../actions/productActions";
+import {FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCT_BY_ID_SUCCESS, RESET_SELECT_PRODUCT} from "../actions/productActions";
 import {IProduct} from "../models/iProduct";
 import {IProp} from "../models/iProp";
 import {Action} from "redux";
@@ -39,6 +39,11 @@ export const dataReducer = (state: IProductsFetchingState = initialProductState,
             return {
                 ...state,
                 ...action.payload
+            };
+        case RESET_SELECT_PRODUCT:
+            return {
+                ...state,
+                selectProduct: initialProductState.selectProduct
             };
         default:
             return state;

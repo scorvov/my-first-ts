@@ -1,6 +1,5 @@
 import {IProduct} from "../store/models/iProduct";
 import {IProp} from "../store/models/iProp";
-import {ICreateProductValues} from "../components/pages/create-product";
 import {ICreatePropValues} from "../components/pages/create-prop";
 
 export interface IData {
@@ -73,16 +72,8 @@ class CarstoreService implements ICarstoreService {
             }, 100);
         })
     };
-    _getProducts = async () => {
-        // @ts-ignore
-        /*return data.map(({id, name, cost, dateUp}: IProduct) => {
-            return {id, name, cost, dateUp};
-        });*/
-        return await this._getData(this.data.productsList);
-
-    };
+    _getProducts = async () => await this._getData(this.data.productsList);
     _getProps = async () => await this._getData(this.data.propsList);
-
     getData = async () => {
         return {
             productsList: await this._getProducts(),
@@ -108,17 +99,23 @@ class CarstoreService implements ICarstoreService {
         this.data.productsList = this.data.productsList.filter((item) => item.id !== id);
         return {ok: true};
     };
-    createProduct = async (paramsForCreateProduct: ICreateProductValues) => {
+    createProduct = async (paramsForCreateProduct: IProduct) => {
         const maxId = Math.max.apply(Math, this.data.productsList.map(item => item.id));
-        const newItem: IProduct = {
+        const newItem = {
+            ...paramsForCreateProduct,
             id: maxId + 1,
-            cost: ((+paramsForCreateProduct.cost.replace(/\s/g, ''))).toLocaleString(),
-            ...paramsForCreateProduct
+            cost: ((+paramsForCreateProduct.cost.replace(/\s/g, ''))).toLocaleString()
         };
         // @ts-ignore
         this.data.productsList.push(newItem);
         return {ok: true}
     };
+    updateProduct = async (paramsForCreateProduct: IProduct) => {
+        const indexProduct = this.data.productsList.findIndex(item => item.id === paramsForCreateProduct.id);
+        // @ts-ignore
+        this.data.productsList[indexProduct] = {...paramsForCreateProduct, dateUp: new Date().toLocaleDateString()};
+        return {ok: true}
+    }
 
 }
 

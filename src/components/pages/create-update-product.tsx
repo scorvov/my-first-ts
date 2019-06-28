@@ -3,36 +3,47 @@ import {Link} from "react-router-dom";
 import "../../assests/prop-create.scss";
 import "../../assests/create-product.scss";
 import {Input} from "../common/input/input";
-import {FieldArray, Form, FormikProps, withFormik} from "formik";
+import {FieldArray, Form, FormikHandlers, FormikProps, FormikValues, withFormik} from "formik";
 import * as Yup from "yup";
 import {connect} from "react-redux";
-import {productCreate} from "../../store/actions/productActions";
+import {productCreate, resetSelectProduct, productUpdate} from "../../store/actions/productActions";
 import {IProp, IPropsList} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
-import {ISelectProductProps} from "./product";
 import {IMapState} from "../../store/models/iState";
-import {fetchProductById} from "../../store/actions/fetchingActions";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
+import {ISelectProductProps} from "./product";
 import {IFetchingState} from "../../store/reducers/fetchingReducer";
-import {ICreateProductValues} from "./create-product";
+import {fetchProductById} from "../../store/actions/fetchingActions";
+import {IProduct} from "../../store/models/iProduct";
 
-export class UpdateProductContainer extends React.Component<any> {
+interface IProductCreate {productCreate: (values: IProduct) => void;}
+type TProps = FormikProps<IProduct>;
+class CreateUpdateProductContainer extends React.Component<any&FormikHandlers&FormikValues,IPropsList,TProps> {
 
     componentDidMount(): void {
+        //проверка на создание нового или редактирование продукта по id
         if(this.props.match.params.id) {
             const {id} = this.props.match.params;
             this.props.fetchProductById(+id);
         }
     }
+    componentWillUnmount(): void {
+        this.props.resetSelectProduct();
+    }
+
     handlingError = (errors:any) => {
+        //изменение текста ошибки библиотеки Yup
         if ((errors.cost) && errors.cost.includes("cost must")) {
             errors.cost = "Стоимость должна состоять из цифр"
         }
     };
+    selectProductAction = () => {
+        return (!this.props.match.params.id) ? this.props.productCreate : this.props.productUpdate;
+    };
 
     rewriteProductProps = (propsList:IProp[], productProps:IProp[]) => {
-        // запись id и type объекта property в массив productProps по name из propsList
+        // запись id и type объекта property в массив свойств продукта из propsList
         if (productProps.length !== 0) {
             productProps = productProps.map((propProduct: IProp) => {
                 let prop = propsList.find((item: IProp) => item.name === propProduct.name);
@@ -46,19 +57,21 @@ export class UpdateProductContainer extends React.Component<any> {
         const {loading, error} = this.props;
         if (loading) return <Spinner />;
         if(error) return <ErrorIndicator />;
-        return <EnhancedUpdateProductView propsList={this.props.propsList}
+        return <EnhancedCreateUpdateProductView propsList={this.props.propsList}
                                           selectProduct={this.props.selectProduct}
-                                          productCreate={this.props.productCreate}
+                                          history = {this.props.history}
+                                          productAction={this.selectProductAction()}
                                           handlingError={this.handlingError}
                                           rewriteProductProps={this.rewriteProductProps} />;
     }
 }
 
-const UpdateProductView:React.FC<any&FormikProps<ICreateProductValues>> = (props) => {
+const CreateUpdateProductView:React.FC<any&FormikProps<IProduct>> = (props) => {
     const {touched, errors, isSubmitting, handlingError, rewriteProductProps, propsList} = props;
     const {productProps} = props.values;
     handlingError(errors);
     props.values.productProps = rewriteProductProps(propsList, productProps);
+    console.log(props.productAction);
     return (<Form className="create-prop">
         <div className="group-buttons">
             <Link to="/products"
@@ -154,7 +167,7 @@ const UpdateProductView:React.FC<any&FormikProps<ICreateProductValues>> = (props
     </Form>)
 };
 
-const EnhancedUpdateProductView = withFormik({
+const EnhancedCreateUpdateProductView = withFormik<any&IProduct & IProductCreate, IProduct>({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойство должно быть не менее 2 символов")
@@ -178,21 +191,21 @@ const EnhancedUpdateProductView = withFormik({
                     .required("Требуется ввести имя")
             }))
     }),
-    mapPropsToValues: ({ selectProduct }: any) => {
+    mapPropsToValues: ({selectProduct}) => {
         return selectProduct;
     },
-    handleSubmit: (values: any, {props: {productCreate}, resetForm, setSubmitting}) => {
-        productCreate(values);
+    handleSubmit: (values, {props: {productAction, history}, resetForm, setSubmitting}) => {
+        productAction(values);
         resetForm();
         setSubmitting(false);
+        history.push('/products');
     }
-})(UpdateProductView);
+})(CreateUpdateProductView);
 
 const mapStateToProps = ({dataState, fetchState}: IMapState): IPropsList & ISelectProductProps & IFetchingState => {
     const {selectProduct, propsList} = dataState;
     const {loading, error} = fetchState;
     return {selectProduct, propsList, loading, error};
 };
-export const UpdateProduct = connect(mapStateToProps,
-    {productCreate, fetchProductById})(UpdateProductContainer);
-
+export const CreateUpdateProduct = connect(mapStateToProps,
+    {productCreate, productUpdate, fetchProductById, resetSelectProduct})(CreateUpdateProductContainer);
