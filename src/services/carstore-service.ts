@@ -1,6 +1,6 @@
 import {IProduct} from "../store/models/iProduct";
 import {IProp} from "../store/models/iProp";
-import {ICreatePropValues} from "../components/pages/create-prop";
+import {ICreatePropValues} from "../components/create-prop/with-formik-prop";
 
 export interface IData {
     productsList: IProduct[];

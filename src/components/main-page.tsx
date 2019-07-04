@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Route, Switch} from "react-router";
-import ProductsListContainer from "./products-list";
-import PropsListContainer from "./props-list";
+import {ProductsListContainer} from "./products-list/container";
 import {NavLink} from "react-router-dom";
-import "../../assests/styles/main-page.scss";
+import "../assests/styles/main-page.scss";
+import {PropsListContainer} from "./props-list/container";
 
 export const MainPage: React.FC = () => {
     return (
@@ -16,7 +16,6 @@ export const MainPage: React.FC = () => {
                     <NavLink to="/properties" className="main-header">Листинг проперти</NavLink>
                 </button>
             </div>
-            {/*<Redirect to={'/products'} />*/}
             <Switch>
                 <Route exact path="/products" component={ProductsListContainer} selected />
                 <Route exact path="/properties" component={PropsListContainer}/>

@@ -1,11 +1,11 @@
 import * as React from "react";
 import '../../assests/styles/app.scss';
 import {Route, Switch} from "react-router";
-import {LoginPage} from "../pages/login-page";
-import {MainPage} from "../pages/main-page";
-import {CreateUpdateProduct} from "../pages/create-update-product";
-import {CreateProp} from "../pages/create-prop";
-import {Product} from "../pages/product";
+import {LoginPage} from "../login-page";
+import {MainPage} from "../main-page";
+import {CreateUpdateProductContainer} from "../create-update-product/container";
+import {CreatePropContainer} from "../create-prop/container";
+import {ProductContainer} from "../product/container";
 import {connect} from "react-redux";
 import {fetchData} from "../../store/actions/fetchingActions";
 
@@ -28,15 +28,15 @@ class App extends React.Component<IDispatchProps> {
                         component = {LoginPage} />
                     <Route
                         exact path = "/product/create"
-                        component = {CreateUpdateProduct} />
+                        component = {CreateUpdateProductContainer} />
                     <Route
                         exact path = "/product/update/:id"
-                        component = {CreateUpdateProduct} />
+                        component = {CreateUpdateProductContainer} />
                     <Route
                         exact path = "/prop/create"
-                        component = {CreateProp}/>
+                        component = {CreatePropContainer}/>
                     <Route path = "/product/:id"
-                           component = {Product}/>
+                           component = {ProductContainer}/>
                     <Route
                         path = "/"
                         component = {MainPage}/>

@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
-import {ICreatePropValues} from "../../components/pages/create-prop";
 import {carstoreService, fetchData} from "./fetchingActions";
+import {ICreatePropValues} from "../../components/create-prop/with-formik-prop";
 
 export const propDelete = (id: number) => {
     return (dispatch: Dispatch) => {

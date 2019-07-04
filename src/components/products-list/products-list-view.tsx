@@ -1,19 +1,9 @@
 import * as React from "react";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
 import {IProduct, IProductsList} from "../../store/models/iProduct";
-import {productDelete} from "../../store/actions/productActions";
-import {Spinner} from "../common/spinner";
-import {ErrorIndicator} from "../common/error-indicator";
-import "../../assests/styles/list.scss"
-import {IFetchingState} from "../../store/reducers/fetchingReducer";
-import {IMapState} from "../../store/models/iState";
+import {Link} from "react-router-dom";
+import {IDispatchProps} from "./products-list";
 
-interface IDispatchProps {
-    productDelete: (id: number) => void;
-}
-
-export const ProductsList: React.FC<IProductsList & IDispatchProps> = ({productsList, productDelete}) => {
+export const ProductsListView: React.FC<IProductsList & IDispatchProps> = ({productsList, productDelete}) => {
     const renderRow = ((product: IProduct) => {
         const {id, name, cost, dateUp} = product;
         return (
@@ -27,7 +17,6 @@ export const ProductsList: React.FC<IProductsList & IDispatchProps> = ({products
                     <Link to={`/product/update/${id}`}
                           className="link"
                     >Ред</Link>
-
                     <button
                         onClick={() => productDelete(id)}
                         className="link">
@@ -60,24 +49,3 @@ export const ProductsList: React.FC<IProductsList & IDispatchProps> = ({products
         </div>
     );
 };
-
-export class ProductsListContainer extends React.Component<IProductsList & IDispatchProps & IFetchingState> {
-
-    render() {
-        const {productsList, loading, error, productDelete} = this.props;
-        if (loading) return <Spinner/>;
-        if (error) return <ErrorIndicator/>;
-        return <ProductsList productsList={productsList}
-                             productDelete={productDelete}
-        />
-    }
-}
-
-const mapStateToProps = ({dataState, fetchState}: IMapState): IProductsList & IFetchingState => {
-    const {productsList} = dataState;
-    const {loading, error} = fetchState;
-    return {productsList, loading, error}
-};
-
-export default connect(mapStateToProps, {productDelete})(ProductsListContainer);
-
