@@ -3,11 +3,13 @@ import { CarstoreService } from "../../services/carstore-service";
 import {IProductsFetchingState} from "../reducers/dataReducer";
 import {IFetchAction} from "../reducers/fetchingReducer";
 import {IProduct} from "../models/iProduct";
-import {FETCH_PRODUCT_BY_ID_SUCCESS} from "./productActions";
+import {
+    FETCH_PRODUCT_BY_ID_SUCCESS,
+    FETCH_PRODUCTS_FAILURE,
+    FETCH_PRODUCTS_REQUEST,
+    FETCH_PRODUCTS_SUCCESS
+} from "../constants";
 
-export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
-export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
-export const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
 
 export const carstoreService = new CarstoreService();
 
@@ -38,6 +40,8 @@ const dataError = (error:string): IFetchAction =>
         payload: error,
         type: FETCH_PRODUCTS_FAILURE
     });
+
+
 
 export const fetchData = ():any => {
     return (dispatch:Dispatch) => {

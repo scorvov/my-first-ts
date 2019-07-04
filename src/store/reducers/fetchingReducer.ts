@@ -1,10 +1,11 @@
-import {
-    FETCH_PRODUCTS_FAILURE,
-    FETCH_PRODUCTS_SUCCESS,
-    FETCH_PRODUCTS_REQUEST,
-    FETCH_PRODUCT_BY_ID_SUCCESS
-} from "../actions/productActions";
+
 import {Action} from "redux";
+import {
+    FETCH_PRODUCT_BY_ID_SUCCESS,
+    FETCH_PRODUCTS_FAILURE,
+    FETCH_PRODUCTS_REQUEST,
+    FETCH_PRODUCTS_SUCCESS
+} from "../constants";
 
 //разобраться с типом для error
 export interface IFetchingState {

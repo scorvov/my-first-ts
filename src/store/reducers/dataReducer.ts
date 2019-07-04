@@ -1,7 +1,8 @@
-import {FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCT_BY_ID_SUCCESS, RESET_SELECT_PRODUCT} from "../actions/productActions";
+
 import {IProduct} from "../models/iProduct";
 import {IProp} from "../models/iProp";
 import {Action} from "redux";
+import {FETCH_PRODUCT_BY_ID_SUCCESS, FETCH_PRODUCTS_SUCCESS, RESET_SELECT_PRODUCT} from "../constants";
 
 //разобраться с типом для error
 export interface IProductsFetchingState {
