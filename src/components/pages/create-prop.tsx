@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
-import "../../assests/prop-create.scss";
+import "../../assests/styles/prop-create.scss";
 import {Input} from "../common/input/input";
 import {Field, Form, FormikProps, withFormik} from "formik";
 import * as Yup from "yup";

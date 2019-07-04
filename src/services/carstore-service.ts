@@ -7,7 +7,7 @@ export interface IData {
     propsList: IProp[];
 }
 
-export type TData = IProduct[] | IProp[];
+export type TData = IProduct[] | IProp[] | IProduct;
 
 //уточнить по поводу типа объекта, возвращаемого Error
 export interface ICarstoreService {
@@ -69,7 +69,7 @@ class CarstoreService implements ICarstoreService {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve(data);
-            }, 100);
+            }, 200);
         })
     };
     _getProducts = async () => await this._getData(this.data.productsList);
@@ -82,7 +82,10 @@ class CarstoreService implements ICarstoreService {
     };
     getProductById = async (id: number) => {
         const product = this.data.productsList.find((product: IProduct) => id === product.id);
-        if (product) return product;
+        if(product) {
+            return await this._getData(product);
+        }
+        // if (product) return product;
     };
 
     deleteProp = async (id: number) => {
@@ -106,13 +109,11 @@ class CarstoreService implements ICarstoreService {
             id: maxId + 1,
             cost: ((+paramsForCreateProduct.cost.replace(/\s/g, ''))).toLocaleString()
         };
-        // @ts-ignore
         this.data.productsList.push(newItem);
         return {ok: true}
     };
     updateProduct = async (paramsForCreateProduct: IProduct) => {
         const indexProduct = this.data.productsList.findIndex(item => item.id === paramsForCreateProduct.id);
-        // @ts-ignore
         this.data.productsList[indexProduct] = {...paramsForCreateProduct, dateUp: new Date().toLocaleDateString()};
         return {ok: true}
     }

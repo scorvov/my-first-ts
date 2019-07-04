@@ -5,7 +5,7 @@ import {ErrorIndicator} from "../common/error-indicator";
 import {connect} from "react-redux";
 import {IProp, IPropsList} from "../../store/models/iProp";
 import {propDelete} from "../../store/actions/propsActions";
-import "../../assests/list.scss"
+import "../../assests/styles/list.scss"
 import {IMapState} from "../../store/models/iState";
 import {IFetchingState} from "../../store/reducers/fetchingReducer";
 

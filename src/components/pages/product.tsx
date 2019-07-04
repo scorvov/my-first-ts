@@ -29,7 +29,7 @@ class ProductContainer extends React.Component<TProductProps&DispatchProps> {
         const {selectProduct, loading, error} = this.props;
         if (loading) return <Spinner />;
         if(error) return <ErrorIndicator />;
-        if (selectProduct) return <ProductView selectProduct={selectProduct} />
+        return <ProductView selectProduct={selectProduct} />;
     }
 }
 

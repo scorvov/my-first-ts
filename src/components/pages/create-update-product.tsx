@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
-import "../../assests/prop-create.scss";
-import "../../assests/create-product.scss";
+import "../../assests/styles/prop-create.scss";
+import "../../assests/styles/create-product.scss";
 import {Input} from "../common/input/input";
 import {FieldArray, Form, FormikHandlers, FormikProps, FormikValues, withFormik} from "formik";
 import * as Yup from "yup";
@@ -17,22 +17,27 @@ import {IFetchingState} from "../../store/reducers/fetchingReducer";
 import {fetchProductById} from "../../store/actions/fetchingActions";
 import {IProduct} from "../../store/models/iProduct";
 
-interface IProductCreate {productCreate: (values: IProduct) => void;}
+interface IProductCreate {
+    productCreate: (values: IProduct) => void;
+}
+
 type TProps = FormikProps<IProduct>;
-class CreateUpdateProductContainer extends React.Component<any&FormikHandlers&FormikValues,IPropsList,TProps> {
+
+class CreateUpdateProductContainer extends React.Component<any & FormikHandlers & FormikValues, IPropsList, TProps> {
 
     componentDidMount(): void {
         //проверка на создание нового или редактирование продукта по id
-        if(this.props.match.params.id) {
+        if (this.props.match.params.id) {
             const {id} = this.props.match.params;
             this.props.fetchProductById(+id);
         }
     }
+
     componentWillUnmount(): void {
         this.props.resetSelectProduct();
     }
 
-    handlingError = (errors:any) => {
+    handlingError = (errors: any) => {
         //изменение текста ошибки библиотеки Yup
         if ((errors.cost) && errors.cost.includes("cost must")) {
             errors.cost = "Стоимость должна состоять из цифр"
@@ -41,8 +46,7 @@ class CreateUpdateProductContainer extends React.Component<any&FormikHandlers&Fo
     selectProductAction = () => {
         return (!this.props.match.params.id) ? this.props.productCreate : this.props.productUpdate;
     };
-
-    rewriteProductProps = (propsList:IProp[], productProps:IProp[]) => {
+    rewriteProductProps = (propsList: IProp[], productProps: IProp[]) => {
         // запись id и type объекта property в массив свойств продукта из propsList
         if (productProps.length !== 0) {
             productProps = productProps.map((propProduct: IProp) => {
@@ -55,23 +59,23 @@ class CreateUpdateProductContainer extends React.Component<any&FormikHandlers&Fo
 
     render() {
         const {loading, error} = this.props;
-        if (loading) return <Spinner />;
-        if(error) return <ErrorIndicator />;
+        if (loading) return <Spinner/>;
+        if (error) return <ErrorIndicator/>;
         return <EnhancedCreateUpdateProductView propsList={this.props.propsList}
-                                          selectProduct={this.props.selectProduct}
-                                          history = {this.props.history}
-                                          productAction={this.selectProductAction()}
-                                          handlingError={this.handlingError}
-                                          rewriteProductProps={this.rewriteProductProps} />;
+                                                selectProduct={this.props.selectProduct}
+                                                history={this.props.history}
+                                                productAction={this.selectProductAction()}
+                                                handlingError={this.handlingError}
+                                                rewriteProductProps={this.rewriteProductProps}/>;
     }
 }
 
-const CreateUpdateProductView:React.FC<any&FormikProps<IProduct>> = (props) => {
+const CreateUpdateProductView: React.FC<any & FormikProps<IProduct>> = (props) => {
     const {touched, errors, isSubmitting, handlingError, rewriteProductProps, propsList} = props;
     const {productProps} = props.values;
     handlingError(errors);
     props.values.productProps = rewriteProductProps(propsList, productProps);
-    console.log(props.productAction);
+
     return (<Form className="create-prop">
         <div className="group-buttons">
             <Link to="/products"
@@ -133,9 +137,9 @@ const CreateUpdateProductView:React.FC<any&FormikProps<IProduct>> = (props) => {
                             value: ''
                         })}>Add
                     </button>
-                    {productProps && productProps.length > 0 ?
-                        (productProps.map((productProp: IProp, index: number) => (
-                            <span key={index} className={"add-props-product"}>
+                    {productProps && productProps.length > 0 &&
+                    (productProps.map((productProp: IProp, index: number) => (
+                        <span key={index} className={"add-props-product"}>
                                     <button type={"button"}
                                             onClick={() => arrayHelpers.remove(index)}>–
                                     </button>
@@ -159,15 +163,14 @@ const CreateUpdateProductView:React.FC<any&FormikProps<IProduct>> = (props) => {
                                         error={errors.productProps && errors.productProps[index] ? errors.productProps[index].value : null}
                                         touched={touched.productProps && touched.productProps[index] ? touched.productProps[index].value : null}
                                     />
-                                </span>)))
-                        : null}
+                                </span>)))}
                 </>
             )}/>
         </div>
     </Form>)
 };
 
-const EnhancedCreateUpdateProductView = withFormik<any&IProduct & IProductCreate, IProduct>({
+const EnhancedCreateUpdateProductView = withFormik<any & IProduct & IProductCreate, IProduct>({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойство должно быть не менее 2 символов")

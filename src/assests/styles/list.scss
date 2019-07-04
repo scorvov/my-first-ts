@@ -10,18 +10,25 @@
   background: #FFFFFF;
   box-shadow: 0 20px 20px rgba(40, 40, 40, 0.05);
   border-radius: 10px;
+  text-indent:0;
 }
 .table .link {
-  margin-right: 10%;
+  margin-right: 10px;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
   /* identical to box height */
+  text-indent:0;
+  border: none;
+  background: none;
   text-decoration-line: underline;
   color: #0258FF;
   opacity: 0.8;
+  cursor: pointer;
+  //text-decoration:underline;
+  outline: none;
 }
 .btn {
   align-self: flex-end;

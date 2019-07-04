@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../../../assests/input.scss";
+import "../../../assests/styles/input.scss";
 import {Field} from "formik";
 
 const Select = ({label, name, error, touched, ...props}: any) => {

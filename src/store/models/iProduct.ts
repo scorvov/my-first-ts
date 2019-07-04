@@ -1,5 +1,3 @@
-import {IProp} from "./iProp";
-
 export interface IProduct {
     id: number;
     name: string;
@@ -7,7 +5,12 @@ export interface IProduct {
     img: string;
     info: string;
     dateUp: string;
-    productProps: IProp[] | [];
+    productProps: {
+        id: number,
+        name: string,
+        type: string,
+        value: string
+    }[];
 }
 
 export interface IProductsList {

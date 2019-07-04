@@ -1,5 +1,5 @@
 import * as React from "react";
-import '../../assests/app.scss';
+import '../../assests/styles/app.scss';
 import {Route, Switch} from "react-router";
 import {LoginPage} from "../pages/login-page";
 import {MainPage} from "../pages/main-page";
