@@ -1,9 +1,9 @@
 import * as React from "react";
 import {IProduct, IProductsList} from "../../store/models/iProduct";
 import {Link} from "react-router-dom";
-import {IDispatchProps} from "./products-list";
+import {IProductDelete} from "./products-list";
 
-export const ProductsListView: React.FC<IProductsList & IDispatchProps> = ({productsList, productDelete}) => {
+export const ProductsListView: React.FC<IProductsList & IProductDelete> = ({productsList, productDelete}) => {
     const renderRow = ((product: IProduct) => {
         const {id, name, cost, dateUp} = product;
         return (

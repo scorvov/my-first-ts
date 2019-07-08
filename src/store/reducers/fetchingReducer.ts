@@ -1,10 +1,10 @@
 
 import {Action} from "redux";
 import {
-    FETCH_PRODUCT_BY_ID_SUCCESS,
+    FETCH_BY_ID_SUCCESS,
     FETCH_PRODUCTS_FAILURE,
-    FETCH_PRODUCTS_REQUEST,
-    FETCH_PRODUCTS_SUCCESS
+    FETCH_REQUEST,
+    FETCH_SUCCESS
 } from "../constants";
 
 //разобраться с типом для error
@@ -23,14 +23,14 @@ const initialFetchingState: IFetchingState = {
 
 export const fetchingReducer = (state = initialFetchingState, action:IFetchAction) => {
     switch (action.type) {
-        case FETCH_PRODUCTS_REQUEST:
+        case FETCH_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: null
             };
-        case FETCH_PRODUCTS_SUCCESS:
-        case FETCH_PRODUCT_BY_ID_SUCCESS:
+        case FETCH_SUCCESS:
+        case FETCH_BY_ID_SUCCESS:
             return {
                 ...state,
                 loading: false,

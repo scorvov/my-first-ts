@@ -9,15 +9,8 @@ import {ProductContainer} from "../product/container";
 import {connect} from "react-redux";
 import {fetchData} from "../../store/actions/fetchingActions";
 
-export interface IDispatchProps {
-    fetchData: () => void;
-}
 
-class App extends React.Component<IDispatchProps> {
-
-    componentDidMount() {
-        this.props.fetchData();
-    }
+class App extends React.Component {
 
     render() {
         return (

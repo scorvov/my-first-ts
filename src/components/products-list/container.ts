@@ -5,6 +5,7 @@ import "../../assests/styles/list.scss"
 import {IFetchingState} from "../../store/reducers/fetchingReducer";
 import {IMapState} from "../../store/models/iState";
 import {ProductsList} from "./products-list";
+import {fetchData} from "../../store/actions/fetchingActions";
 
 const mapStateToProps = ({dataState, fetchState}: IMapState): IProductsList & IFetchingState => {
     const {productsList} = dataState;
@@ -12,5 +13,6 @@ const mapStateToProps = ({dataState, fetchState}: IMapState): IProductsList & IF
     return {productsList, loading, error}
 };
 
-export const ProductsListContainer = connect(mapStateToProps, {productDelete})(ProductsList);
+export const ProductsListContainer = connect(mapStateToProps,
+    {productDelete, fetchData})(ProductsList);
 

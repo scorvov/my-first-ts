@@ -4,6 +4,7 @@ import {IFetchingState} from "../../store/reducers/fetchingReducer";
 import {connect} from "react-redux";
 import {propDelete} from "../../store/actions/propsActions";
 import {PropsList} from "./props-list";
+import {fetchData} from "../../store/actions/fetchingActions";
 
 const mapStateToProps = ({dataState, fetchState}:IMapState):IPropsList&IFetchingState => {
     const {propsList} = dataState;
@@ -11,4 +12,5 @@ const mapStateToProps = ({dataState, fetchState}:IMapState):IPropsList&IFetching
     return {propsList, loading, error}
 };
 
-export const PropsListContainer = connect(mapStateToProps, {propDelete})(PropsList);
+export const PropsListContainer = connect(mapStateToProps,
+    {propDelete, fetchData})(PropsList);

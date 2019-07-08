@@ -14,11 +14,9 @@ type TProductProps = ISelectProductProps&IFetchingState&TRoute;
 
 export class Product extends React.Component<TProductProps&DispatchProps> {
     componentDidMount(): void {
+        this.props.resetSelectProduct();
         const {id} = this.props.match.params;
         this.props.fetchProductById(+id);
-    }
-    componentWillUnmount(): void {
-        this.props.resetSelectProduct();
     }
 
     render() {

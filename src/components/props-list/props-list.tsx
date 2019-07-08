@@ -5,10 +5,17 @@ import {IPropsList} from "../../store/models/iProp";
 import "../../assests/styles/list.scss"
 import {IFetchingState} from "../../store/reducers/fetchingReducer";
 import {PropsListView} from "./props-list-view";
+import {IFetchData} from "../products-list/products-list";
 
-export interface IDispatchProps {propDelete: (id:number) => void;}
+export interface IPropDelete {propDelete: (id:number) => void;}
 
-export class PropsList extends React.Component<IPropsList&IDispatchProps&IFetchingState> {
+
+export class PropsList extends React.Component<IPropsList & IPropDelete & IFetchData& IFetchingState> {
+
+    componentDidMount(): void {
+        this.props.fetchData('props');
+    }
+
     render() {
         const {propsList, loading, error,propDelete} = this.props;
         if (loading) return <Spinner />;

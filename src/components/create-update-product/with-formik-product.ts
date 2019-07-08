@@ -32,12 +32,15 @@ export const EnhancedCreateUpdateProductView = withFormik<any & IProduct & IProd
             }))
     }),
     mapPropsToValues: ({selectProduct}) => {
-        return selectProduct;
+        return selectProduct
     },
     handleSubmit: (values, {props: {productAction, history}, resetForm, setSubmitting}) => {
-        productAction(values);
+        productAction({...values,
+            dateUp: new Date().toLocaleDateString(),
+            cost: (+values.cost.replace(/\s/g, '')).toLocaleString()
+        });
         resetForm();
         setSubmitting(false);
-        history.push();
+        history.push('/products');
     }
 })(CreateUpdateProductView);

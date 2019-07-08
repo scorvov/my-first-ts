@@ -1,38 +1,24 @@
 import {Action, Dispatch} from "redux";
-import { CarstoreService } from "../../services/carstore-service";
 import {IProductsFetchingState} from "../reducers/dataReducer";
 import {IFetchAction} from "../reducers/fetchingReducer";
-import {IProduct} from "../models/iProduct";
 import {
-    FETCH_PRODUCT_BY_ID_SUCCESS,
     FETCH_PRODUCTS_FAILURE,
-    FETCH_PRODUCTS_REQUEST,
-    FETCH_PRODUCTS_SUCCESS
+    FETCH_REQUEST,
+    FETCH_SUCCESS
 } from "../constants";
-
-
-export const carstoreService = new CarstoreService();
 
 export interface ILoadedProductsAction extends Action {
     payload: IProductsFetchingState;
-}
-export interface ISelectProductAction extends Action {
-    payload: IProduct;
 }
 
 const dataLoaded = (data: IProductsFetchingState): ILoadedProductsAction =>
     ({
         payload: data,
-        type: FETCH_PRODUCTS_SUCCESS
-    });
-const productLoaded = (product: IProduct): ISelectProductAction =>
-    ({
-        payload: product,
-        type: FETCH_PRODUCT_BY_ID_SUCCESS
+        type: FETCH_SUCCESS
     });
 const dataRequested = ():Action => {
     return {
-        type: FETCH_PRODUCTS_REQUEST
+        type: FETCH_REQUEST
     };
 };
 const dataError = (error:string): IFetchAction =>
@@ -41,12 +27,21 @@ const dataError = (error:string): IFetchAction =>
         type: FETCH_PRODUCTS_FAILURE
     });
 
-
-
-export const fetchData = ():any => {
+export const fetchData = (params:any) : any => {
     return (dispatch:Dispatch) => {
         dispatch(dataRequested());
-        carstoreService.getData()
+        fetch("http://localhost:9000/" + params, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => {
+                if(response.ok){
+                    return response.json();
+                }
+            })
             .then((data:any) => dispatch(dataLoaded(data)))
             .catch((err) => dispatch(dataError(err)));
     }
@@ -55,8 +50,19 @@ export const fetchData = ():any => {
 export const fetchProductById = (id: number) => {
     return (dispatch: Dispatch) => {
         dispatch(dataRequested());
-        carstoreService.getProductById(id)
-            .then((product: any) => dispatch(productLoaded(product)))
+        fetch("http://localhost:9000/products/" + id, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => {
+                if(response.ok){
+                    return response.json();
+                }
+            })
+            .then((product: any) => dispatch(dataLoaded(product)))
             .catch((err) => dispatch(dataError(err)));
     }
 };

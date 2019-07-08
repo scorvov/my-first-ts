@@ -1,9 +1,9 @@
 import * as React from "react";
 import {IProp, IPropsList} from "../../store/models/iProp";
 import {Link} from "react-router-dom";
-import {IDispatchProps} from "./props-list";
+import {IPropDelete} from "./props-list";
 
-export const PropsListView: React.FC<IPropsList&IDispatchProps> = ({propsList, propDelete}) => {
+export const PropsListView: React.FC<IPropsList&IPropDelete> = ({propsList, propDelete}) => {
     const renderRow = ((prop: IProp) => {
         const {id, name, type} = prop;
         return (

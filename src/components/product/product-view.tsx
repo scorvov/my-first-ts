@@ -36,7 +36,7 @@ export const ProductView: React.FC<ISelectProductProps> = (props) => {
             {productProps && showProps(productProps)}
             <div>
                 <h3>Стоимость</h3>
-                <p>{cost}$</p>
+                <p>{cost} $</p>
             </div>
         </>
     );

@@ -5,7 +5,7 @@ import {productCreate, resetSelectProduct, productUpdate} from "../../store/acti
 import {IPropsList} from "../../store/models/iProp";
 import {IMapState} from "../../store/models/iState";
 import {IFetchingState} from "../../store/reducers/fetchingReducer";
-import {fetchProductById} from "../../store/actions/fetchingActions";
+import {fetchData, fetchProductById} from "../../store/actions/fetchingActions";
 import {CreateUpdateProduct} from "./create-update-product";
 import {ISelectProductProps} from "../product/container";
 
@@ -15,4 +15,4 @@ const mapStateToProps = ({dataState, fetchState}: IMapState): IPropsList & ISele
     return {selectProduct, propsList, loading, error};
 };
 export const CreateUpdateProductContainer = connect(mapStateToProps,
-    {productCreate, productUpdate, fetchProductById, resetSelectProduct})(CreateUpdateProduct);
+    {fetchData, productCreate, productUpdate, fetchProductById, resetSelectProduct})(CreateUpdateProduct);
