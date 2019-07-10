@@ -6,13 +6,21 @@ import {FETCH_SUCCESS, RESET_SELECT_PRODUCT} from "../constants";
 
 //разобраться с типом для error
 export interface IProductsFetchingState {
-    productsList: IProduct[];
+    productsList: {
+        products: IProduct[],
+        perPage: number,
+        currentPage: number
+    };
     propsList: IProp[],
     selectProduct: IProduct;
 }
 
 const initialProductState: IProductsFetchingState = {
-    productsList: [],
+    productsList: {
+        products: [],
+        perPage: 10,
+        currentPage: 1
+    },
     propsList: [],
     selectProduct: {
         id: 0,

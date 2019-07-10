@@ -18,7 +18,7 @@ export const ProductsListView: React.FC<IProductsList & IProductDelete> = ({prod
                           className="link"
                     >Ред</Link>
                     <button
-                        onClick={() => productDelete(id)}
+                        onClick={() => productDelete(id, {perPage: 10, currentPage: 1})}
                         className="link">
                         Удалить
                     </button>
@@ -43,7 +43,7 @@ export const ProductsListView: React.FC<IProductsList & IProductDelete> = ({prod
                 </tr>
                 </thead>
                 <tbody>
-                {productsList.map(renderRow)}
+                {productsList.products.map(renderRow)}
                 </tbody>
             </table>
         </div>

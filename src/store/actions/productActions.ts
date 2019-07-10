@@ -9,7 +9,7 @@ export const resetSelectProduct = ():Action => {
     };
 };
 
-export const productDelete = (id: number) => {
+export const productDelete = (id: number, fetchParams: any) => {
     return (dispatch:any) => {
         fetch( "http://localhost:9000/products/delete/" + id, {
             method: "DELETE",
@@ -20,14 +20,14 @@ export const productDelete = (id: number) => {
         })
             .then(((response: any) => {
                 if (response.ok) {
-                    dispatch(fetchData('products'));
+                    dispatch(fetchData('products', fetchParams));
                 }
             }));
     }
 };
 
-export const productCreate = (params: IProduct): any => {
-    return (dispatch: any) => {
+export const productCreate = (params: IProduct) => {
+    return () => {
         fetch("http://localhost:9000/products/add", {
             method: "POST",
             headers: {
@@ -38,14 +38,15 @@ export const productCreate = (params: IProduct): any => {
         })
             .then(((response: any) => {
                 if (response.ok) {
-                    dispatch(fetchData('products'));
+                    console.log("Product created")
                 }
             }));
     }
 };
 
-export const productUpdate = (params: IProduct): any => {
-    return (dispatch: any) => {
+
+export const productUpdate = (params: IProduct) => {
+    return () => {
         fetch("http://localhost:9000/products/update", {
             method: "POST",
             headers: {
@@ -56,7 +57,7 @@ export const productUpdate = (params: IProduct): any => {
         })
             .then(((response: any) => {
                 if (response.ok) {
-                    dispatch(fetchData('products'));
+                    console.log("Product updated")
                 }
             }));
     }

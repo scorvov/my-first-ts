@@ -27,7 +27,8 @@ const dataError = (error:string): IFetchAction =>
         type: FETCH_PRODUCTS_FAILURE
     });
 
-export const fetchData = (params:any) : any => {
+export const fetchData = (params:any, fetchParams?: any) => {
+    console.log(params, fetchParams);
     return (dispatch:Dispatch) => {
         dispatch(dataRequested());
         fetch("http://localhost:9000/" + params, {
@@ -35,7 +36,8 @@ export const fetchData = (params:any) : any => {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
-            }
+            },
+            body: JSON.stringify(fetchParams)
         })
             .then(response => {
                 if(response.ok){
@@ -50,13 +52,7 @@ export const fetchData = (params:any) : any => {
 export const fetchProductById = (id: number) => {
     return (dispatch: Dispatch) => {
         dispatch(dataRequested());
-        fetch("http://localhost:9000/products/" + id, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            }
-        })
+        fetch("http://localhost:9000/products/" + id)
             .then(response => {
                 if(response.ok){
                     return response.json();
