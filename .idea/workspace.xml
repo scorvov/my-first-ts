@@ -4,15 +4,11 @@
     <list default="true" id="6bd0fd37-e0de-4155-a52d-51f2f392d10f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/create-update-product/create-update-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-update-product/create-update-product.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/products-list/products-list-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products-list/products-list-view.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/fetchProps.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/fetchingActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/fetchingActions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/productActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/productActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/models/iProduct.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/models/iProduct.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/dataReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/dataReducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <list id="e4bc06a9-c4bd-46d9-a1ed-b9ccf15b3416" name="refactoringFetchData3" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,39 +21,37 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/products-list/products-list.tsx">
+        <entry file="file://$PROJECT_DIR$/src/components/products-list/products-list-view.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="72">
+              <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/actions/fetchingActions.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="883">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#1295#1398#0" />
+                <element signature="e#1419#1607#0" />
+                <element signature="e#3421#3554#0" />
+                <element signature="e#3587#3835#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/store/actions/productActions.ts">
+        <entry file="file://$PROJECT_DIR$/tsconfig.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="788">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="48">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -79,7 +73,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/webstorm64.exe.vmoptions" />
         <option value="$PROJECT_DIR$/src/components/pages/update-product.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/create-product.tsx" />
         <option value="$PROJECT_DIR$/src/store/models/iProp.ts" />
@@ -124,12 +117,13 @@
         <option value="$PROJECT_DIR$/src/components/product/product-view.tsx" />
         <option value="$PROJECT_DIR$/src/store/actions/propsActions.ts" />
         <option value="$PROJECT_DIR$/src/components/products-list/products-list.tsx" />
-        <option value="$PROJECT_DIR$/src/components/products-list/products-list-view.tsx" />
         <option value="$PROJECT_DIR$/src/store/actions/fetchingActions.ts" />
         <option value="$PROJECT_DIR$/src/store/reducers/dataReducer.ts" />
         <option value="$PROJECT_DIR$/src/store/models/iProduct.ts" />
         <option value="$PROJECT_DIR$/src/components/create-update-product/create-update-product.tsx" />
         <option value="$PROJECT_DIR$/src/store/actions/productActions.ts" />
+        <option value="$PROJECT_DIR$/src/components/products-list/products-list-view.tsx" />
+        <option value="$PROJECT_DIR$/tsconfig.json" />
       </list>
     </option>
   </component>
@@ -151,7 +145,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,17 +176,11 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="my-first-ts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-first-ts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -201,7 +188,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="LET" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Example/dex-bulletins-master" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -214,7 +201,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="D:\learning\projects\My projects\my-first-ts\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -344,7 +331,8 @@
       <workItem from="1562578010726" duration="12060000" />
       <workItem from="1562599717231" duration="2573000" />
       <workItem from="1562608103671" duration="5685000" />
-      <workItem from="1562784341090" duration="1136000" />
+      <workItem from="1562784341090" duration="2014000" />
+      <workItem from="1562828269276" duration="6257000" />
     </task>
     <task id="LOCAL-00001" summary="second_preinstall">
       <created>1558098338124</created>
@@ -549,11 +537,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562261825491</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="initPagination">
+      <created>1562785552338</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1562785552338</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="553034000" />
+    <option name="totallyTimeSpent" value="560169000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -565,10 +560,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="80" y="-8" width="1848" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49751243" visible="true" weight="0.16897655" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49751243" visible="true" weight="0.17058165" />
       <window_info id="Structure" order="1" sideWeight="0.50165015" side_tool="true" weight="0.18123667" />
       <window_info id="npm" order="2" sideWeight="0.50248754" side_tool="true" weight="0.1652452" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -579,15 +573,15 @@
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32932165" />
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4989259" weight="0.33217993" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.4989259" visible="true" weight="0.28922093" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50107414" side_tool="true" weight="0.32881355" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32664436" />
       <window_info anchor="bottom" id="Run" order="10" sideWeight="0.49052396" weight="0.25641027" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Terminal" order="3" sideWeight="0.47826087" visible="true" weight="0.33742005" />
-      <window_info anchor="right" id="TypeScript" order="4" sideWeight="0.5217391" side_tool="true" visible="true" weight="0.33742005" />
+      <window_info anchor="right" id="Terminal" order="3" sideWeight="0.47833332" visible="true" weight="0.2287472" />
+      <window_info anchor="right" id="TypeScript" order="4" sideWeight="0.52166665" side_tool="true" weight="0.33742005" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,7 +628,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="second_preinstall" />
     <MESSAGE value="WrapperLogin" />
     <MESSAGE value="InitialModels" />
     <MESSAGE value="ProductsListView" />
@@ -659,7 +652,8 @@
     <MESSAGE value="CarstoreServiceFix" />
     <MESSAGE value="StructureProjectFix" />
     <MESSAGE value="StructureProjectFix1" />
-    <option name="LAST_COMMIT_MESSAGE" value="StructureProjectFix1" />
+    <MESSAGE value="initPagination" />
+    <option name="LAST_COMMIT_MESSAGE" value="initPagination" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/assests/styles/create-product.scss">
@@ -684,13 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -951,23 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/products-list/products-list-view.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="788">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/constants.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1008,19 +978,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/products-list/products-list.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/actions/fetchingActions.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="883">
+        <state relative-caret-position="1536">
           <caret line="64" selection-start-line="64" selection-end-line="64" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -1028,13 +988,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/products-list/products-list.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/actions/productActions.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="788">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="514">
+          <caret line="44" column="2" selection-start-line="44" selection-start-column="2" selection-end-line="44" selection-end-column="2" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/products-list/products-list-view.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#1295#1398#0" />
+            <element signature="e#1419#1607#0" />
+            <element signature="e#3421#3554#0" />
+            <element signature="e#3587#3835#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>

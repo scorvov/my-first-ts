@@ -44,7 +44,6 @@ export const productCreate = (params: IProduct) => {
     }
 };
 
-
 export const productUpdate = (params: IProduct) => {
     return () => {
         fetch("http://localhost:9000/products/update", {
