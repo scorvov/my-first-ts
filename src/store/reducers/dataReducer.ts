@@ -8,6 +8,7 @@ import {FETCH_SUCCESS, RESET_SELECT_PRODUCT} from "../constants";
 export interface IProductsFetchingState {
     productsList: {
         products: IProduct[],
+        count: number,
         perPage: number,
         currentPage: number
     };
@@ -18,8 +19,9 @@ export interface IProductsFetchingState {
 const initialProductState: IProductsFetchingState = {
     productsList: {
         products: [],
-        perPage: 10,
-        currentPage: 1
+        count: 0,
+        perPage: 5,
+        currentPage: 0
     },
     propsList: [],
     selectProduct: {

@@ -27,24 +27,25 @@ const dataError = (error:string): IFetchAction =>
         type: FETCH_PRODUCTS_FAILURE
     });
 
-export const fetchData = (params:any, fetchParams?: any) => {
-    console.log(params, fetchParams);
+export const fetchData = (fetchTypeData:any, fetchParams?: any) => {
     return (dispatch:Dispatch) => {
         dispatch(dataRequested());
-        fetch("http://localhost:9000/" + params, {
+        fetch("http://localhost:9000/" + fetchTypeData, {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(fetchParams)
+            body: JSON.stringify( fetchParams )
         })
             .then(response => {
                 if(response.ok){
                     return response.json();
                 }
             })
-            .then((data:any) => dispatch(dataLoaded(data)))
+            .then((data:any) => {
+                dispatch(dataLoaded(data))
+            })
             .catch((err) => dispatch(dataError(err)));
     }
 };

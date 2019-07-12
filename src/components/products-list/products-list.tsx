@@ -15,14 +15,25 @@ export interface IFetchData {
 export class ProductsList extends React.Component<IProductsList & IProductDelete & IFetchData & IFetchingState> {
 
     componentDidMount(): void {
-        this.props.fetchData('products', {perPage: 10, currentPage: 1});
+        const {perPage, currentPage} = this.props.productsList;
+        this.props.fetchData('products', {perPage, currentPage} );
     }
+
+    handleChangePage = (event: any, currentPage: any) => {
+        this.props.fetchData('products', {perPage: this.props.productsList.perPage, currentPage});
+    };
+
+    handleChangePerPage = (event: any) => {
+        this.props.fetchData('products', {perPage: parseInt(event.target.value, 10), currentPage: 0});
+    };
 
     render() {
         const {productsList, loading, error, productDelete} = this.props;
         if (loading) return <Spinner/>;
         if (error) return <ErrorIndicator/>;
         return <ProductsListView productsList={productsList}
+                                 handleChangePage={this.handleChangePage}
+                                 handleChangePerPage={this.handleChangePerPage}
                                  productDelete={productDelete}
         />
     }
