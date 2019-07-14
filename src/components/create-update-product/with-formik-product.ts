@@ -6,8 +6,22 @@ import {CreateUpdateProductView} from "./create-update-product-view";
 interface IProductCreate {
     productCreate: (values: IProduct) => void;
 }
+interface  IPropsValues {
+    id: number;
+    name: string;
+    cost: string;
+    img: string;
+    info: string;
+    dateUp: Date;
+    productProps: {
+        id: number;
+        name: string;
+        type: string;
+        value: string;
+    }[];
+}
 
-export const EnhancedCreateUpdateProductView = withFormik<any & IProduct & IProductCreate, IProduct>({
+export const EnhancedCreateUpdateProductView = withFormik({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойство должно быть не менее 2 символов")
@@ -31,13 +45,15 @@ export const EnhancedCreateUpdateProductView = withFormik<any & IProduct & IProd
                     .required("Требуется ввести имя")
             }))
     }),
-    mapPropsToValues: ({selectProduct}) => {
-        return selectProduct
+    mapPropsToValues: ({selectProduct}:any) => {
+        const cost = (selectProduct.cost === 0) ? '' : selectProduct.cost.toLocaleString();
+        return {...selectProduct,
+            cost}
     },
     handleSubmit: (values, {props: {productAction, history}, resetForm, setSubmitting}) => {
         productAction({...values,
-            dateUp: new Date().toLocaleDateString(),
-            cost: (+values.cost.replace(/\s/g, '')).toLocaleString()
+            dateUp: new Date(),
+            cost: +values.cost.replace(/\s/g, '')
         });
         resetForm();
         setSubmitting(false);

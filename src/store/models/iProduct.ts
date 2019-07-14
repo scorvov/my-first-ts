@@ -1,10 +1,10 @@
 export interface IProduct {
     id: number;
     name: string;
-    cost: string;
+    cost: number;
     img: string;
     info: string;
-    dateUp: string;
+    dateUp: Date;
     productProps: {
         id: number;
         name: string;
@@ -18,5 +18,7 @@ export interface IProductsList {
         products: IProduct[];
         perPage: number;
         currentPage: number;
+        order: string;
+        orderBy: string;
     };
 }

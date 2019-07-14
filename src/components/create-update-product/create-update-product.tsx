@@ -11,12 +11,10 @@ type TProps = FormikProps<IProduct>;
 export class CreateUpdateProduct extends React.Component<any & FormikHandlers & FormikValues, IPropsList, TProps> {
 
     componentDidMount(): void {
+        this.props.resetSelectProduct();
         this.props.match.params.id ?
             this.props.fetchProductById(+this.props.match.params.id) && this.props.fetchData('props')
             : this.props.fetchData('props');
-    }
-    componentWillUnmount(): void {
-        this.props.resetSelectProduct();
     }
 
     handlingError = (errors: any) => {

@@ -11,6 +11,9 @@ export const CreateUpdateProductView: React.FC<any & FormikProps<IProduct>> = (p
     const {productProps} = props.values;
     handlingError(errors);
     props.values.productProps = rewriteProductProps(propsList, productProps);
+    if(props.values.cost !== '') {
+        props.values.cost = (+props.values.cost.replace(/\s/g, '')).toLocaleString();
+    }
 
     return (<Form className="create-prop">
         <div className="group-buttons">

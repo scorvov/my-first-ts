@@ -10,7 +10,9 @@ export interface IProductsFetchingState {
         products: IProduct[],
         count: number,
         perPage: number,
-        currentPage: number
+        currentPage: number,
+        order: string,
+        orderBy: string
     };
     propsList: IProp[],
     selectProduct: IProduct;
@@ -21,16 +23,18 @@ const initialProductState: IProductsFetchingState = {
         products: [],
         count: 0,
         perPage: 5,
-        currentPage: 0
+        currentPage: 0,
+        order: 'desc',
+        orderBy: 'id'
     },
     propsList: [],
     selectProduct: {
         id: 0,
         name:'',
-        cost: '',
+        cost: 0,
         img: '',
         info:'',
-        dateUp: new Date().toLocaleDateString(),
+        dateUp: new Date(),
         productProps: []
     }
 };
