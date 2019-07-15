@@ -1,3 +1,5 @@
+import {Order} from "../../components/common/table/table-head-enhanced";
+
 export interface IProp {
     id: number;
     name: string;
@@ -6,5 +8,10 @@ export interface IProp {
 }
 
 export interface IPropsList {
-    propsList: IProp[];
+    props: IProp[];
+    count: number;
+    perPage: number;
+    currentPage: number;
+    order: Order;
+    orderBy: string;
 }

@@ -7,7 +7,12 @@ import {IMapState} from "../../store/models/iState";
 import {ProductsList} from "./products-list";
 import {fetchData} from "../../store/actions/fetchingActions";
 
-const mapStateToProps = ({dataState, fetchState}: IMapState): IProductsList & IFetchingState => {
+export interface IProductListStateProps {
+    productsList:IProductsList;
+}
+export type TProductListStateProps = IFetchingState & IProductListStateProps
+
+const mapStateToProps = ({dataState, fetchState}: IMapState): TProductListStateProps => {
     const {productsList} = dataState;
     const {loading, error} = fetchState;
     return {productsList, loading, error}

@@ -1,20 +1,17 @@
 import * as React from "react";
 import {TableCell, TableHead, TableRow, TableSortLabel} from "@material-ui/core";
 
-const headRows = [
-    {label: 'Перечень товаров', name: 'name'},
-    {label: 'Стоимость', name: 'cost'},
-    {label: 'Дата изменения', name: 'dateUp'},
-    {label: 'Управление', name: 'control'}];
+export type Order = 'asc' | 'desc';
 
 interface EnhancedTableProps {
-    order: 'asc' | 'desc';
+    order: Order;
     orderBy: string;
-    handleChangeSort: (order: string, orderBy: string) => void
+    handleChangeSort: (order: Order, orderBy: string) => void;
+    headRows: {label: string, name: string}[];
 }
 
 export const EnhancedTableHead = (props: EnhancedTableProps) => {
-    const {order, orderBy, handleChangeSort} = props;
+    const {order, orderBy, handleChangeSort, headRows} = props;
 
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: string) => {
         const isDesc = orderBy === property && order === "desc";

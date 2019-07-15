@@ -4,7 +4,8 @@ import {IFetchAction} from "../reducers/fetchingReducer";
 import {
     FETCH_PRODUCTS_FAILURE,
     FETCH_REQUEST,
-    FETCH_SUCCESS
+    FETCH_SUCCESS,
+    baseURL
 } from "../constants";
 
 export interface ILoadedProductsAction extends Action {
@@ -27,10 +28,11 @@ const dataError = (error:string): IFetchAction =>
         type: FETCH_PRODUCTS_FAILURE
     });
 
-export const fetchData = (fetchTypeData:any, fetchParams?: any) => {
+export const fetchData = (fetchTypeData:any, fetchParams: any) => {
+    console.log(fetchParams);
     return (dispatch:Dispatch) => {
         dispatch(dataRequested());
-        fetch("http://localhost:9000/" + fetchTypeData, {
+        fetch(baseURL + fetchTypeData, {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -53,7 +55,7 @@ export const fetchData = (fetchTypeData:any, fetchParams?: any) => {
 export const fetchProductById = (id: number) => {
     return (dispatch: Dispatch) => {
         dispatch(dataRequested());
-        fetch("http://localhost:9000/products/" + id)
+        fetch(baseURL + "products/" + id)
             .then(response => {
                 if(response.ok){
                     return response.json();

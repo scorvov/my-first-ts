@@ -3,16 +3,21 @@ import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import {ProductView} from "./product-view";
 import {RouteComponentProps} from "react-router";
-import {IFetchingState} from "../../store/reducers/fetchingReducer";
-import {ISelectProductProps} from "./container";
+import {TProductStateProps} from "./container";
 
-interface PathParamsType {id: string;}
+interface PathParamsType {
+    id: string;
+}
+export type TRoute = RouteComponentProps<PathParamsType>;
 
-interface DispatchProps {fetchProductById: (id:number) => void; resetSelectProduct: () => void;}
-type TRoute = RouteComponentProps<PathParamsType>;
-type TProductProps = ISelectProductProps&IFetchingState&TRoute;
+interface IProductDispatchProps {
+    fetchProductById: (id: number) => void;
+    resetSelectProduct: () => void;
+}
 
-export class Product extends React.Component<TProductProps&DispatchProps> {
+type TProductProps = TProductStateProps & IProductDispatchProps & TRoute;
+
+export class Product extends React.Component<TProductProps> {
     componentDidMount(): void {
         this.props.resetSelectProduct();
         const {id} = this.props.match.params;
@@ -21,8 +26,8 @@ export class Product extends React.Component<TProductProps&DispatchProps> {
 
     render() {
         const {selectProduct, loading, error} = this.props;
-        if (loading) return <Spinner />;
-        if(error) return <ErrorIndicator />;
-        return <ProductView selectProduct={selectProduct} />;
+        if (loading) return <Spinner/>;
+        if (error) return <ErrorIndicator/>;
+        return <ProductView selectProduct={selectProduct}/>;
     }
 }

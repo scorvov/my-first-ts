@@ -1,20 +1,11 @@
-
-import {IProduct} from "../models/iProduct";
-import {IProp} from "../models/iProp";
+import {IProduct, IProductsList} from "../models/iProduct";
+import {IPropsList} from "../models/iProp";
 import {Action} from "redux";
 import {FETCH_SUCCESS, RESET_SELECT_PRODUCT} from "../constants";
 
-//разобраться с типом для error
 export interface IProductsFetchingState {
-    productsList: {
-        products: IProduct[],
-        count: number,
-        perPage: number,
-        currentPage: number,
-        order: string,
-        orderBy: string
-    };
-    propsList: IProp[],
+    productsList: IProductsList;
+    propsList: IPropsList;
     selectProduct: IProduct;
 }
 
@@ -27,7 +18,14 @@ const initialProductState: IProductsFetchingState = {
         order: 'desc',
         orderBy: 'id'
     },
-    propsList: [],
+    propsList: {
+        props: [],
+        count: 0,
+        perPage: 5,
+        currentPage: 0,
+        order: 'desc',
+        orderBy: 'id'
+    },
     selectProduct: {
         id: 0,
         name:'',

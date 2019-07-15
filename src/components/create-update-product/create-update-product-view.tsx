@@ -5,16 +5,23 @@ import {Link} from "react-router-dom";
 import {Input} from "../common/input/input";
 import {IProp} from "../../store/models/iProp";
 import {Select} from "../common/select/select";
+import {IProductCreate} from "./with-formik-product";
+import {IPropsListStateProps} from "../props-list/container";
 
-export const CreateUpdateProductView: React.FC<any & FormikProps<IProduct>> = (props) => {
-    const {touched, errors, isSubmitting, handlingError, rewriteProductProps, propsList} = props;
-    const {productProps} = props.values;
-    handlingError(errors);
-    props.values.productProps = rewriteProductProps(propsList, productProps);
-    if(props.values.cost !== '') {
-        props.values.cost = (+props.values.cost.replace(/\s/g, '')).toLocaleString();
+interface IUpdateProductView {
+    rewriteProductProps: (props: IProp[], productProps: IProp[]) => void
+    values: {
+        productProps: void & IProp[];
     }
+}
 
+export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IPropsListStateProps & IProductCreate & FormikProps<IProduct>> = (props) => {
+    const {touched, errors, isSubmitting, rewriteProductProps, propsList} = props;
+    const {productProps} = props.values;
+    props.values.productProps = rewriteProductProps(propsList.props, productProps);
+/*    if(props.values.cost !== '') {
+        props.values.cost = (+props.values.cost.replace(/\s/g, '')).toLocaleString();
+    }*/
     return (<Form className="create-prop">
         <div className="group-buttons">
             <Link to="/products"
@@ -90,7 +97,7 @@ export const CreateUpdateProductView: React.FC<any & FormikProps<IProduct>> = (p
                                         {(productProps[index].name) ?
                                             (<option value={index} label={productProps[index].name}/>)
                                             : (<option value={-1} label={"Select"}/>)}
-                                        {propsList.map((option: any) =>
+                                        {propsList.props.map((option: any) =>
                                             (!productProps.find((item: any) => item.name === option.name) ?
                                                 <option key={option.id} value={option.name} label={option.name}/>
                                                 : null))}

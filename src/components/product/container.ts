@@ -6,9 +6,12 @@ import {IProduct} from "../../store/models/iProduct";
 import {IMapState} from "../../store/models/iState";
 import {IFetchingState} from "../../store/reducers/fetchingReducer";
 
-export interface ISelectProductProps {selectProduct:IProduct;}
+export interface ISelectProduct {
+    selectProduct:IProduct;
+}
+export type TProductStateProps = ISelectProduct & IFetchingState
 
-const mapStateToProps = ({dataState, fetchState}:IMapState):ISelectProductProps&IFetchingState => {
+const mapStateToProps = ({dataState, fetchState}:IMapState):TProductStateProps => {
     const {selectProduct} = dataState;
     const {error, loading} = fetchState;
     return {selectProduct, error, loading};

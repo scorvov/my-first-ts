@@ -1,40 +1,81 @@
 import * as React from "react";
-import {IProp, IPropsList} from "../../store/models/iProp";
+import {IProp} from "../../store/models/iProp";
 import {Link} from "react-router-dom";
-import {IPropDelete} from "./props-list";
-import {Table, TableHead, TableRow, TableBody, TableCell} from "@material-ui/core";
+import {
+    Table,
+    TableRow,
+    TableBody,
+    TableCell,
+    TablePagination,
+    TableFooter, Paper
+} from "@material-ui/core";
+import {EnhancedTableHead} from "../common/table/table-head-enhanced";
+import {TablePaginationActions} from "../common/table/table-pagination-actions";
+import {useStyles2} from "../common/table/table-styles";
+import {IActionTableProps} from "../products-list/products-list-view";
+import {IPropsListStateProps} from "./container";
 
-export const PropsListView: React.FC<IPropsList&IPropDelete> = ({propsList, propDelete}) => {
+const headRows = [
+    {label: 'Перечень свойств', name: 'name'},
+    {label: 'Тип', name: 'type'},
+    {label: 'Управление', name: 'control'}];
+
+export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> = (props) => {
+
+    const {handleChangePage, handleChangePerPage, handleChangeSort, propsList, onDelete} = props;
+    const {count, perPage, currentPage, order, orderBy} = propsList;
+    const classes = useStyles2();
+
     return (
         <div className="list">
-            <Link to="/prop/create" className="btn btn-warning btn-sm" >Добавить свойство</Link>
-            <Table className="table">
-                <TableHead>
-                <TableRow>
-                    <TableCell> </TableCell>
-                    <TableCell>Перечень свойств</TableCell>
-                    <TableCell>Тип</TableCell>
-                    <TableCell>Управление</TableCell>
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                { propsList.map((prop: IProp) => {
-                    const {id, name, type} = prop;
-                    return (
-                        <TableRow key={id}>
-                            <TableCell> </TableCell>
-                            <TableCell>{name}</TableCell>
-                            <TableCell>{type}</TableCell>
-                            <TableCell>
-                                <button onClick={() => propDelete(id)} className="link">
-                                    Удалить
-                                </button>
-                            </TableCell>
-                        </TableRow>
-                    )
-                }) }
-                </TableBody>
-            </Table>
+            <Link to="/prop/create" className="btn btn-warning btn-sm">Добавить свойство</Link>
+            <Paper className={classes.root}>
+                <div className={classes.tableWrapper}>
+                    <Table className={classes.table}>
+                        <EnhancedTableHead
+                            order={order}
+                            orderBy={orderBy}
+                            handleChangeSort={handleChangeSort}
+                            headRows={headRows}
+                        />
+                        <TableBody>
+                            {propsList.props.map((prop: IProp) => {
+                                const {id, name, type} = prop;
+                                return (
+                                    <TableRow key={id}>
+                                        <TableCell>{name}</TableCell>
+                                        <TableCell>{type}</TableCell>
+                                        <TableCell>
+                                            <button onClick={() => onDelete(id)} className="link">
+                                                Удалить
+                                            </button>
+                                        </TableCell>
+                                    </TableRow>
+                                )
+                            })}
+                        </TableBody>
+                        <TableFooter>
+                            <TableRow>
+                                <TablePagination
+                                    rowsPerPageOptions={[5, 10, 25]}
+                                    colSpan={3}
+                                    count={count}
+                                    rowsPerPage={perPage}
+                                    page={currentPage}
+                                    SelectProps={{
+                                        inputProps: {'aria-label': 'Rows per page'},
+                                        native: true,
+                                    }}
+                                    onChangePage={handleChangePage}
+                                    onChangeRowsPerPage={(e) => handleChangePerPage(e)}
+                                    ActionsComponent={TablePaginationActions}
+                                />
+                            </TableRow>
+                        </TableFooter>
+                    </Table>
+                </div>
+            </Paper>
         </div>
+
     );
 };

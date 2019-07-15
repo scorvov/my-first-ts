@@ -1,36 +1,34 @@
 import * as React from "react";
-import {IProduct, IProductsList} from "../../store/models/iProduct";
+import {IProduct} from "../../store/models/iProduct";
 import {Link} from "react-router-dom";
-import {IProductDelete} from "./products-list";
 import {
     Paper, Table, TableBody, TableCell, TableFooter,
     TablePagination, TableRow
 } from "@material-ui/core";
 
-import {makeStyles} from "@material-ui/core/styles";
-import {TablePaginationActions} from "./table-pagination-actions";
-import {EnhancedTableHead} from "./table-head-enhanced";
+import {TablePaginationActions} from "../common/table/table-pagination-actions";
+import {EnhancedTableHead, Order} from "../common/table/table-head-enhanced";
+import {useStyles2} from "../common/table/table-styles";
+import {IProductListStateProps} from "./container";
 
-const useStyles2 = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-    },
-    table: {
-        minWidth: 500,
-    },
-    tableWrapper: {
-        overflowX: 'auto',
-    },
-}));
+const headRows = [
+    {label: 'Перечень товаров', name: 'name'},
+    {label: 'Стоимость', name: 'cost'},
+    {label: 'Дата изменения', name: 'dateUp'},
+    {label: 'Управление', name: 'control'}];
 
-export const ProductsListView: React.FC<IProductsList & IProductDelete & any> = (props) => {
+export interface IActionTableProps {
+    onDelete: (id:number) => void;
+    handleChangeSort: (order:Order, orderBy:string) => void;
+    handleChangePerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    handleChangePage: (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, currentPage: number) => void;
+}
 
-    const {handleChangePage, handleChangePerPage, handleChangeSort, productsList, productDelete} = props;
+export const ProductsListView: React.FC<IActionTableProps&IProductListStateProps> = (props) => {
+
+    const {handleChangePage, handleChangePerPage, handleChangeSort, productsList, onDelete} = props;
     const {count, perPage, currentPage, order, orderBy} = productsList;
     const classes = useStyles2();
-
-
 
     return (
         <div className="list">
@@ -45,10 +43,10 @@ export const ProductsListView: React.FC<IProductsList & IProductDelete & any> = 
                             order={order}
                             orderBy={orderBy}
                             handleChangeSort={handleChangeSort}
-                            // onRequestSort={handleRequestSort}
+                            headRows={headRows}
                         />
                         <TableBody>
-                            {productsList.products.map((product: IProduct) => {
+                            {productsList.products && productsList.products.map((product: IProduct) => {
                                 const {id, name, cost, dateUp} = product;
                                 const date = new Date(dateUp).toLocaleDateString();
                                 return (
@@ -65,12 +63,7 @@ export const ProductsListView: React.FC<IProductsList & IProductDelete & any> = 
                                                   className="link">Ред
                                             </Link>
                                             <button
-                                                onClick={() => productDelete(id, {
-                                                    perPage,
-                                                    currentPage,
-                                                    order,
-                                                    orderBy
-                                                })}
+                                                onClick={() => onDelete(id)}
                                                 className="link">
                                                 Удалить
                                             </button>

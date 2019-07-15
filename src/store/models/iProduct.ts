@@ -1,3 +1,6 @@
+import {Order} from "../../components/common/table/table-head-enhanced";
+import {IProp} from "./iProp";
+
 export interface IProduct {
     id: number;
     name: string;
@@ -5,20 +8,14 @@ export interface IProduct {
     img: string;
     info: string;
     dateUp: Date;
-    productProps: {
-        id: number;
-        name: string;
-        type: string;
-        value: string;
-    }[];
+    productProps: IProp[];
 }
 
 export interface IProductsList {
-    productsList: {
         products: IProduct[];
+        count: number;
         perPage: number;
         currentPage: number;
-        order: string;
+        order: Order;
         orderBy: string;
-    };
 }

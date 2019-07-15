@@ -1,7 +1,7 @@
 import {Action} from "redux";
 import {fetchData} from "./fetchingActions";
 import {IProduct} from "../models/iProduct";
-import {RESET_SELECT_PRODUCT} from "../constants";
+import {baseURL, RESET_SELECT_PRODUCT} from "../constants";
 
 export const resetSelectProduct = ():Action => {
     return {
@@ -11,7 +11,7 @@ export const resetSelectProduct = ():Action => {
 
 export const productDelete = (id: number, fetchParams: any) => {
     return (dispatch:any) => {
-        fetch( "http://localhost:9000/products/delete/" + id, {
+        fetch( baseURL + "products/delete/" + id, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",
@@ -28,7 +28,7 @@ export const productDelete = (id: number, fetchParams: any) => {
 
 export const productCreate = (params: IProduct) => {
     return () => {
-        fetch("http://localhost:9000/products/add", {
+        fetch(baseURL + "products/add", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -46,7 +46,7 @@ export const productCreate = (params: IProduct) => {
 
 export const productUpdate = (params: IProduct) => {
     return () => {
-        fetch("http://localhost:9000/products/update", {
+        fetch(baseURL + "products/update", {
             method: "POST",
             headers: {
                 Accept: "application/json",

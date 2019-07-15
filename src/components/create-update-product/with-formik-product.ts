@@ -2,26 +2,26 @@ import {withFormik} from "formik";
 import {IProduct} from "../../store/models/iProduct";
 import * as Yup from "yup";
 import {CreateUpdateProductView} from "./create-update-product-view";
+import {IProp} from "../../store/models/iProp";
+import {ISelectProduct} from "../product/container";
 
-interface IProductCreate {
-    productCreate: (values: IProduct) => void;
+export interface IProductCreate {
+    productAction: (values: IProduct) => void;
+    history: {
+        push(url:string): void
+    }
 }
-interface  IPropsValues {
+interface  ICreatePropsValues {
     id: number;
     name: string;
     cost: string;
     img: string;
     info: string;
     dateUp: Date;
-    productProps: {
-        id: number;
-        name: string;
-        type: string;
-        value: string;
-    }[];
+    productProps: IProp[];
 }
 
-export const EnhancedCreateUpdateProductView = withFormik({
+export const EnhancedCreateUpdateProductView = withFormik<any & ISelectProduct & IProductCreate, ICreatePropsValues>({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойство должно быть не менее 2 символов")
@@ -45,7 +45,7 @@ export const EnhancedCreateUpdateProductView = withFormik({
                     .required("Требуется ввести имя")
             }))
     }),
-    mapPropsToValues: ({selectProduct}:any) => {
+    mapPropsToValues: ({selectProduct}) => {
         const cost = (selectProduct.cost === 0) ? '' : selectProduct.cost.toLocaleString();
         return {...selectProduct,
             cost}

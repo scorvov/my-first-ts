@@ -6,7 +6,12 @@ import {propDelete} from "../../store/actions/propsActions";
 import {PropsList} from "./props-list";
 import {fetchData} from "../../store/actions/fetchingActions";
 
-const mapStateToProps = ({dataState, fetchState}:IMapState):IPropsList&IFetchingState => {
+export interface IPropsListStateProps {
+    propsList:IPropsList;
+}
+export type TPropsListStateProps = IPropsListStateProps & IFetchingState
+
+const mapStateToProps = ({dataState, fetchState}:IMapState):TPropsListStateProps => {
     const {propsList} = dataState;
     const {loading, error} = fetchState;
     return {propsList, loading, error}

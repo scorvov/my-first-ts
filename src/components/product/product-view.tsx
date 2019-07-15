@@ -1,9 +1,9 @@
 import * as React from "react";
 import {IProp} from "../../store/models/iProp";
 import {Link} from "react-router-dom";
-import {ISelectProductProps} from "./container";
+import {ISelectProduct} from "./container";
 
-export const ProductView: React.FC<ISelectProductProps> = (props) => {
+export const ProductView: React.FC<ISelectProduct> = (props) => {
     const {name, cost, img, info, productProps} = props.selectProduct;
     const showProps = (productProps: IProp[]) => {
         if (productProps) {
@@ -16,7 +16,7 @@ export const ProductView: React.FC<ISelectProductProps> = (props) => {
                             <select>
                                 <option>{value}</option>
                             </select>
-                            : <p>{value}</p> }
+                            : <p>{value}</p>}
                     </div>
                 )
             })

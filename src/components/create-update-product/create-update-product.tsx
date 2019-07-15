@@ -1,33 +1,38 @@
-import {FormikHandlers, FormikProps, FormikValues} from "formik";
+import {FormikProps} from "formik";
 import {IProduct} from "../../store/models/iProduct";
 import * as React from "react";
-import {IProp, IPropsList} from "../../store/models/iProp";
+import {IProp} from "../../store/models/iProp";
 import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import {EnhancedCreateUpdateProductView} from "./with-formik-product";
+import {TUpdateProductStateProps} from "./container";
+import {TRoute} from "../product/product";
 
-type TProps = FormikProps<IProduct>;
+interface IUpdateProductDispatchProps {
+    fetchData: (params:any, fetchParams?: any) => void;
+    productCreate: (params: any) => void;
+    productUpdate: (params: any) => void;
+    fetchProductById: (id:number) => void;
+    resetSelectProduct: () => void;
+}
 
-export class CreateUpdateProduct extends React.Component<any & FormikHandlers & FormikValues, IPropsList, TProps> {
+type TProps = TUpdateProductStateProps & IUpdateProductDispatchProps & FormikProps<IProduct> & TRoute;
+
+export class CreateUpdateProduct extends React.Component<TProps> {
 
     componentDidMount(): void {
         this.props.resetSelectProduct();
         this.props.match.params.id ?
+            // @ts-ignore
             this.props.fetchProductById(+this.props.match.params.id) && this.props.fetchData('props')
-            : this.props.fetchData('props');
+            : this.props.fetchData('props', {perPage: 100, currentPage: 0});
     }
 
-    handlingError = (errors: any) => {
-        //изменение текста ошибки библиотеки Yup
-        if ((errors.cost) && errors.cost.includes("cost must")) {
-            errors.cost = "Стоимость должна состоять из цифр"
-        }
-    };
-    rewriteProductProps = (propsList: IProp[], productProps: IProp[]) => {
+    rewriteProductProps = (props: IProp[], productProps: IProp[]) => {
         // запись id и type объекта property в массив свойств продукта из propsList
         if (productProps.length !== 0) {
             productProps = productProps.map((propProduct: IProp) => {
-                let prop = propsList.find((item: IProp) => item.name === propProduct.name);
+                let prop = props.find((item: IProp) => item.name === propProduct.name);
                 return {...propProduct, ...prop};
             });
         }
@@ -46,7 +51,6 @@ export class CreateUpdateProduct extends React.Component<any & FormikHandlers & 
                                                 selectProduct={this.props.selectProduct}
                                                 history={this.props.history}
                                                 productAction={this.selectProductAction()}
-                                                handlingError={this.handlingError}
                                                 rewriteProductProps={this.rewriteProductProps}/>;
     }
 }
