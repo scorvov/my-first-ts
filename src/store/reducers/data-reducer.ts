@@ -3,13 +3,13 @@ import {IPropsList} from "../models/iProp";
 import {Action} from "redux";
 import {FETCH_SUCCESS, RESET_SELECT_PRODUCT} from "../constants";
 
-export interface IProductsFetchingState {
+export interface IDataState {
     productsList: IProductsList;
     propsList: IPropsList;
     selectProduct: IProduct;
 }
 
-const initialProductState: IProductsFetchingState = {
+const initialProductState: IDataState = {
     productsList: {
         products: [],
         count: 0,
@@ -41,7 +41,7 @@ interface ILoadedProductsAction extends Action {
 }
 
 
-export const dataReducer = (state: IProductsFetchingState = initialProductState, action:ILoadedProductsAction) => {
+export const dataReducer = (state: IDataState = initialProductState, action:ILoadedProductsAction) => {
     switch (action.type) {
         case FETCH_SUCCESS:
             return {

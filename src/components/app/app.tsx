@@ -1,24 +1,22 @@
 import * as React from "react";
-import '../../assests/styles/app.scss';
 import {Route, Switch} from "react-router";
-import {LoginPage} from "../login-page";
 import {MainPage} from "../main-page";
 import {CreateUpdateProductContainer} from "../create-update-product/container";
 import {CreatePropContainer} from "../create-prop/container";
 import {ProductContainer} from "../product/container";
 import {connect} from "react-redux";
 import {fetchData} from "../../store/actions/fetchingActions";
+import {LoginContainer} from "../login/container";
 
 
 class App extends React.Component {
 
     render() {
         return (
-            <div className="app">
                 <Switch>
                     <Route
                         exact path = "/login"
-                        component = {LoginPage} />
+                        component = {LoginContainer} />
                     <Route
                         exact path = "/product/create"
                         component = {CreateUpdateProductContainer} />
@@ -28,13 +26,13 @@ class App extends React.Component {
                     <Route
                         exact path = "/prop/create"
                         component = {CreatePropContainer}/>
-                    <Route path = "/product/:id"
-                           component = {ProductContainer}/>
+                    <Route
+                        path = "/product/:id"
+                        component = {ProductContainer}/>
                     <Route
                         path = "/"
                         component = {MainPage}/>
                 </Switch>
-            </div>
         );
     };
 }

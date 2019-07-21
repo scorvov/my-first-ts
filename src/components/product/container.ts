@@ -4,7 +4,8 @@ import {resetSelectProduct} from "../../store/actions/productActions";
 import {Product} from "./product";
 import {IProduct} from "../../store/models/iProduct";
 import {IMapState} from "../../store/models/iState";
-import {IFetchingState} from "../../store/reducers/fetchingReducer";
+import {IFetchingState} from "../../store/reducers/fetching-reducer";
+import {withRouteRedirect} from "../../hoc/withAuthRedirect";
 
 export interface ISelectProduct {
     selectProduct:IProduct;
@@ -18,6 +19,6 @@ const mapStateToProps = ({dataState, fetchState}:IMapState):TProductStateProps =
 };
 
 export const ProductContainer = connect(mapStateToProps,
-    {fetchProductById, resetSelectProduct})(Product);
+    {fetchProductById, resetSelectProduct})(withRouteRedirect(Product));
 
 

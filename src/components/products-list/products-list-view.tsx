@@ -46,7 +46,7 @@ export const ProductsListView: React.FC<IActionTableProps&IProductListStateProps
                             headRows={headRows}
                         />
                         <TableBody>
-                            {productsList.products && productsList.products.map((product: IProduct) => {
+                            {productsList.products.map((product: IProduct) => {
                                 const {id, name, cost, dateUp} = product;
                                 const date = new Date(dateUp).toLocaleDateString();
                                 return (

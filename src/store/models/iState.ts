@@ -1,7 +1,9 @@
-import {IProductsFetchingState} from "../reducers/dataReducer";
-import {IFetchingState} from "../reducers/fetchingReducer";
+import {IDataState} from "../reducers/data-reducer";
+import {IFetchingState} from "../reducers/fetching-reducer";
+import {IAuthState} from "../reducers/auth-reducer";
 
 export interface IMapState {
-    dataState:IProductsFetchingState;
+    dataState:IDataState;
     fetchState: IFetchingState;
+    authState: IAuthState;
 }

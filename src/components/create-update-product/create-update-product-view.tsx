@@ -10,9 +10,7 @@ import {IPropsListStateProps} from "../props-list/container";
 
 interface IUpdateProductView {
     rewriteProductProps: (props: IProp[], productProps: IProp[]) => void
-    values: {
-        productProps: void & IProp[];
-    }
+
 }
 
 export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IPropsListStateProps & IProductCreate & FormikProps<IProduct>> = (props) => {

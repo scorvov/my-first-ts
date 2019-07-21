@@ -2,7 +2,7 @@ import * as React from "react";
 import "../../../assests/styles/input.scss";
 import {Field} from "formik";
 
-const Input = ({label, name, error, value, touched, ...props}: any) => {
+const Input = ({label, type, name, error, value, touched, ...props}: any) => {
     return (
         <div className="input-group" >
             <label className={"label"}>
@@ -10,7 +10,7 @@ const Input = ({label, name, error, value, touched, ...props}: any) => {
             </label>
             <Field
                 className={ error && touched ? 'text-input error' : 'text-input'}
-                type="text"
+                type={type}
                 name={name}
                 {...props}
             />

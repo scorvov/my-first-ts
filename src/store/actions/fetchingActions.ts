@@ -1,18 +1,19 @@
 import {Action, Dispatch} from "redux";
-import {IProductsFetchingState} from "../reducers/dataReducer";
-import {IFetchAction} from "../reducers/fetchingReducer";
+import {IDataState} from "../reducers/data-reducer";
+import {IFetchAction} from "../reducers/fetching-reducer";
 import {
     FETCH_PRODUCTS_FAILURE,
     FETCH_REQUEST,
     FETCH_SUCCESS,
     baseURL
 } from "../constants";
+import {authResponse} from "./auth-actions";
 
 export interface ILoadedProductsAction extends Action {
-    payload: IProductsFetchingState;
+    payload: IDataState;
 }
 
-const dataLoaded = (data: IProductsFetchingState): ILoadedProductsAction =>
+const dataLoaded = (data: IDataState): ILoadedProductsAction =>
     ({
         payload: data,
         type: FETCH_SUCCESS
@@ -29,21 +30,20 @@ const dataError = (error:string): IFetchAction =>
     });
 
 export const fetchData = (fetchTypeData:any, fetchParams: any) => {
-    console.log(fetchParams);
     return (dispatch:Dispatch) => {
         dispatch(dataRequested());
         fetch(baseURL + fetchTypeData, {
             method: "POST",
+            credentials: "include",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify( fetchParams )
         })
-            .then(response => {
-                if(response.ok){
-                    return response.json();
-                }
+            .then((response) => {
+                authResponse(response, dispatch);
+                return response.json()
             })
             .then((data:any) => {
                 dispatch(dataLoaded(data))
@@ -55,13 +55,14 @@ export const fetchData = (fetchTypeData:any, fetchParams: any) => {
 export const fetchProductById = (id: number) => {
     return (dispatch: Dispatch) => {
         dispatch(dataRequested());
-        fetch(baseURL + "products/" + id)
-            .then(response => {
-                if(response.ok){
-                    return response.json();
-                }
+        fetch(baseURL + "products/" + id, {
+            credentials: "include"
+        })
+            .then((response) => {
+                authResponse(response, dispatch);
+                return response.json()
             })
-            .then((product: any) => dispatch(dataLoaded(product)))
+            .then((product) => dispatch(dataLoaded(product)))
             .catch((err) => dispatch(dataError(err)));
     }
 };

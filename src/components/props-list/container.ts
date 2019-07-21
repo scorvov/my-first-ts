@@ -1,10 +1,11 @@
 import {IMapState} from "../../store/models/iState";
 import {IPropsList} from "../../store/models/iProp";
-import {IFetchingState} from "../../store/reducers/fetchingReducer";
+import {IFetchingState} from "../../store/reducers/fetching-reducer";
 import {connect} from "react-redux";
 import {propDelete} from "../../store/actions/propsActions";
 import {PropsList} from "./props-list";
 import {fetchData} from "../../store/actions/fetchingActions";
+import {withRouteRedirect} from "../../hoc/withAuthRedirect";
 
 export interface IPropsListStateProps {
     propsList:IPropsList;
@@ -18,4 +19,4 @@ const mapStateToProps = ({dataState, fetchState}:IMapState):TPropsListStateProps
 };
 
 export const PropsListContainer = connect(mapStateToProps,
-    {propDelete, fetchData})(PropsList);
+    {propDelete, fetchData})(withRouteRedirect(PropsList));

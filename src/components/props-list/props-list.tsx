@@ -35,8 +35,7 @@ export class PropsList extends React.Component<TPropsListStateProps & IPropsList
 
     onDelete = (id: number) => {
         const {perPage, currentPage, order, orderBy, props, count} = this.props.propsList;
-        this.props.propDelete(id, {
-            perPage,
+        this.props.propDelete(id, {perPage,
             currentPage: props.length === 1 && count !== 1 ? currentPage - 1 : currentPage,
             order, orderBy
         })
