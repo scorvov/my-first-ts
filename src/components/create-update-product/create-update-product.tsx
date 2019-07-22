@@ -39,7 +39,7 @@ export class CreateUpdateProduct extends React.Component<TProps> {
         return productProps;
     };
 
-    selectProductAction = () => {
+    selectAction = () => {
         return (!this.props.match.params.id) ? this.props.productCreate : this.props.productUpdate;
     };
 
@@ -50,7 +50,7 @@ export class CreateUpdateProduct extends React.Component<TProps> {
         return <EnhancedCreateUpdateProductView propsList={this.props.propsList}
                                                 selectProduct={this.props.selectProduct}
                                                 history={this.props.history}
-                                                productAction={this.selectProductAction()}
+                                                productAction={this.selectAction()}
                                                 rewriteProductProps={this.rewriteProductProps}/>;
     }
 }
