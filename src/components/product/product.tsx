@@ -25,9 +25,10 @@ export class Product extends React.Component<TProductProps> {
     }
 
     render() {
-        const {selectProduct, loading, error} = this.props;
+        const {loading, error} = this.props;
         if (loading) return <Spinner/>;
         if (error) return <ErrorIndicator/>;
-        return <ProductView selectProduct={selectProduct}/>;
+        if(this.props.selectProduct) return <ProductView selectProduct={this.props.selectProduct}/>;
+        else return <Spinner/>;
     }
 }

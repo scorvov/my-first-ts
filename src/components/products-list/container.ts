@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import { IProductsList} from "../../store/models/iProduct";
-import {productDelete} from "../../store/actions/productActions";
+import {itemDeleteById} from "../../store/actions/data-actions";
 import "../../assests/styles/list.scss"
 import {IFetchingState} from "../../store/reducers/fetching-reducer";
 import {IMapState} from "../../store/models/iState";
 import {ProductsList} from "./products-list";
-import {fetchData} from "../../store/actions/fetchingActions";
+import {fetchData} from "../../store/actions/fetching-actions";
 import {withRouteRedirect} from "../../hoc/withAuthRedirect";
 
 export interface IProductListStateProps {
@@ -20,5 +20,5 @@ const mapStateToProps = ({dataState, fetchState}: IMapState): TProductListStateP
 };
 
 export const ProductsListContainer = connect(mapStateToProps,
-    {productDelete, fetchData})(withRouteRedirect(ProductsList));
+    {itemDeleteById, fetchData})(withRouteRedirect(ProductsList));
 

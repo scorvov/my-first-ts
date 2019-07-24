@@ -3,8 +3,9 @@ import {IProp} from "../../store/models/iProp";
 import {Link} from "react-router-dom";
 import {ISelectProduct} from "./container";
 
-export const ProductView: React.FC<ISelectProduct> = (props) => {
-    const {name, cost, img, info, productProps} = props.selectProduct;
+export const ProductView: React.FC<ISelectProduct> = ({selectProduct}) => {
+    if (!selectProduct) return null;
+    const {name, cost, img, info, productProps} = selectProduct;
     const showProps = (productProps: IProp[]) => {
         if (productProps) {
             return productProps.map((item: IProp) => {

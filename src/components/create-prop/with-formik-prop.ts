@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import {CreateProp} from "./create-prop";
 
 interface IPropCreate {
-    propCreate: ({name, type}: ICreatePropValues) => void;
+    itemCreate: (typeData: string, {name, type}: ICreatePropValues) => void;
     history: {
         push(url:string): void
     }
@@ -26,8 +26,8 @@ export const MyEnhancedForm = withFormik<ICreatePropValues & IPropCreate, ICreat
         name: name || '',
         type: type || ''
     }),
-    handleSubmit: ({name, type}, {props: {propCreate, history}, resetForm, setSubmitting}) => {
-        propCreate({name, type});
+    handleSubmit: ({name, type}, {props: {itemCreate, history}, resetForm, setSubmitting}) => {
+        itemCreate('props', {name, type});
         resetForm();
         setSubmitting(false);
         history.push('/properties');

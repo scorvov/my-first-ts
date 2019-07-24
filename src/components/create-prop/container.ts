@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import {propCreate} from "../../store/actions/propsActions";
 import {MyEnhancedForm} from "./with-formik-prop";
 import {withRouteRedirect} from "../../hoc/withAuthRedirect";
+import {itemCreate} from "../../store/actions/data-actions";
 
 export const CreatePropContainer = connect(null,
-    {propCreate})(withRouteRedirect(MyEnhancedForm));
+    {itemCreate})(withRouteRedirect(MyEnhancedForm));

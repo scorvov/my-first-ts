@@ -57,7 +57,7 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
                         <TableFooter>
                             <TableRow>
                                 <TablePagination
-                                    rowsPerPageOptions={[5, 10, 25]}
+                                    rowsPerPageOptions={[5, 10, 25, 100]}
                                     colSpan={3}
                                     count={count}
                                     rowsPerPage={perPage}

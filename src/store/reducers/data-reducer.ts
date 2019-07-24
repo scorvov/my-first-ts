@@ -1,12 +1,12 @@
 import {IProduct, IProductsList} from "../models/iProduct";
 import {IPropsList} from "../models/iProp";
 import {Action} from "redux";
-import {FETCH_SUCCESS, RESET_SELECT_PRODUCT} from "../constants";
+import {EMPTY_SELECT_PRODUCT, FETCH_SUCCESS, RESET_SELECT_PRODUCT} from "../constants";
 
 export interface IDataState {
     productsList: IProductsList;
     propsList: IPropsList;
-    selectProduct: IProduct;
+    selectProduct?: IProduct;
 }
 
 const initialProductState: IDataState = {
@@ -26,15 +26,15 @@ const initialProductState: IDataState = {
         order: 'desc',
         orderBy: 'id'
     },
-    selectProduct: {
-        id: 0,
-        name:'',
-        cost: 0,
-        img: '',
-        info:'',
-        dateUp: new Date(),
-        productProps: []
-    }
+};
+const emptySelectProduct:IProduct = {
+    id: 0,
+    name:'',
+    cost: 0,
+    img: '',
+    info:'',
+    dateUp: new Date(),
+    productProps: []
 };
 interface ILoadedProductsAction extends Action {
     payload: any;
@@ -50,8 +50,13 @@ export const dataReducer = (state: IDataState = initialProductState, action:ILoa
             };
         case RESET_SELECT_PRODUCT:
             return {
+                productsList: state.productsList,
+                propsList: state.propsList
+            };
+        case EMPTY_SELECT_PRODUCT:
+            return {
                 ...state,
-                selectProduct: initialProductState.selectProduct
+                selectProduct: emptySelectProduct
             };
         default:
             return state;

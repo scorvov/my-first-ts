@@ -7,7 +7,7 @@ import {Order} from "../common/table/table-head-enhanced";
 import {TPropsListStateProps} from "./container";
 
 export interface IPropsListDispatchProps {
-    propDelete: (id: number, fetchParams: any) => void;
+    itemDeleteById: (id: number, typeData: string, fetchParams: any) => void;
     fetchData: (params:any, fetchParams?: any) => void;
 }
 
@@ -35,7 +35,7 @@ export class PropsList extends React.Component<TPropsListStateProps & IPropsList
 
     onDelete = (id: number) => {
         const {perPage, currentPage, order, orderBy, props, count} = this.props.propsList;
-        this.props.propDelete(id, {perPage,
+        this.props.itemDeleteById(id, 'props', {perPage,
             currentPage: props.length === 1 && count !== 1 ? currentPage - 1 : currentPage,
             order, orderBy
         })

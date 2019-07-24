@@ -10,12 +10,12 @@ import {IPropsListStateProps} from "../props-list/container";
 
 interface IUpdateProductView {
     rewriteProductProps: (props: IProp[], productProps: IProp[]) => void
-
 }
 
 export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IPropsListStateProps & IProductCreate & FormikProps<IProduct>> = (props) => {
     const {touched, errors, isSubmitting, rewriteProductProps, propsList} = props;
     const {productProps} = props.values;
+    const header = (props.values.id !== 0) ? "Редактирование товара" : "Добавление товара";
     props.values.productProps = rewriteProductProps(propsList.props, productProps);
 /*    if(props.values.cost !== '') {
         props.values.cost = (+props.values.cost.replace(/\s/g, '')).toLocaleString();
@@ -34,7 +34,7 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
             </button>
         </div>
         <hr className="line"/>
-        <h4>Добавление товара</h4>
+        <h4>{header}</h4>
         <hr className="line"/>
         <div className={"input-form"}>
             <Input

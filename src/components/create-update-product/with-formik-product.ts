@@ -6,7 +6,7 @@ import {IProp} from "../../store/models/iProp";
 import {ISelectProduct} from "../product/container";
 
 export interface IProductCreate {
-    productAction: (values: IProduct) => void;
+    productAction: (typeData: string, values: IProduct) => void;
     history: {
         push(url:string): void
     }
@@ -51,7 +51,7 @@ export const EnhancedCreateUpdateProductView = withFormik<any & ISelectProduct &
             cost}
     },
     handleSubmit: (values, {props: {productAction, history}, resetForm, setSubmitting}) => {
-        productAction({...values,
+        productAction('products', {...values,
             dateUp: new Date(),
             cost: +values.cost.replace(/\s/g, '')
         });

@@ -76,7 +76,7 @@ export const ProductsListView: React.FC<IActionTableProps&IProductListStateProps
                             <TableRow>
                                 <TablePagination
                                     rowsPerPageOptions={[5, 10, 25]}
-                                    colSpan={3}
+                                    colSpan={4}
                                     count={count}
                                     rowsPerPage={perPage}
                                     page={currentPage}
