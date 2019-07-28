@@ -1,25 +1,49 @@
 import * as React from "react";
 import {Route, Switch} from "react-router";
 import {ProductsListContainer} from "./products-list/container";
-import {NavLink} from "react-router-dom";
 import "../assests/styles/main-page.scss";
 import {PropsListContainer} from "./props-list/container";
+import {withRouteRedirect} from "../hoc/withAuthRedirect";
+import {Container, AppBar} from "@material-ui/core";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
-export const MainPage: React.FC = () => {
+const MainPage: React.FC<any> = (props) => {
+    console.log(props);
+    const {pathname} = props.history.location;
+    const [value, setValue] = React.useState(pathname);
+
+    function handleChange(event: any, newValue: any) {
+        setValue(newValue);
+        props.history.push(newValue);
+    }
     return (
-        <div className="app-wrapper">
-            <div className="wrapper-header">
-                <button>
-                    <NavLink to="/products" className="main-header">Листинг товаров</NavLink>
-                </button>
-                <button>
-                    <NavLink to="/properties" className="main-header">Листинг проперти</NavLink>
-                </button>
-            </div>
-            <Switch>
-                <Route exact path="/products" component={ProductsListContainer} selected />
-                <Route exact path="/properties" component={PropsListContainer}/>
-            </Switch>
-        </div>
+        <>
+            <Container>
+                <AppBar position="static">
+                    <Tabs className="wrapper-header"
+                          value={value}
+                          onChange={handleChange}
+                    >
+                        <Tab label="Листинг товаров"
+                             value={"/products"}
+                             className="main-header"
+                        />
+                        <Tab label="Листинг проперти"
+                             value={"/properties"}
+                             className="main-header"
+                        />
+                    </Tabs>
+                </AppBar>
+            </Container>
+            <Container className={"content"}>
+                <Switch>
+                    <Route exact path="/products" component={ProductsListContainer}/>
+                    <Route exact path="/properties" component={PropsListContainer}/>
+                </Switch>
+            </Container>
+        </>
     );
 };
+
+export default withRouteRedirect(MainPage);

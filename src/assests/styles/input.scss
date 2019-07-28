@@ -1,21 +1,22 @@
 .input-group {
-  margin-bottom: 1rem;
+  height: 5.5rem;
   display: block;
-  margin-right: 10rem;
+  padding: 1px;
 }
 .text-input {
+  margin: 1px;
   padding: .7rem;
   background: #FFFFFF;
   border: 1px solid #E0E0E0;
   box-sizing: border-box;
   border-radius: 4px;
-  line-height: 16px;
-  min-width: 20rem;
+  line-height: 19px;
+  width: 100%;
   font:{
     family: Roboto;
     style: normal;
     weight: normal;
-    size: 14px;
+    size: 16px;
   }
 }
 .error {
@@ -27,7 +28,14 @@
   outline: none;
 }
 .label {
-  // font-weight: bold;
+  color: #828282;
+  font: {
+    family: Roboto;
+    style: normal;
+    weight: bold;
+    size: 12px;
+  }
+  line-height: 14px;
   display: block;
   margin-bottom: .5rem;
   margin-right: 10rem;
@@ -35,8 +43,7 @@
 }
 .input-feedback {
   color: red;
-  margin-top: .25rem;
-  height: 10px;
+  font-size: 12px;
 }
 
 

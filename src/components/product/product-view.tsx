@@ -2,6 +2,8 @@ import * as React from "react";
 import {IProp} from "../../store/models/iProp";
 import {Link} from "react-router-dom";
 import {ISelectProduct} from "./container";
+import "../../assests/styles/product.scss"
+import {Container} from "@material-ui/core";
 
 export const ProductView: React.FC<ISelectProduct> = ({selectProduct}) => {
     if (!selectProduct) return null;
@@ -24,8 +26,8 @@ export const ProductView: React.FC<ISelectProduct> = ({selectProduct}) => {
         }
     };
     return (
-        <>
-            <Link to="/products" className="link">
+        <Container className={"product"}>
+            <Link to="/products" className={"link"}>
                 Вернуться
             </Link>
             <hr className="line"/>
@@ -37,8 +39,8 @@ export const ProductView: React.FC<ISelectProduct> = ({selectProduct}) => {
             {productProps && showProps(productProps)}
             <div>
                 <h3>Стоимость</h3>
-                <p>{cost && cost.toLocaleString()} $</p>
+                <p>{cost.toLocaleString()} $</p>
             </div>
-        </>
+        </Container>
     );
 };

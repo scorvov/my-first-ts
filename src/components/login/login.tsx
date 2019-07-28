@@ -1,8 +1,9 @@
 import * as React from "react";
-import {MyEnhancedLoginView} from "./with-formik-login";
+import {IPropLogin, MyEnhancedLoginView} from "./with-formik-login";
 import {Redirect} from "react-router";
+import {IPrivateRouteProps} from "../../hoc/withAuthRedirect";
 
-export class Login extends React.Component<any> {
+export class Login extends React.Component<IPrivateRouteProps&IPropLogin> {
 
     render() {
         return (!this.props.isAuth) ?

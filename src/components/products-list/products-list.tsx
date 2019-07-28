@@ -1,9 +1,8 @@
 import * as React from "react";
-import {Spinner} from "../common/spinner";
-import {ErrorIndicator} from "../common/error-indicator";
 import {ProductsListView} from "./products-list-view";
 import {Order} from "../common/table/table-head-enhanced";
 import {TProductListStateProps} from "./container";
+import {ErrorIndicator} from "../common/error-indicator";
 
 export interface IProductListDispatchProps {
     itemDeleteById: (id:number, typeData: string, fetchParams: any) => void;
@@ -40,8 +39,8 @@ export class ProductsList extends React.Component<TProductListStateProps & IProd
     };
 
     render() {
-        const {productsList, loading, error} = this.props;
-        if (loading) return <Spinner/>;
+        const {productsList, error} = this.props;
+        // if (loading) return <Spinner/>;
         if (error) return <ErrorIndicator/>;
         return <ProductsListView productsList={productsList}
                                  handleChangePage={this.handleChangePage}

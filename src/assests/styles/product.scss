@@ -1,0 +1,12 @@
+.product {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  box-shadow: 0 20px 20px rgba(40, 40, 40, 0.05);
+  border-radius: 10px;
+  .link {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+}

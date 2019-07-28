@@ -1,5 +1,4 @@
 import * as React from "react";
-import {Spinner} from "../common/spinner";
 import {ErrorIndicator} from "../common/error-indicator";
 import "../../assests/styles/list.scss"
 import {PropsListView} from "./props-list-view";
@@ -42,8 +41,8 @@ export class PropsList extends React.Component<TPropsListStateProps & IPropsList
     };
 
     render() {
-        const {propsList, loading, error} = this.props;
-        if (loading) return <Spinner/>;
+        const {propsList, error} = this.props;
+        // if (loading) return <Spinner/>;
         if (error) return <ErrorIndicator/>;
         return <PropsListView
             onDelete={this.onDelete}

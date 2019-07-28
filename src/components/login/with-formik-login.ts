@@ -1,16 +1,16 @@
 import {withFormik} from "formik";
 import * as Yup from "yup";
-import {LoginView} from "./login-view";
+import {AddProps, LoginView} from "./login-view";
 
 export interface IPropLogin {
-    getAuthUserData: (values: IPropValuesLogin) => void;
+    getAuthUserData: ({login,password}: IPropValuesLogin) => void;
 }
 export interface IPropValuesLogin {
     login: string;
     password: string;
 }
 
-export const MyEnhancedLoginView = withFormik<any & IPropValuesLogin & IPropLogin, IPropValuesLogin>({
+export const MyEnhancedLoginView = withFormik<any&IPropValuesLogin & IPropLogin, IPropValuesLogin,AddProps>({
     validationSchema: Yup.object().shape({
         login: Yup.string()
             .min(2, "Логин должен быть не менее 2 символов")
@@ -25,8 +25,8 @@ export const MyEnhancedLoginView = withFormik<any & IPropValuesLogin & IPropLogi
         login: login || '',
         password: password || ''
     }),
-    handleSubmit: (values, {props: {getAuthUserData}, resetForm, setSubmitting}) => {
-        getAuthUserData(values);
+    handleSubmit: ({login,password}, {props: {getAuthUserData}, resetForm, setSubmitting}) => {
+        getAuthUserData({login,password});
         resetForm();
         setSubmitting(false);
     },

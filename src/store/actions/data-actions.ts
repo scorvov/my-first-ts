@@ -23,7 +23,7 @@ export const message = function (path: string) {
     return "Загрузка прошла успешно";
 };
 
-export const actionRequest = (method: string, path: string, params?: any) => (dispatch: any) => {
+export const baseDataAction = (method: string, path: string, params?: any) => (dispatch: any) => {
     return fetchRequest(method, path, params)
         .then((response) => authResponse(response))
         .then(() => {
@@ -42,14 +42,15 @@ export const actionRequest = (method: string, path: string, params?: any) => (di
 };
 
 export const itemDeleteById = (id: number, typeData: string, fetchParams: any) => (dispatch:any) => {
-    dispatch(actionRequest("DELETE", typeData + "/delete/" + id))
+    dispatch(baseDataAction("DELETE", typeData + "/delete/" + id))
         .then(() => dispatch(fetchData(typeData, fetchParams)));
 };
 export const itemCreate = (typeData: string, params: ICreatePropValues | IProduct) =>
-    actionRequest("POST", typeData+"/add", params);
+    baseDataAction("POST", typeData+"/add", params);
 
-export const productUpdate = (params: IProduct) =>
-    actionRequest("POST", "products/update", params);
+export const productUpdate = (typeData: string, params: IProduct) =>
+    baseDataAction("POST", typeData + "/update", params);
+
 
 export const fetchDataForUpdate = (id:number) => (dispatch:any) => {
     dispatch(resetSelectProduct());
