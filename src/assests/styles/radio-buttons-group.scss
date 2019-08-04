@@ -1,0 +1,30 @@
+.radio-buttons-group {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 16px;
+
+  .requred:after {
+    content: "*";
+    color: red;
+  }
+
+  .wrapper-radio {
+    display: flex;
+    align-items: center;
+
+    .label {
+      margin: 0;
+    }
+
+    .radio-button {
+      margin: 0;
+      padding: 0 8px 8px 0;
+    }
+  }
+
+  .input-feedback {
+    color: red;
+    font-size: 12px;
+  }
+}
+

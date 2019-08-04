@@ -1,6 +1,5 @@
 import * as React from "react";
 import {IProp} from "../../store/models/iProp";
-import {Link} from "react-router-dom";
 import {
     Table,
     TableRow,
@@ -14,6 +13,7 @@ import {TablePaginationActions} from "../common/table/table-pagination-actions";
 import {useStyles2} from "../common/table/table-styles";
 import {IActionTableProps} from "../products-list/products-list-view";
 import {IPropsListStateProps} from "./container";
+import Button from "@material-ui/core/Button";
 
 const headRows = [
     {label: 'Перечень свойств', name: 'name'},
@@ -28,7 +28,11 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
 
     return (
         <div className="list">
-            <Link to="/prop/create" className="btn btn-warning btn-sm">Добавить свойство</Link>
+            <Button href={"/prop/create"}
+                    variant="contained"
+                    className={"add"}>
+                Добавить свойство
+            </Button>
             <Paper className={classes.root}>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table}>

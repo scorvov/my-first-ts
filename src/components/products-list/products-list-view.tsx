@@ -10,6 +10,7 @@ import {TablePaginationActions} from "../common/table/table-pagination-actions";
 import {EnhancedTableHead, Order} from "../common/table/table-head-enhanced";
 import {useStyles2} from "../common/table/table-styles";
 import {IProductListStateProps} from "./container";
+import Button from "@material-ui/core/Button";
 
 const headRows = [
     {label: 'Перечень товаров', name: 'name'},
@@ -32,10 +33,11 @@ export const ProductsListView: React.FC<IActionTableProps&IProductListStateProps
 
     return (
         <div className="list">
-            <Link to="/product/create"
-                  className="btn btn-warning btn-sm">
+            <Button href={"/product/create"}
+                    variant="contained"
+                    className={"add"}>
                 Добавить товар
-            </Link>
+            </Button>
             <Paper className={classes.root}>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table}>

@@ -12,6 +12,7 @@ export const useStyles1 = makeStyles(theme => ({
 export const useStyles2 = makeStyles(theme => ({
     root: {
         width: '100%',
+        minHeight: 750,
         marginTop: theme.spacing(3),
     },
     table: {

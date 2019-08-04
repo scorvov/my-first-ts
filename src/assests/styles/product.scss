@@ -1,12 +1,109 @@
 .product {
+  min-height: 754px;
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
   background-color: #FFFFFF;
   box-shadow: 0 20px 20px rgba(40, 40, 40, 0.05);
   border-radius: 10px;
-  .link {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+  .wrapper {
+    margin-top: 24px;
+  }
+  hr {
+    margin: 48px 0 24px;
+  }
+  .card {
+    box-shadow: none;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    .image {
+      flex: 1 0;
+      min-width: 350px;
+      min-height: 190px;
+      margin: 0 15px 16px;
+    }
+    .info {
+      margin: 0 15px 16px;
+      flex: 1 0 350px;
+      padding: 0;
+      max-height: 113px;
+      h5 {
+        font-size: 24px;
+        line-height: 28px;
+        margin-bottom: 40px;
+      }
+      p {
+        line-height: 19px;
+        color: #828282;
+        font-style: normal;
+        font-weight: normal;
+        margin: 0;
+      }
+    }
+  }
+
+  .details {
+    padding: 0;
+    .header {
+      margin: 24px 0 12px;
+      font-size: 16px;
+      line-height: 19px;
+    }
+    .select {
+      padding: 8px 8px 7px;
+      border: 1px solid #E0E0E0;
+      box-sizing: border-box;
+      border-radius: 4px;
+      line-height: 16px;
+      width: 255px;
+      height: 32px;
+      opacity: 0.8;
+      font-size: 14px;
+    }
+    .data {
+      flex: 1 0 auto;
+      font-size: 14px;
+      color:#828282;
+    }
+    .cost {
+      display: flex;
+      flex-wrap: wrap;
+      .data {
+        font-weight: 300;
+        font-size: 22px;
+        line-height: 26px;
+        color: black;
+      }
+    }
+    Button {
+      flex: 1 0;
+      width: 160px;
+      height: 32px;
+      color: #FFFFFF;
+      background-color: #FFB800;
+      box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      font-size: 16px;
+      line-height: 19px;
+    }
   }
 }
+@media (min-width: 600px) {
+  .wrapper {
+    padding-right: 33px;
+    padding-left: 33px;
+  }
+}
+@media (min-width: 960px) {
+  .wrapper {
+    padding-left: 62px;
+    padding-right: 62px;
+  }
+}
+
+
+
+

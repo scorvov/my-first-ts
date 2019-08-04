@@ -1,5 +1,3 @@
-import "../../assests/styles/prop-create.scss";
-import "../../assests/styles/create-product.scss";
 import {connect} from "react-redux";
 import {itemCreate, productUpdate, fetchDataForUpdate} from "../../store/actions/data-actions";
 import {IMapState} from "../../store/models/iState";

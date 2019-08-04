@@ -1,9 +1,7 @@
 import * as React from "react";
-import classNames from "classnames";
+import {Radio} from "@material-ui/core";
+import "../../../assests/styles/radio-buttons-group.scss"
 
-const InputFeedback = ({error}:any) =>
-    error ? <div className={classNames("input-feedback")}>{error}</div> : null;
-// Radio input
 export const RadioButton = ({
     field: {name, value, onChange, onBlur},
     id,
@@ -11,16 +9,17 @@ export const RadioButton = ({
     className,
     ...props}: any) => {
     return (
-        <div>
-            <input
+        <div className={"wrapper-radio"}>
+            <Radio
+                color={'primary'}
                 name={name}
                 id={id}
                 type="radio"
-                value={id} // could be something else for output?
+                value={id}
                 checked={id === value}
                 onChange={onChange}
                 onBlur={onBlur}
-                className={classNames("radio-button")}
+                className={"radio-button"}
                 {...props}
             />
             <label htmlFor={id}> {label}</label>
@@ -28,15 +27,15 @@ export const RadioButton = ({
     );
 };
 
-export const RadioButtonGroup = ({error, touched, children, label}: any) => {
+export const RadioButtonsGroup = ({error, touched, children, label}: any) => {
     return (
-        <div >
-            <label className={"label"}>
+        <div className={"radio-buttons-group"}>
+            <label className={"label requred"}>
                 {label}
             </label>
             <fieldset>
                 {children}
-                {touched && <InputFeedback error={error}/>}
+                {error && touched && <div className={"input-feedback"}>{error}</div>}
             </fieldset>
         </div>
     );

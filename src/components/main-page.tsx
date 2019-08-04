@@ -20,18 +20,18 @@ const MainPage: React.FC<any> = (props) => {
     return (
         <>
             <Container>
-                <AppBar position="static">
-                    <Tabs className="wrapper-header"
+                <AppBar className={"app-bar"} style={{boxShadow:"none" }} position="static">
+                    <Tabs className="tabs"
                           value={value}
                           onChange={handleChange}
                     >
                         <Tab label="Листинг товаров"
                              value={"/products"}
-                             className="main-header"
+                             className="tab"
                         />
                         <Tab label="Листинг проперти"
                              value={"/properties"}
-                             className="main-header"
+                             className="tab"
                         />
                     </Tabs>
                 </AppBar>

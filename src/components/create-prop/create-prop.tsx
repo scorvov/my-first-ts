@@ -1,10 +1,11 @@
 import * as React from "react";
-import {Link} from "react-router-dom";
 import {Input} from "../common/input/input";
 import {Field, Form, FormikProps} from "formik";
-import {RadioButton, RadioButtonGroup} from "../common/radio-button-group/radio-button-group";
-import "../../assests/styles/prop-create.scss";
+import {RadioButton, RadioButtonsGroup} from "../common/radio-buttons-group/radio-buttons-group";
+import "../../assests/styles/create-product-prop.scss";
 import {ICreatePropValues} from "./with-formik-prop";
+import {Container} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 export const CreateProp: React.FC<FormikProps<ICreatePropValues>> = (props) => {
     const {
@@ -14,57 +15,62 @@ export const CreateProp: React.FC<FormikProps<ICreatePropValues>> = (props) => {
         values
     } = props;
     return (
-        <Form className="create-prop">
-            <div className="group-buttons">
-                <Link to="/properties"
-                      className="btn btn-danger btn-sm">
-                    Вернуться
-                </Link>
-                <button
-                    type={"submit"}
-                    disabled={isSubmitting}
-                    className="btn btn-success btn-sm">
-                    Сохранить
-                </button>
-            </div>
-            <hr className="line"/>
-            <h4>Добавление свойства</h4>
-            <hr className="line"/>
-            <div className={"input-form"}>
-                <Input
-                    label={"Название свойства"}
-                    placeholder={"Цвет авто"}
-                    name="name"
-                    error={errors.name}
-                    touched={touched.name}
-                />
-                <RadioButtonGroup
-                    id="radio"
-                    label="Укажите тип свойства"
-                    value={values.type}
-                    error={errors.type}
-                    touched={touched.type}
-                >
-                    <Field
-                        component={RadioButton}
-                        name="type"
-                        id="dropdown"
-                        label="Dropdown"
+        <Container className="create-container">
+            <Form className={"form"}>
+                <div className="group-buttons">
+                    <Button href="/properties"
+                            variant="contained"
+                            className={"back"}>
+                        Вернуться
+                    </Button>
+                    <Button
+                        type={"submit"}
+                        variant="contained"
+                        disabled={isSubmitting}
+                        className={"save"}>
+                        Сохранить
+                    </Button>
+                </div>
+                <hr className="line"/>
+                <p className={"header"}>Добавление свойств</p>
+                <hr className="line"/>
+                <div className={"input-form"}>
+                    <Input
+                        required
+                        label={"Название свойства"}
+                        placeholder={"Цвет авто"}
+                        name="name"
+                        error={errors.name}
+                        touched={touched.name}
                     />
-                    <Field
-                        component={RadioButton}
-                        name="type"
-                        id="number"
-                        label="Number"
-                    />
-                    <Field
-                        component={RadioButton}
-                        name="type"
-                        id="string"
-                        label="String"
-                    />
-                </RadioButtonGroup>
-            </div>
-        </Form>
+                    <RadioButtonsGroup
+                        id="radio"
+                        label="Укажите тип свойства"
+                        value={values.type}
+                        error={errors.type}
+                        touched={touched.type}
+                    >
+                        <Field
+                            component={RadioButton}
+                            name="type"
+                            id="dropdown"
+                            label="Dropdown"
+                        />
+                        <Field
+                            component={RadioButton}
+                            name="type"
+                            id="number"
+                            label="Number"
+                        />
+                        <Field
+                            component={RadioButton}
+                            name="type"
+                            id="string"
+                            label="String"
+                        />
+                    </RadioButtonsGroup>
+                </div>
+            </Form>
+        </Container>
     );
 };
