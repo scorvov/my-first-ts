@@ -9,7 +9,6 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 const MainPage: React.FC<any> = (props) => {
-    console.log(props);
     const {pathname} = props.history.location;
     const [value, setValue] = React.useState(pathname);
 

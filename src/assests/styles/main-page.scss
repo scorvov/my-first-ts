@@ -2,21 +2,24 @@
 
 
   .tabs {
-    //background: #E5E5E5;
-    .tab {
-      border-top: 3px solid blue;
+    background: #E5E5E5;
+    .MuiTab-root {
+      color: #000000;
       width: 255px;
       height: 60px;
-      background: linear-gradient(180deg, #0258FF 0%, rgba(2, 88, 255, 0) 100%);
-      opacity: 0.1;
-      font-family: Roboto, sans-serif;
-      font-style: normal;
-      font-weight: 300;
       font-size: 22px;
-      line-height: 26px;
-      text-decoration: none;
-      /* identical to box height */
-      color: #82c9ff;
+    }
+    .Mui-selected {
+      background: linear-gradient(180deg, #0258FF 0%, rgba(2, 88, 255, 0) 100%);
+      color: #0258FF;
+      opacity: 0.1;
+    }
+    .PrivateTabIndicator-colorSecondary-68 {
+      background-color: darkblue;
+      height: 3px;
+    }
+    span {
+      top: 0;
     }
   }
 .content {
