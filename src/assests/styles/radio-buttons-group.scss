@@ -7,7 +7,11 @@
     content: "*";
     color: red;
   }
-
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
   .wrapper-radio {
     display: flex;
     align-items: center;

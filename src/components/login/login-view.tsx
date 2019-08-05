@@ -2,8 +2,6 @@ import React from 'react';
 import {Input} from "../common/input/input";
 import {Form, FormikProps} from "formik";
 import {IPropLogin, IPropValuesLogin} from "./with-formik-login";
-import {Paper} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
 import "../../assests/styles/login.scss"
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
@@ -14,15 +12,13 @@ export interface AddProps {
     isSubmitting: boolean;
 }
 export const LoginView: React.FC<AddProps&FormikProps<IPropValuesLogin&IPropLogin>> = (props) => {
-    console.log(props);
     const {errors, touched, isSubmitting} = props;
     return (
-        <Container component="main" maxWidth="xs">
-            <Paper className={"login-paper"}>
+        <Container className={"login-paper"} component="main">
                 <Form className={"login-form"}>
-                    <Typography className={"header"} variant="h5">
+                    <p className={"header"}>
                         Вход
-                    </Typography>
+                    </p>
                     <Input
                         label={"Логин"}
                         placeholder={"Введите логин"}
@@ -48,7 +44,6 @@ export const LoginView: React.FC<AddProps&FormikProps<IPropValuesLogin&IPropLogi
                         Войти
                     </Button>
                 </Form>
-            </Paper>
         </Container>
     );
 };

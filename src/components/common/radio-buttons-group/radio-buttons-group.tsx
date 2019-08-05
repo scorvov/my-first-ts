@@ -33,7 +33,7 @@ export const RadioButtonsGroup = ({error, touched, children, label}: any) => {
             <label className={"label requred"}>
                 {label}
             </label>
-            <fieldset>
+            <fieldset className={"fieldset"}>
                 {children}
                 {error && touched && <div className={"input-feedback"}>{error}</div>}
             </fieldset>

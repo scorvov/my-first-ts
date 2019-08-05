@@ -5,10 +5,11 @@ export interface IAuthState {
 }
 
 let initialState = {
-    isAuth: true
+    isAuth: false
 };
 
 export const authReducer = (state = initialState, action:any) => {
+    console.log(action.payload);
     switch (action.type) {
         case SET_USER_DATA:
             return {

@@ -33,11 +33,12 @@ export const ProductsListView: React.FC<IActionTableProps&IProductListStateProps
 
     return (
         <div className="list">
-            <Button href={"/product/create"}
-                    variant="contained"
+            <Link to={"/product/create"} className={"wr-link"}>
+            <Button variant="contained"
                     className={"add"}>
                 Добавить товар
             </Button>
+            </Link>
             <Paper className={classes.root}>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table}>

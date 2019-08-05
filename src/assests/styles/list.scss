@@ -8,22 +8,27 @@
   background: #FFFFFF;
   box-shadow: 0 20px 20px rgba(40, 40, 40, 0.05);
   border-radius: 10px;
-  text-indent:0;
-  .add {
+  text-indent: 0;
+
+  .wr-link{
     align-self: flex-end;
+    text-decoration: none;
     margin: 24px 95px 20px;
-    padding: 7px 6px 6px;
-    width: 160px;
-    height: 32px;
-    color: #FFFFFF;
-    background-color: #FFB800;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
-    font-size: 16px;
-    line-height: 19px;
+    .add {
+      padding: 7px 6px 6px;
+      min-width: 160px;
+      height: 32px;
+      color: #FFFFFF;
+      background-color: #FFB800;
+      box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      font-size: 16px;
+      line-height: 19px;
+    }
   }
 }
- .link {
+
+.link {
   margin-right: 10px;
   line-height: 16px;
   border: none;

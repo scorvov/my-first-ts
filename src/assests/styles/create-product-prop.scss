@@ -29,17 +29,19 @@
         line-height: 19px;
         margin: 0 15px;
       }
-
-      .back {
-        width: 160px;
-        height: 32px;
-        color: #FFFFFF;
-        background: #FF0000;
-        box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
-        border-radius: 4px;
-        font-size: 16px;
-        line-height: 19px;
-        margin: 0 15px;
+      .wr-link {
+        text-decoration: none;
+        .back {
+          width: 160px;
+          height: 32px;
+          color: #FFFFFF;
+          background: #FF0000;
+          box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
+          border-radius: 4px;
+          font-size: 16px;
+          line-height: 19px;
+          margin: 0 15px;
+        }
       }
     }
 
@@ -55,6 +57,11 @@
       margin: 0;
       border: 1px solid #F7F9FA;
       width: 100%;
+    }
+    .input-form {
+      Input {
+        max-width: 255px;
+      }
     }
 
     .field-array {
@@ -74,6 +81,12 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: flex-start;
+        Input {
+          margin-right: 30px;
+        }
+        select {
+          margin-right: 30px;
+        }
         .remove {
           margin: 0 20px 30px -50px;
         }

@@ -20,14 +20,14 @@
     flex-wrap: wrap;
     margin: 0 -15px;
     .image {
-      flex: 1 0;
+      flex: 1 0 350px;
       min-width: 350px;
       min-height: 190px;
       margin: 0 15px 16px;
     }
     .info {
       margin: 0 15px 16px;
-      flex: 1 0 350px;
+      flex: 1 0 540px;
       padding: 0;
       max-height: 113px;
       h5 {

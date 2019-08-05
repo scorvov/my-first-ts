@@ -14,6 +14,7 @@ import {useStyles2} from "../common/table/table-styles";
 import {IActionTableProps} from "../products-list/products-list-view";
 import {IPropsListStateProps} from "./container";
 import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 
 const headRows = [
     {label: 'Перечень свойств', name: 'name'},
@@ -26,13 +27,15 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
     const {count, perPage, currentPage, order, orderBy} = propsList;
     const classes = useStyles2();
 
+
     return (
         <div className="list">
-            <Button href={"/prop/create"}
-                    variant="contained"
-                    className={"add"}>
-                Добавить свойство
-            </Button>
+            <Link to="/prop/create" className={"wr-link"}>
+                <Button variant="contained"
+                        className={"add"}>
+                    Добавить проперти
+                </Button>
+            </Link>
             <Paper className={classes.root}>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table}>

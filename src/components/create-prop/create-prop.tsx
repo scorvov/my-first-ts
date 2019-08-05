@@ -6,6 +6,7 @@ import "../../assests/styles/create-product-prop.scss";
 import {ICreatePropValues} from "./with-formik-prop";
 import {Container} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 
 export const CreateProp: React.FC<FormikProps<ICreatePropValues>> = (props) => {
     const {
@@ -18,11 +19,12 @@ export const CreateProp: React.FC<FormikProps<ICreatePropValues>> = (props) => {
         <Container className="create-container">
             <Form className={"form"}>
                 <div className="group-buttons">
-                    <Button href="/properties"
-                            variant="contained"
-                            className={"back"}>
-                        Вернуться
-                    </Button>
+                    <Link to={"/properties"} className={"wr-link"}>
+                        <Button variant="contained"
+                                className={"back"}>
+                            Вернуться
+                        </Button>
+                    </Link>
                     <Button
                         type={"submit"}
                         variant="contained"

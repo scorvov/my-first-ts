@@ -10,6 +10,7 @@ import "../../assests/styles/create-product-prop.scss"
 import Button from "@material-ui/core/Button";
 import Add from '@material-ui/icons/AddCircleOutline';
 import Remove from '@material-ui/icons/RemoveCircleOutline';
+import {Link} from "react-router-dom";
 
 interface IUpdateProductView {
     rewriteProductProps: (props: IProp[], productProps: IProp[]) => void
@@ -27,11 +28,12 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
         <Container className="create-container">
             <Form className="form">
                 <div className="group-buttons">
-                    <Button href="/products"
-                            variant="contained"
-                            className={"back"}>
-                        Вернуться
-                    </Button>
+                    <Link to={"/products"} className={"wr-link"}>
+                        <Button variant="contained"
+                                className={"back"}>
+                            Вернуться
+                        </Button>
+                    </Link>
                     <Button
                         type={"submit"}
                         variant="contained"
