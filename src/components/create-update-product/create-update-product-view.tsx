@@ -5,7 +5,7 @@ import {Input} from "../common/input/input";
 import {IProp} from "../../store/models/iProp";
 import {IProductCreate} from "./with-formik-product";
 import {IPropsListStateProps} from "../props-list/container";
-import {Container, IconButton} from "@material-ui/core";
+import {Container, IconButton, Select} from "@material-ui/core";
 import "../../assests/styles/create-product-prop.scss"
 import Button from "@material-ui/core/Button";
 import Add from '@material-ui/icons/AddCircleOutline';
@@ -105,14 +105,14 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                                     </IconButton>
                                     <Input
                                         name={`productProps[${index}].name`}
-                                        component="select"
+                                        component={"select"}
                                         label={`Свойство ${index + 1}`}
                                     >
                                         {(productProps[index].name) ?
                                             (<option value={index} label={productProps[index].name}/>)
                                             : (<option value={-1} label={"Select"}/>)}
-                                        {propsList.props.map((option: any) =>
-                                            (!productProps.find((item: any) => item.name === option.name) ?
+                                        {propsList.props.map((option: IProp) =>
+                                            (!productProps.find((item: IProp) => item.name === option.name) ?
                                                 <option key={option.id} value={option.name} label={option.name}/>
                                                 : null))}
                                     </Input>

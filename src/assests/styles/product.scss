@@ -20,16 +20,16 @@
     flex-wrap: wrap;
     margin: 0 -15px;
     .image {
-      flex: 1 0 350px;
+      flex: 3 0;
       min-width: 350px;
       min-height: 190px;
       margin: 0 15px 16px;
     }
     .info {
       margin: 0 15px 16px;
-      flex: 1 0 540px;
-      padding: 0;
       max-height: 113px;
+      flex: 5 0 450px;
+      padding: 0;
       h5 {
         font-size: 24px;
         line-height: 28px;
@@ -40,7 +40,6 @@
         color: #828282;
         font-style: normal;
         font-weight: normal;
-        margin: 0;
       }
     }
   }
@@ -62,6 +61,9 @@
       height: 32px;
       opacity: 0.8;
       font-size: 14px;
+      appearance: none;
+      background: url(../svg/vector.svg) 55% / 3.5% no-repeat transparent;
+      background-position-x: 230px;
     }
     .data {
       flex: 1 0 auto;
