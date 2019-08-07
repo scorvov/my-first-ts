@@ -72,6 +72,7 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                     />
                     <Input
                         component="textarea"
+                        className={"textarea"}
                         cols="80"
                         rows="5"
                         label={"Описание"}

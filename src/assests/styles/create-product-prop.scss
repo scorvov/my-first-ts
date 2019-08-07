@@ -1,4 +1,5 @@
 .create-container {
+  min-width: 255px;
   min-height: 860px;
   margin: 24px 165px;
   background-color: #FFFFFF;
@@ -6,11 +7,11 @@
   border-radius: 10px;
   padding-top: 24px;
 
-  .form {
+  & > .form {
     display: flex;
     flex-direction: column;
 
-    .group-buttons {
+    & > .group-buttons {
       align-self: flex-end;
       display: flex;
       flex-direction: row;
@@ -18,7 +19,7 @@
       justify-content: space-between;
       margin: 0 -15px 20px;
 
-      .save {
+      & > .save {
         width: 160px;
         height: 32px;
         color: #FFFFFF;
@@ -29,9 +30,11 @@
         line-height: 19px;
         margin: 0 15px;
       }
-      .wr-link {
+
+      & > .wr-link {
         text-decoration: none;
-        .back {
+
+        & > .back {
           width: 160px;
           height: 32px;
           color: #FFFFFF;
@@ -58,11 +61,6 @@
       border: 1px solid #F7F9FA;
       width: 100%;
     }
-    .input-form {
-      Input {
-        max-width: 255px;
-      }
-    }
 
     .field-array {
       .header {
@@ -85,23 +83,22 @@
         select {
           margin-right: 30px;
         }
+
         .remove {
           margin: 0 20px 30px -50px;
         }
-
       }
-
-
     }
-
   }
 }
+
 @media (min-width: 600px) {
   .form {
     padding-right: 33px;
     padding-left: 33px;
   }
 }
+
 @media (min-width: 960px) {
   .form {
     padding-right: 63px;

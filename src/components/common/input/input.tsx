@@ -1,27 +1,46 @@
 import * as React from "react";
 import "../../../assests/styles/input.scss";
+import "../../../assests/svg/download.svg";
 import {Field} from "formik";
+import {useState} from "react";
 
 const Input = ({label, required, type, name, error, value, touched, ...props}: any) => {
-    console.log(props.component);
+
     let component = (props.component === "textarea") ? "textarea" : (props.component === "select") ? "select" : "input";
-    console.log(component);
+    const [innerText, setInner] = useState("visibility_off");
+    const [typeOwn, setType] = useState(type);
+    const visibilityToggle = () => {
+        if (typeOwn === "password") {
+            setInner("visibility");
+            setType("text");
+        } else {
+            setInner("visibility_off");
+            setType("password");
+        }
+    };
     return (
         <div className={`${component}-group-elements`}>
             <label className={required ? "label required" : "label"}>
                 {label}
             </label>
-            <div className={"input-container"}>
+            <div className={`${component}-container`}>
                 <Field
                     className={error && touched ? `${component} ${name} error` : `${component} ${name}`}
-                    type={type}
+                    type={typeOwn}
                     name={name}
                     {...props}
                 />
-                {name === "password" && <i className="material-icons visibility">visibility_off</i>}
-            </div>
-            {touched && <span className="input-feedback">{error}</span>}
 
+            </div>{name === "password" && <i
+            onClick={visibilityToggle}
+            className="material-icons visibility">
+            {innerText}
+        </i>}
+{/*            {name === "img" && <i
+                alt={"svg"}
+                className={"image"}
+            >none</i>}*/}
+            {touched && <span className="input-feedback">{error}</span>}
         </div>
     );
 };

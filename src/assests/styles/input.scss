@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   height: 73px;
+  width: 255px;
+  max-width: 318px;
 
   .label {
     margin-top: 16px;
@@ -21,32 +23,31 @@
     display: flex;
     align-items: center;
     border: 1px solid #E0E0E0;
-    //box-sizing: border-box;
     border-radius: 4px;
-    width: 255px;
     height: 32px;
     outline: none;
     box-shadow: none;
     .input {
       width: 100%;
-      //border: 0;
       outline: none;
       opacity: 0.8;
       padding: 8px 8px 7px;
       font-size: 14px;
       line-height: 16px;
-
     }
-    i {
+    .material-icons {
       margin: 0 8px;
       color: #aaa;
-      cursor: default;
+      cursor: pointer;
+      &:hover {
+        color: #007eff;
+      }
     }
   }
 
   .input.img {
     appearance: none;
-    background: url(../svg/vector-up.svg) 10% no-repeat transparent;
+    background: url(../svg/download.svg) 10% no-repeat transparent;
     background-position-x: 223px;
     &:hover {
       cursor: pointer;
@@ -115,17 +116,20 @@
     font-size: 14px;
     line-height: 16px;
   }
-
-  .textarea {
-    padding: 8px 8px 7px;
-    border: 1px solid #E0E0E0;
-    box-sizing: border-box;
-    border-radius: 4px;
-    line-height: 16px;
-    opacity: 0.8;
-    font-size: 14px;
-    max-width: 540px;
-    height: 112px;
+  &>.textarea-container {
+    .textarea {
+      padding: 8px 8px 7px;
+      border: 1px solid #E0E0E0;
+      box-sizing: border-box;
+      border-radius: 4px;
+      line-height: 16px;
+      opacity: 0.8;
+      font-size: 14px;
+      width: 100%;
+      max-width: 540px;
+      //max-width: 540px;
+      height: 112px;
+    }
   }
 
   .textarea:focus {

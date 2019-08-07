@@ -4,7 +4,6 @@ import {Form, FormikProps} from "formik";
 import {IPropLogin, IPropValuesLogin} from "./with-formik-login";
 import "../../assests/styles/login.scss"
 import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
 
 export interface AddProps {
     errors:{},
@@ -14,7 +13,7 @@ export interface AddProps {
 export const LoginView: React.FC<AddProps&FormikProps<IPropValuesLogin&IPropLogin>> = (props) => {
     const {errors, touched, isSubmitting} = props;
     return (
-        <Container className={"login-paper"} component="main">
+        <div className={"login-paper"}>
                 <Form className={"login-form"}>
                     <p className={"header"}>
                         Вход
@@ -44,6 +43,6 @@ export const LoginView: React.FC<AddProps&FormikProps<IPropValuesLogin&IPropLogi
                         Войти
                     </Button>
                 </Form>
-        </Container>
+        </div>
     );
 };
