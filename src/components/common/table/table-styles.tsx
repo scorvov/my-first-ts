@@ -1,24 +1,33 @@
 import {makeStyles} from "@material-ui/core";
 
-
-export const useStyles1 = makeStyles(theme => ({
-    root: {
-        flexShrink: 0,
-        color: theme.palette.text.secondary,
-        marginLeft: theme.spacing(2.5),
-    },
-}));
-
-export const useStyles2 = makeStyles(theme => ({
+export const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
         minHeight: 750,
-        marginTop: theme.spacing(3),
+        fontFamily: "inherit"
     },
     table: {
-        minWidth: 500,
+        minWidth: 500
     },
     tableWrapper: {
-        overflowX: 'auto',
+        overflowX: 'auto'
     },
+    name: {
+        flexDirection: "row-reverse",
+        paddingLeft: "70px"
+    },
+    headDefault: {
+        flexDirection: "row-reverse",
+        paddingLeft: "0px"
+    },
+    cellName: {
+        paddingLeft: "95px"
+    },
+    cellDefault: {
+        paddingLeft: "25px"
+    },
+    pagination: {
+        flexShrink: 0,
+        color: theme.palette.text.secondary
+    }
 }));

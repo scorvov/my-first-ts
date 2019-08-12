@@ -1,8 +1,7 @@
-//@button-border = #0258FF;
-
+@import 'app';
 
   .tabs {
-    background: #E5E5E5;
+    background: $background-app;
     .MuiTab-root {
       color: #000000;
       width: 255px;
@@ -10,13 +9,9 @@
       font-size: 22px;
     }
     .Mui-selected {
-      background: linear-gradient(180deg, #0258FF 0%, rgba(2, 88, 255, 0) 100%);
-      color: #0258FF;
+      background: linear-gradient(180deg, $color-blue 0%, rgba(2, 88, 255, 0) 100%);
+      color: $color-blue;
       opacity: 0.1;
-    }
-    .PrivateTabIndicator-colorSecondary-68 {
-      background-color: darkblue;
-      height: 3px;
     }
     span {
       top: 0;

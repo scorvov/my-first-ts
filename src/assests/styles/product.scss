@@ -22,12 +22,12 @@
     .image {
       flex: 3 0;
       min-width: 350px;
+      max-width: 500px;
       min-height: 190px;
       margin: 0 15px 16px;
     }
     .info {
       margin: 0 15px 16px;
-      max-height: 113px;
       flex: 5 0 450px;
       padding: 0;
       h5 {

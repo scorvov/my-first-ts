@@ -8,7 +8,7 @@ import {
 
 import {TablePaginationActions} from "../common/table/table-pagination-actions";
 import {EnhancedTableHead, Order} from "../common/table/table-head-enhanced";
-import {useStyles2} from "../common/table/table-styles";
+import {useStyles} from "../common/table/table-styles";
 import {IProductListStateProps} from "./container";
 import Button from "@material-ui/core/Button";
 
@@ -29,18 +29,18 @@ export const ProductsListView: React.FC<IActionTableProps&IProductListStateProps
 
     const {handleChangePage, handleChangePerPage, handleChangeSort, productsList, onDelete} = props;
     const {count, perPage, currentPage, order, orderBy} = productsList;
-    const classes = useStyles2();
+    const classes = useStyles();
 
     return (
         <div className="list">
-            <Link to={"/product/create"} className={"wr-link"}>
-            <Button variant="contained"
-                    className={"add"}>
-                Добавить товар
-            </Button>
-            </Link>
             <Paper className={classes.root}>
                 <div className={classes.tableWrapper}>
+                    <Link to={"/product/create"} className={"wr-link"}>
+                        <Button variant="contained"
+                                className={"add"}>
+                            Добавить товар
+                        </Button>
+                    </Link>
                     <Table className={classes.table}>
                         <EnhancedTableHead
                             order={order}
@@ -54,13 +54,13 @@ export const ProductsListView: React.FC<IActionTableProps&IProductListStateProps
                                 const date = new Date(dateUp).toLocaleDateString();
                                 return (
                                     <TableRow key={id}>
-                                        <TableCell>
+                                        <TableCell className={classes.cellName}>
                                             <Link to={`/product/${id}`}
                                                   className="link">{name}
                                             </Link>
                                         </TableCell>
-                                        <TableCell>{cost && cost.toLocaleString()} $</TableCell>
-                                        <TableCell>{date} </TableCell>
+                                        <TableCell className={classes.cellDefault}>{cost && cost.toLocaleString()} $</TableCell>
+                                        <TableCell className={classes.cellDefault}>{date}</TableCell>
                                         <TableCell>
                                             <Link to={`/product/update/${id}`}
                                                   className="link">Ред

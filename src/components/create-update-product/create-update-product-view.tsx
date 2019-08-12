@@ -5,7 +5,7 @@ import {Input} from "../common/input/input";
 import {IProp} from "../../store/models/iProp";
 import {IProductCreate} from "./with-formik-product";
 import {IPropsListStateProps} from "../props-list/container";
-import {Container, IconButton, Select} from "@material-ui/core";
+import {Container, IconButton} from "@material-ui/core";
 import "../../assests/styles/create-product-prop.scss"
 import Button from "@material-ui/core/Button";
 import Add from '@material-ui/icons/AddCircleOutline';

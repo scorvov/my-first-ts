@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import {EnhancedTableHead} from "../common/table/table-head-enhanced";
 import {TablePaginationActions} from "../common/table/table-pagination-actions";
-import {useStyles2} from "../common/table/table-styles";
+import {useStyles} from "../common/table/table-styles";
 import {IActionTableProps} from "../products-list/products-list-view";
 import {IPropsListStateProps} from "./container";
 import Button from "@material-ui/core/Button";
@@ -25,19 +25,19 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
 
     const {handleChangePage, handleChangePerPage, handleChangeSort, propsList, onDelete} = props;
     const {count, perPage, currentPage, order, orderBy} = propsList;
-    const classes = useStyles2();
+    const classes = useStyles();
 
 
     return (
         <div className="list">
-            <Link to="/prop/create" className={"wr-link"}>
-                <Button variant="contained"
-                        className={"add"}>
-                    Добавить проперти
-                </Button>
-            </Link>
             <Paper className={classes.root}>
                 <div className={classes.tableWrapper}>
+                    <Link to="/prop/create" className={"wr-link"}>
+                        <Button variant="contained"
+                                className={"add"}>
+                            Добавить свойство
+                        </Button>
+                    </Link>
                     <Table className={classes.table}>
                         <EnhancedTableHead
                             order={order}
@@ -50,8 +50,8 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
                                 const {id, name, type} = prop;
                                 return (
                                     <TableRow key={id}>
-                                        <TableCell>{name}</TableCell>
-                                        <TableCell>{type}</TableCell>
+                                        <TableCell className={classes.cellName}>{name}</TableCell>
+                                        <TableCell className={classes.cellDefault}>{type}</TableCell>
                                         <TableCell>
                                             <button onClick={() => onDelete(id)} className="link">
                                                 Удалить

@@ -1,5 +1,7 @@
 import * as React from "react";
 import {TableCell, TableHead, TableRow, TableSortLabel} from "@material-ui/core";
+import SortLabel from '@material-ui/icons/KeyboardArrowDown';
+import {useStyles} from "./table-styles";
 
 export type Order = 'asc' | 'desc';
 
@@ -12,6 +14,7 @@ interface EnhancedTableProps {
 
 export const EnhancedTableHead = (props: EnhancedTableProps) => {
     const {order, orderBy, handleChangeSort, headRows} = props;
+    const classes = useStyles();
 
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: string) => {
         const isDesc = orderBy === property && order === "desc";
@@ -22,13 +25,21 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
     };
     return (
         <TableHead>
-            <TableRow>
-                {headRows.map(row => (
+            <TableRow >
+                {headRows.map(row => {
+                    let classHead = ((row.name === "name") ?
+                        // @ts-ignore
+                        classes[`${row.name}`] :
+                        // @ts-ignore
+                        (row.name !== "control") ? classes["headDefault"] : "");
+                    return (
                     <TableCell
+                        className={classHead}
                         key={row.name}
                         sortDirection={orderBy === row.name ? order : false}
                     > {(row.name === 'control') ? row.label
                         : <TableSortLabel
+                            IconComponent={SortLabel}
                             active={orderBy === row.name}
                             direction={order}
                             onClick={createSortHandler(row.name)}
@@ -36,7 +47,7 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
                             {row.label}
                         </TableSortLabel>}
                     </TableCell>
-                ))}
+                )})}
             </TableRow>
         </TableHead>
     );

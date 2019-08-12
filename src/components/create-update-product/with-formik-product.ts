@@ -33,7 +33,6 @@ export const EnhancedCreateUpdateProductView = withFormik<any & ISelectProduct &
             .integer("Стоимость должна быть целым числом")
             .required("Требуется ввести стоимость"),
         img: Yup.string()
-            .min(2, "Ссылка файла изображения должна быть не менее 2 символов")
             .required("Требуется указать ссылку файла"),
         info: Yup.string()
             .max(1000, "Описание не должно превышать 1000 символов"),

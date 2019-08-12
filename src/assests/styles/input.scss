@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 73px;
-  width: 255px;
+
   max-width: 318px;
 
   .label {
@@ -24,6 +24,7 @@
     align-items: center;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
+    width: 255px;
     height: 32px;
     outline: none;
     box-shadow: none;
@@ -43,14 +44,11 @@
         color: #007eff;
       }
     }
-  }
-
-  .input.img {
-    appearance: none;
-    background: url(../svg/download.svg) 10% no-repeat transparent;
-    background-position-x: 223px;
-    &:hover {
-      cursor: pointer;
+    .download {
+      //cursor: pointer;
+      background: transparent;
+      margin: 0 8px;
+      color: #007eff;
     }
   }
 

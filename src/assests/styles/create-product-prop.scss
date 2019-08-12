@@ -71,6 +71,7 @@
 
         .add-button {
           margin-left: 36px;
+          background-color: transparent;
         }
       }
 
@@ -85,6 +86,7 @@
         }
 
         .remove {
+          background-color: transparent;
           margin: 0 20px 30px -50px;
         }
       }
@@ -92,7 +94,7 @@
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 320px) {
   .form {
     padding-right: 33px;
     padding-left: 33px;

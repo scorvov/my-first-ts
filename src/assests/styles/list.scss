@@ -9,11 +9,10 @@
   box-shadow: 0 20px 20px rgba(40, 40, 40, 0.05);
   border-radius: 10px;
   text-indent: 0;
-
   .wr-link{
-    align-self: flex-end;
+    float: right;
     text-decoration: none;
-    margin: 24px 95px 20px;
+    margin: 24px 7% 20px;
     .add {
       padding: 7px 6px 6px;
       min-width: 160px;
@@ -26,17 +25,18 @@
       line-height: 19px;
     }
   }
+  .link {
+    margin-right: 30px;
+    line-height: 16px;
+    border: none;
+    background: none;
+    text-decoration-line: underline;
+    color: #0258FF;
+    opacity: 0.8;
+    cursor: pointer;
+    outline: none;
+  }
 }
 
-.link {
-  margin-right: 10px;
-  line-height: 16px;
-  border: none;
-  background: none;
-  text-decoration-line: underline;
-  color: #0258FF;
-  opacity: 0.8;
-  cursor: pointer;
-  outline: none;
-}
+
 
