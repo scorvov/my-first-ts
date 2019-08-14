@@ -2,7 +2,6 @@ import React from 'react';
 import {Input} from "../common/input/input";
 import {Form, FormikProps} from "formik";
 import {IPropLogin, IPropValuesLogin} from "./with-formik-login";
-import "../../assests/styles/login.scss"
 import Button from "@material-ui/core/Button";
 
 export interface AddProps {

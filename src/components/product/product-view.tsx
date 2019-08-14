@@ -2,8 +2,7 @@ import * as React from "react";
 import {IProp} from "../../store/models/iProp";
 import {Link} from "react-router-dom";
 import {ISelectProduct} from "./container";
-import "../../assests/styles/product.scss"
-import {Container, CardMedia} from "@material-ui/core";
+import {CardMedia} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -31,7 +30,7 @@ export const ProductView: React.FC<ISelectProduct> = ({selectProduct}) => {
         }
     };
     return (
-        <Container className={"product"}>
+        <div className={"product"}>
             <div className={"wrapper"}>
                 <Link to="/products" className={"link"}>
                     Вернуться
@@ -51,10 +50,10 @@ export const ProductView: React.FC<ISelectProduct> = ({selectProduct}) => {
                     </p>
                     <div className={"cost"}>
                         <p className={"data"}>{cost.toLocaleString()} $</p>
-                        <p className={"data"}><Button variant="contained">Беру!!!</Button></p>
+                        <p className={"data"}><Button variant="contained" className={"btn"}>Беру!!!</Button></p>
                     </div>
                 </CardContent>
             </div>
-        </Container>
+        </div>
     );
 };

@@ -5,8 +5,7 @@ import {Input} from "../common/input/input";
 import {IProp} from "../../store/models/iProp";
 import {IProductCreate} from "./with-formik-product";
 import {IPropsListStateProps} from "../props-list/container";
-import {Container, IconButton} from "@material-ui/core";
-import "../../assests/styles/create-product-prop.scss"
+import {IconButton} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Add from '@material-ui/icons/AddCircleOutline';
 import Remove from '@material-ui/icons/RemoveCircleOutline';
@@ -25,7 +24,7 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
             props.values.cost = (+props.values.cost.replace(/\s/g, '')).toLocaleString();
         }*/
     return (
-        <Container className="create-container">
+        <div className="create-container">
             <Form className="form">
                 <div className="group-buttons">
                     <Link to={"/products"} className={"wr-link"}>
@@ -129,5 +128,5 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                     )}/>
                 </div>
             </Form>
-        </Container>)
+        </div>)
 };

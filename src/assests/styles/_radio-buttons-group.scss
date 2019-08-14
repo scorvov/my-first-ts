@@ -1,16 +1,16 @@
+@import '_myVariables';
 .radio-buttons-group {
-  margin-top: 16px;
   font-size: 14px;
   line-height: 16px;
 
-  &>.requred:after {
+  .requred:after {
     content: "*";
     color: red;
   }
 
-  &>.fieldset {
+  .fieldset {
     .wrapper-radio {
-      display: flex;
+      @extend %flex;
       align-items: center;
       margin-top: 8px;
 

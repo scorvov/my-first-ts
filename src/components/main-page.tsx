@@ -1,10 +1,9 @@
 import * as React from "react";
 import {Route, Switch} from "react-router";
 import {ProductsListContainer} from "./products-list/container";
-import "../assests/styles/main-page.scss";
 import {PropsListContainer} from "./props-list/container";
 import {withRouteRedirect} from "../hoc/withAuthRedirect";
-import {Container, AppBar} from "@material-ui/core";
+import {AppBar} from "@material-ui/core";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
@@ -18,7 +17,7 @@ const MainPage: React.FC<any> = (props) => {
     }
     return (
         <>
-            <Container>
+            <div className={"nav"}>
                 <AppBar className={"app-bar"} style={{boxShadow:"none" }} position="static">
                     <Tabs className="tabs"
                           value={value}
@@ -34,13 +33,13 @@ const MainPage: React.FC<any> = (props) => {
                         />
                     </Tabs>
                 </AppBar>
-            </Container>
-            <Container className={"content"}>
+            </div>
+            <div className={"content"}>
                 <Switch>
                     <Route exact path="/products" component={ProductsListContainer}/>
                     <Route exact path="/properties" component={PropsListContainer}/>
                 </Switch>
-            </Container>
+            </div>
         </>
     );
 };

@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
-$background-app: #E5E5E5;
-$font-app: Roboto, sans-serif;
-$color-blue: #0258FF;
-
+@import '_myVariables';
+@import '_main-page';
+@import '_list';
+@import '_product';
+@import '_login';
+@import '_create-product-prop';
+@import '_radio-buttons-group';
 
 body {
   background: $background-app;
   min-width: 255px;
 }
 * {
-  font-family: $font-app;
+  font-family: $font;
   text-transform: none;
   border: 0;
   padding: 0;

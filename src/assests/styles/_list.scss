@@ -1,0 +1,72 @@
+@import '_myVariables';
+
+.list {
+  @extend %container;
+  min-height: 754px;
+  overflow-x: auto;
+
+  .wr-link {
+    align-self: flex-end;
+    text-decoration: none;
+    margin: 24px 95px 20px;
+
+    .add {
+      @extend %button;
+      background-color: $yellow;
+    }
+  }
+  .name {
+    flex-direction: row-reverse;
+    padding-left: 70px;
+  }
+  .head-default {
+    flex-direction: row-reverse;
+    padding-left: 0;
+  }
+  .cell-name {
+    padding-left: 95px;
+  }
+  .cell-default {
+    padding-left: 25px;
+  }
+  .pagination {
+    flex-shrink: 0;
+    padding-right: 95px;
+    color: $grey;
+  }
+  @media(max-width: 600px) {
+    .wr-link {
+      margin: 24px 15px 20px;
+    }
+    .name {
+      padding-left: 0;
+      padding-right: 5px;
+    }
+    .cell-name {
+      padding-left: 25px;
+      padding-right: 5px;
+    }
+    .head-default {
+      flex-direction: row-reverse;
+      padding-left: 0;
+      padding-right: 5px;
+    }
+    .cell-default {
+      padding-left: 25px;
+      padding-right: 0;
+    }
+  }
+}
+
+.link {
+  @extend %link;
+}
+.delete {
+  margin-left: 66px;
+  @media(max-width: 600px) {
+    margin-left: 5px;
+  }
+}
+
+
+

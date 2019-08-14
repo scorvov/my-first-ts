@@ -1,6 +1,6 @@
 import * as React from "react";
 import {ErrorIndicator} from "../common/error-indicator";
-import "../../assests/styles/list.scss"
+import "../../assests/styles/_list.scss"
 import {PropsListView} from "./props-list-view";
 import {Order} from "../common/table/table-head-enhanced";
 import {TPropsListStateProps} from "./container";

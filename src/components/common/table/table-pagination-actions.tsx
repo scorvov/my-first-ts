@@ -5,7 +5,6 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import {useStyles} from "./table-styles";
 
 interface TablePaginationActionsProps {
     count: number;
@@ -15,7 +14,6 @@ interface TablePaginationActionsProps {
 }
 
 export function TablePaginationActions(props: TablePaginationActionsProps) {
-    const classes = useStyles();
     const theme = useTheme();
     const {count, page, rowsPerPage, onChangePage} = props;
 
@@ -36,7 +34,7 @@ export function TablePaginationActions(props: TablePaginationActionsProps) {
     }
 
     return (
-        <div className={classes.pagination}>
+        <div className={"pagination"}>
             <IconButton
                 onClick={handleFirstPageButtonClick}
                 disabled={page === 0}

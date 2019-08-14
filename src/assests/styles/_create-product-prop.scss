@@ -1,0 +1,94 @@
+@import '_myVariables';
+
+.create-container {
+  @extend %container;
+  min-height: 860px;
+  margin-top: 24px;
+  padding-top: 24px;
+
+  .form {
+    @extend %flex;
+    flex-direction: column;
+
+    .group-buttons {
+      @extend %flex;
+      align-self: flex-end;
+      margin: 0 -15px 20px;
+
+      .save {
+        @extend %button;
+        background: $green;
+        margin: 0 15px;
+      }
+
+      .wr-link {
+        text-decoration: none;
+
+        .back {
+          @extend %button;
+          background: #FF0000;
+          margin: 0 15px;
+        }
+      }
+    }
+
+    .header {
+      font-weight: bold;
+      opacity: 0.8;
+      margin: 21px 0 8px;
+    }
+
+    .line {
+      @extend %line;
+    }
+    .radio-buttons-group {
+      margin-top: 16px;
+    }
+    .textarea-group-elements {
+      margin-bottom: 12px;
+    }
+
+    .field-array {
+      .header {
+        margin: 12px 0;
+        font-size: 14px;
+        opacity: 0.8;
+
+        .add-button {
+          margin-left: 36px;
+          background-color: transparent;
+        }
+      }
+
+      .create-props {
+        @extend %flex;
+
+        select {
+          margin-right: 30px;
+        }
+
+        .remove {
+          background-color: transparent;
+          margin: 0 20px 30px -50px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 0) {
+  .form {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+}
+@media (min-width: 960px) {
+  .form {
+    padding-right: 95px;
+    padding-left: 95px;
+  }
+}
+
+
+
+

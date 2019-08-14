@@ -13,7 +13,7 @@ import {isAuth} from "../../store/actions/auth-actions";
 class App extends React.Component<any> {
     componentDidMount(): void {
         this.props.isAuth();
-        this.props.history.push('products');
+        // this.props.history.push('products');
     }
 
     render() {

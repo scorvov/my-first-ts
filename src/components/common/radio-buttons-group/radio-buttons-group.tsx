@@ -1,6 +1,5 @@
 import * as React from "react";
 import {Radio} from "@material-ui/core";
-import "../../../assests/styles/radio-buttons-group.scss"
 
 export const RadioButton = ({
     field: {name, value, onChange, onBlur},

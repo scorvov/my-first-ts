@@ -1,0 +1,65 @@
+$background-app: #E5E5E5;
+$font: Roboto, sans-serif;
+$blue: #0258FF;
+$width-button: 255px;
+$background-nav: linear-gradient(180deg, $blue 0%, rgba(2, 88, 255, 0) 100%);
+$yellow: #FFB800;
+$white: #FFFFFF;
+$grey: #828282;
+$green: #34C15C;
+$icon-dropdown: url(../svg/vector.svg);
+
+%container {
+  @extend %flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1110px;
+  min-width: 350px;
+  background-color: $white;
+  box-shadow: 0 20px 20px rgba(40, 40, 40, 0.05);
+  border-radius: 10px;
+}
+
+%flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+%button {
+  padding: 7px 6px 6px;
+  min-width: 160px;
+  height: 32px;
+  color: #FFFFFF;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+%link {
+  line-height: 16px;
+  border: none;
+  background: none;
+  text-decoration-line: underline;
+  color: $blue;
+  opacity: 0.8;
+  cursor: pointer;
+  outline: none;
+}
+
+%line {
+    border: 1px solid #F7F9FA;
+    width: 100%;
+}
+
+%select {
+  padding: 8px 8px 7px;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  line-height: 16px;
+  width: 255px;
+  height: 32px;
+  opacity: 0.8;
+  font-size: 14px;
+}

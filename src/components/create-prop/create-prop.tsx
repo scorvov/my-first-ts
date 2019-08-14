@@ -2,9 +2,7 @@ import * as React from "react";
 import {Input} from "../common/input/input";
 import {Field, Form, FormikProps} from "formik";
 import {RadioButton, RadioButtonsGroup} from "../common/radio-buttons-group/radio-buttons-group";
-import "../../assests/styles/create-product-prop.scss";
 import {ICreatePropValues} from "./with-formik-prop";
-import {Container} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 
@@ -16,7 +14,7 @@ export const CreateProp: React.FC<FormikProps<ICreatePropValues>> = (props) => {
         values
     } = props;
     return (
-        <Container className="create-container">
+        <div className="create-container">
             <Form className={"form"}>
                 <div className="group-buttons">
                     <Link to={"/properties"} className={"wr-link"}>
@@ -73,6 +71,6 @@ export const CreateProp: React.FC<FormikProps<ICreatePropValues>> = (props) => {
                     </RadioButtonsGroup>
                 </div>
             </Form>
-        </Container>
+        </div>
     );
 };

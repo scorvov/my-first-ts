@@ -6,11 +6,10 @@ import {
     TableBody,
     TableCell,
     TablePagination,
-    TableFooter, Paper
+    TableFooter
 } from "@material-ui/core";
 import {EnhancedTableHead} from "../common/table/table-head-enhanced";
 import {TablePaginationActions} from "../common/table/table-pagination-actions";
-import {useStyles} from "../common/table/table-styles";
 import {IActionTableProps} from "../products-list/products-list-view";
 import {IPropsListStateProps} from "./container";
 import Button from "@material-ui/core/Button";
@@ -25,63 +24,57 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
 
     const {handleChangePage, handleChangePerPage, handleChangeSort, propsList, onDelete} = props;
     const {count, perPage, currentPage, order, orderBy} = propsList;
-    const classes = useStyles();
-
 
     return (
         <div className="list">
-            <Paper className={classes.root}>
-                <div className={classes.tableWrapper}>
-                    <Link to="/prop/create" className={"wr-link"}>
-                        <Button variant="contained"
-                                className={"add"}>
-                            Добавить свойство
-                        </Button>
-                    </Link>
-                    <Table className={classes.table}>
-                        <EnhancedTableHead
-                            order={order}
-                            orderBy={orderBy}
-                            handleChangeSort={handleChangeSort}
-                            headRows={headRows}
-                        />
-                        <TableBody>
-                            {propsList.props.map((prop: IProp) => {
-                                const {id, name, type} = prop;
-                                return (
-                                    <TableRow key={id}>
-                                        <TableCell className={classes.cellName}>{name}</TableCell>
-                                        <TableCell className={classes.cellDefault}>{type}</TableCell>
-                                        <TableCell>
-                                            <button onClick={() => onDelete(id)} className="link">
-                                                Удалить
-                                            </button>
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                        <TableFooter>
-                            <TableRow>
-                                <TablePagination
-                                    rowsPerPageOptions={[5, 10, 25, 100]}
-                                    colSpan={3}
-                                    count={count}
-                                    rowsPerPage={perPage}
-                                    page={currentPage}
-                                    SelectProps={{
-                                        inputProps: {'aria-label': 'Rows per page'},
-                                        native: true,
-                                    }}
-                                    onChangePage={handleChangePage}
-                                    onChangeRowsPerPage={(e) => handleChangePerPage(e)}
-                                    ActionsComponent={TablePaginationActions}
-                                />
+            <Link to="/prop/create" className={"wr-link"}>
+                <Button variant="contained"
+                        className={"add"}>
+                    Добавить свойство
+                </Button>
+            </Link>
+            <Table>
+                <EnhancedTableHead
+                    order={order}
+                    orderBy={orderBy}
+                    handleChangeSort={handleChangeSort}
+                    headRows={headRows}
+                />
+                <TableBody>
+                    {propsList.props.map((prop: IProp) => {
+                        const {id, name, type} = prop;
+                        return (
+                            <TableRow key={id}>
+                                <TableCell className={"cell-name"}>{name}</TableCell>
+                                <TableCell className={"cell-default"}>{type}</TableCell>
+                                <TableCell>
+                                    <button onClick={() => onDelete(id)} className="link delete">
+                                        Удалить
+                                    </button>
+                                </TableCell>
                             </TableRow>
-                        </TableFooter>
-                    </Table>
-                </div>
-            </Paper>
+                        )
+                    })}
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 25, 100]}
+                            colSpan={3}
+                            count={count}
+                            rowsPerPage={perPage}
+                            page={currentPage}
+                            SelectProps={{
+                                inputProps: {'aria-label': 'Rows per page'},
+                                native: true,
+                            }}
+                            onChangePage={handleChangePage}
+                            onChangeRowsPerPage={(e) => handleChangePerPage(e)}
+                            ActionsComponent={TablePaginationActions}
+                        />
+                    </TableRow>
+                </TableFooter>
+            </Table>
         </div>
 
     );
