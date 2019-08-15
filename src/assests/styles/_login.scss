@@ -3,7 +3,7 @@
 .login-paper {
   @extend %container;
   margin-top: 282px;
-  max-width: 350px;
+  width: 350px;
   height: 336px;
 
   .login-form {
@@ -17,6 +17,11 @@
       font-size: 22px;
       line-height: 26px;
     }
+
+    .input-group-elements {
+      width: 315px;
+    }
+
     .login-button {
       @extend %button;
       background-color: $yellow;

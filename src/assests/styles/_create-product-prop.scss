@@ -41,11 +41,15 @@
     .line {
       @extend %line;
     }
+
     .radio-buttons-group {
       margin-top: 16px;
     }
     .textarea-group-elements {
       margin-bottom: 12px;
+    }
+    .input-group-elements {
+      width: 255px;
     }
 
     .field-array {
@@ -57,6 +61,7 @@
         .add-button {
           margin-left: 36px;
           background-color: transparent;
+          color: $blue;
         }
       }
 
@@ -70,6 +75,7 @@
         .remove {
           background-color: transparent;
           margin: 0 20px 30px -50px;
+          color: $blue;
         }
       }
     }

@@ -62,9 +62,6 @@
     }
     .select {
       @extend %select;
-      appearance: none;
-      background: $icon-dropdown 55% / 3.5% no-repeat transparent;
-      background-position-x: 230px;
     }
 
     .data {

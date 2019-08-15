@@ -29,7 +29,7 @@ export const RadioButton = ({
 export const RadioButtonsGroup = ({error, touched, children, label}: any) => {
     return (
         <div className={"radio-buttons-group"}>
-            <label className={"label requred"}>
+            <label className={"label required"}>
                 {label}
             </label>
             <fieldset className={"fieldset"}>

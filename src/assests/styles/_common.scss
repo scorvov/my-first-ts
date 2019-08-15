@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import '_myVariables';
+
+.label {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.required:after {
+  content: "*";
+  color: red;
+}
+
+.input-feedback {
+  color: red;
+  font-size: 12px;
+}
+
+.input-group-elements {
+  @extend %group-elements;
+
+  .input-container {
+    display: flex;
+    @extend %input;
+    padding: 0;
+    .input {
+      width: 100%;
+      outline: none;
+      padding: $padding-input;
+    }
+
+    .visibility {
+      color: $grey;
+      cursor: pointer;
+      margin: 4px 4px 7px;
+      &:hover {
+        color: $blue;
+      }
+    }
+    .download {
+      cursor: pointer;
+      background: transparent;
+      margin-right: 8px;
+      color: $blue;
+    }
+  }
+}
+
+.select-group-elements {
+  @extend %group-elements;
+
+  .select {
+    @extend %select;
+  }
+}
+
+.textarea-group-elements {
+  display: flex;
+  flex-direction: column;
+
+  .textarea-container {
+    .textarea {
+      @extend %input;
+      width: 100%;
+      max-width: 540px;
+      height: 112px;
+    }
+  }
+}
+
+.radio-buttons-group {
+  font-size: 14px;
+  line-height: 16px;
+
+  .fieldset {
+    .wrapper-radio {
+      @extend %flex;
+      align-items: center;
+      margin-top: 8px;
+
+      .radio-button {
+        margin-right: 8px;
+        padding: 0;
+      }
+      label {
+        padding-top: 2px;
+      }
+    }
+  }
+}
+
+/*.select,input,textarea:focus {
+  border-color: #007eff;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
+  outline: none;
+}*/
+
+
+
+
+

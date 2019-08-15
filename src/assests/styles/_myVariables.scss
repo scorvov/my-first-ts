@@ -8,6 +8,7 @@ $white: #FFFFFF;
 $grey: #828282;
 $green: #34C15C;
 $icon-dropdown: url(../svg/vector.svg);
+$padding-input: 8px 8px 7px;
 
 %container {
   @extend %flex;
@@ -25,11 +26,12 @@ $icon-dropdown: url(../svg/vector.svg);
   display: flex;
   flex-wrap: wrap;
 }
+
 %button {
   padding: 7px 6px 6px;
   min-width: 160px;
   height: 32px;
-  color: #FFFFFF;
+  color: $white;
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
   font-size: 16px;
@@ -52,14 +54,31 @@ $icon-dropdown: url(../svg/vector.svg);
     width: 100%;
 }
 
-%select {
-  padding: 8px 8px 7px;
+%group-elements {
+  display: flex;
+  flex-direction: column;
+  height: 73px;
+}
+%input {
+  padding: $padding-input;
   border: 1px solid #E0E0E0;
   box-sizing: border-box;
   border-radius: 4px;
   line-height: 16px;
-  width: 255px;
   height: 32px;
   opacity: 0.8;
   font-size: 14px;
+  outline: none;
+  appearance: none;
+}
+
+%select {
+  @extend %input;
+  width: 255px;
+  background: $icon-dropdown 3.5% no-repeat transparent;
+  background-position-x: 230px;
+  &:hover {
+    cursor: pointer;
+  }
+
 }

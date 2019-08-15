@@ -15,7 +15,7 @@ export const MyEnhancedLoginView = withFormik<any&IPropValuesLogin & IPropLogin,
         login: Yup.string()
             .min(2, "Логин должен быть не менее 2 символов")
             .max(30, "Слишком длинный логин")
-            .required("Требуется ввести название"),
+            .required("Требуется ввести логин"),
         password: Yup.string()
             .min(8, "Пароль должен быть не менее 8 символов")
             .required("Требуется ввести пароль")

@@ -1,5 +1,4 @@
 import * as React from "react";
-import "../../../assests/styles/input.scss";
 import download from "../../../assests/svg/download.svg";
 import {Field} from "formik";
 import {useState} from "react";
@@ -38,7 +37,7 @@ const Input = ({label, required, type, name, error, value, touched, ...props}: a
                 {name === "img" &&
                 <img src={download}
                      alt={"download"}
-                     className={"download"}></img>}
+                     className={"download"}/>}
             </div>
 
             {touched && <span className="input-feedback">{error}</span>}

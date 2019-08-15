@@ -72,8 +72,6 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                     <Input
                         component="textarea"
                         className={"textarea"}
-                        cols="80"
-                        rows="5"
                         label={"Описание"}
                         placeholder={"info"}
                         name="info"
@@ -85,7 +83,7 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                                 <IconButton
                                     size={"small"}
                                     className={"add-button"}
-                                    style={{color: '#0258FF'}}
+                                    // style={{color: '#0258FF'}}
                                     onClick={() => arrayHelpers.push({
                                         id: Math.floor(Math.random() * 1000),
                                         name: '',
@@ -99,7 +97,7 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                                     <IconButton
                                         className={"remove"}
                                         size={"small"}
-                                        style={{color: '#0258FF'}}
+                                        // style={{color: '#0258FF'}}
                                         onClick={() => arrayHelpers.remove(index)}>
                                         <Remove/>
                                     </IconButton>
