@@ -6,14 +6,13 @@ import {CreatePropContainer} from "../create-prop/container";
 import {ProductContainer} from "../product/container";
 import {LoginContainer} from "../login/container";
 import {Toaster} from "../common/notistack/toaster";
-import "./../../assests/styles/app.scss";
 import {connect} from "react-redux";
 import {isAuth} from "../../store/actions/auth-actions";
+import "./../../assests/styles/app.scss";
 
 class App extends React.Component<any> {
     componentDidMount(): void {
         this.props.isAuth();
-        // this.props.history.push('products');
     }
 
     render() {
@@ -36,10 +35,7 @@ class App extends React.Component<any> {
                         path="/product/:id"
                         component={ProductContainer}/>
                     <Route
-                        path="/products"
-                        component={MainPage}/>
-                    <Route
-                        path="/properties"
+                        path="/"
                         component={MainPage}/>
                 </Switch>
                 <Toaster/>

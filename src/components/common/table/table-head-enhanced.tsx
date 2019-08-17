@@ -26,8 +26,8 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
             <TableRow>
                 {headRows.map(row => {
                     let classHead = ((row.name === "name") ?
-                        `${row.name}` :
-                        (row.name !== "control") ? "head-default" : "");
+                        `${row.name} head` :
+                        (row.name !== "control") ? "head-default head" : "control head");
                     return (
                     <TableCell
                         className={classHead}

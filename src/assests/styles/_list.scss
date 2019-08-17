@@ -2,18 +2,24 @@
 
 .list {
   @extend %container;
-  min-height: 754px;
+  min-height: $min-height-container;
   overflow-x: auto;
 
   .wr-link {
     align-self: flex-end;
     text-decoration: none;
-    margin: 24px 95px 20px;
+    margin: 24px $margin-container-max 20px;
 
     .add {
       @extend %button;
       background-color: $yellow;
     }
+  }
+  .head {
+    font-size: $text-head-size;
+  }
+  .cell {
+    font-size: $text-input-size;
   }
   .name {
     flex-direction: row-reverse;
@@ -24,19 +30,22 @@
     padding-left: 0;
   }
   .cell-name {
-    padding-left: 95px;
+    padding-left: $margin-container-max;
   }
   .cell-default {
     padding-left: 25px;
   }
   .pagination {
     flex-shrink: 0;
-    padding-right: 95px;
+    padding-right: $margin-container-max;
     color: $grey;
   }
   @media(max-width: 600px) {
     .wr-link {
       margin: 24px 15px 20px;
+    }
+    .head, .cell {
+      font-size: 0.75rem;
     }
     .name {
       padding-left: 0;

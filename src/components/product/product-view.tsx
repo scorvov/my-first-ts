@@ -40,7 +40,7 @@ export const ProductView: React.FC<ISelectProduct> = ({selectProduct}) => {
                     <CardMedia className={"image"} image={img} title="auto"/>
                     <CardContent className={"info"}>
                         <h5>{name}</h5>
-                        <p>{info}</p>
+                        {info !== "" ? <p>{info}</p> : null}
                     </CardContent>
                 </Card>
                 <CardContent className={"details"}>

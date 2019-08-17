@@ -1,22 +1,31 @@
 $background-app: #E5E5E5;
 $font: Roboto, sans-serif;
 $blue: #0258FF;
-$width-button: 255px;
+$width-input: 255px;
 $background-nav: linear-gradient(180deg, $blue 0%, rgba(2, 88, 255, 0) 100%);
 $yellow: #FFB800;
 $white: #FFFFFF;
 $grey: #828282;
 $green: #34C15C;
+$red: #FF0000;
 $icon-dropdown: url(../svg/vector.svg);
 $padding-input: 8px 8px 7px;
+$margin-container-max: 95px;
+$margin-container-middle: 50px;
+$margin-container-min: 15px;
+$max-width-container: 1110px;
+$min-width-container: 350px;
+$min-height-container: 754px;
+$text-input-size: 14px;
+$text-head-size: 16px;
 
 %container {
   @extend %flex;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1110px;
-  min-width: 350px;
+  max-width: $max-width-container;
+  min-width: $min-width-container;
   background-color: $white;
   box-shadow: 0 20px 20px rgba(40, 40, 40, 0.05);
   border-radius: 10px;
@@ -67,18 +76,17 @@ $padding-input: 8px 8px 7px;
   line-height: 16px;
   height: 32px;
   opacity: 0.8;
-  font-size: 14px;
+  font-size: $text-input-size;
   outline: none;
   appearance: none;
 }
 
 %select {
   @extend %input;
-  width: 255px;
+  width: $width-input;
   background: $icon-dropdown 3.5% no-repeat transparent;
   background-position-x: 230px;
   &:hover {
     cursor: pointer;
   }
-
 }

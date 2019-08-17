@@ -45,9 +45,9 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
                         const {id, name, type} = prop;
                         return (
                             <TableRow key={id}>
-                                <TableCell className={"cell-name"}>{name}</TableCell>
-                                <TableCell className={"cell-default"}>{type}</TableCell>
-                                <TableCell>
+                                <TableCell className={"cell cell-name"}>{name}</TableCell>
+                                <TableCell className={"cell cell-default"}>{type}</TableCell>
+                                <TableCell className={"cell"}>
                                     <button onClick={() => onDelete(id)} className="link delete">
                                         Удалить
                                     </button>

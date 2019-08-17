@@ -3,7 +3,7 @@
 .login-paper {
   @extend %container;
   margin-top: 282px;
-  width: 350px;
+  width: $min-width-container;
   height: 336px;
 
   .login-form {

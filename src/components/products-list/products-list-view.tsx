@@ -37,7 +37,7 @@ export const ProductsListView: React.FC<IActionTableProps & IProductListStatePro
                     Добавить товар
                 </Button>
             </Link>
-            <Table >
+            <Table>
                 <EnhancedTableHead
                     order={order}
                     orderBy={orderBy}
@@ -50,14 +50,14 @@ export const ProductsListView: React.FC<IActionTableProps & IProductListStatePro
                         const date = new Date(dateUp).toLocaleDateString();
                         return (
                             <TableRow key={id}>
-                                <TableCell className={"cell-name"}>
+                                <TableCell className={"cell cell-name"}>
                                     <Link to={`/product/${id}`}
                                           className="link">{name}
                                     </Link>
                                 </TableCell>
-                                <TableCell className={"cell-default"}>{cost && cost.toLocaleString()} $</TableCell>
-                                <TableCell className={"cell-default"}>{date}</TableCell>
-                                <TableCell>
+                                <TableCell className={"cell cell-default"}>{cost && cost.toLocaleString()} $</TableCell>
+                                <TableCell className={"cell cell-default"}>{date}</TableCell>
+                                <TableCell className={"cell"}>
                                     <Link to={`/product/update/${id}`}
                                           className="link">Ред
                                     </Link>
