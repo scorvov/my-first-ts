@@ -2,15 +2,12 @@ import React from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {IMapState} from "../store/models/iState";
+import {IAuthState} from "../store/reducers/auth-reducer";
 
-const mapStateToPropsForRedirect = ({authState}: IMapState): IPrivateRouteProps => {
+const mapStateToPropsForRedirect = ({authState}: IMapState): IAuthState => {
     const {isAuth} = authState;
     return {isAuth}
 };
-
-export interface IPrivateRouteProps {
-    isAuth: boolean;
-}
 
 export const withRouteRedirect = (Component: any) => {
     class RedirectComponent extends React.Component<any> {

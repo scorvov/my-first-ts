@@ -6,7 +6,6 @@ import {
     FETCH_REQUEST,
     FETCH_SUCCESS
 } from "../constants";
-import {enqueueSnackbar} from "./toast-actions";
 import {authResponse} from "./auth-actions";
 import { fetchRequest } from "./fetch-request";
 
@@ -25,10 +24,10 @@ export const fetchData = (fetchTypeData: string, fetchParams: any) => (dispatch:
         .then((response) => response.json())
         .then((data) => dispatch(fetchLoaded(data)))
         .catch((err: string) => {
-            dispatch(enqueueSnackbar({
+/*            dispatch(enqueueSnackbar({
                 message: "Внутренняя ошибка, не удалось загрузить данные",
                 variant: "error"
-            }));
+            }));*/
             dispatch(fetchError(err));
         })
 };
@@ -41,10 +40,10 @@ export const fetchProductById = (id?: number) => (dispatch: any) => {
         .then((response) => response.json())
         .then((data) => dispatch(fetchLoaded(data)))
         .catch((err: string) => {
-            dispatch(enqueueSnackbar({
+/*            dispatch(enqueueSnackbar({
                 message: "Внутренняя ошибка, не удалось загрузить данные",
                 variant: "error"
-            }));
+            }));*/
             dispatch(fetchError(err))
         })
 };

@@ -6,7 +6,6 @@ import {IFetchingState} from "../../store/reducers/fetching-reducer";
 import {IMapState} from "../../store/models/iState";
 import {ProductsList} from "./products-list";
 import {fetchData} from "../../store/actions/fetching-actions";
-import {withRouteRedirect} from "../../hoc/withAuthRedirect";
 
 export interface IProductListStateProps {
     productsList:IProductsList;
@@ -20,5 +19,5 @@ const mapStateToProps = ({dataState, fetchState}: IMapState): TProductListStateP
 };
 
 export const ProductsListContainer = connect(mapStateToProps,
-    {itemDeleteById, fetchData})(withRouteRedirect(ProductsList));
+    {itemDeleteById, fetchData})(ProductsList);
 

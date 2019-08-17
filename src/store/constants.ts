@@ -7,5 +7,6 @@ export const SET_USER_DATA = 'SET_USER_DATA';
 export const ENQUEUE_SNACKBAR = 'ENQUEUE_SNACKBAR';
 export const REMOVE_SNACKBAR = 'REMOVE_SNACKBAR';
 export const EMPTY_SELECT_PRODUCT = 'EMPTY_SELECT_PRODUCT';
+export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 export const baseURL = "http://localhost:9000/";

@@ -4,7 +4,6 @@ import {IFetchingState} from "../../store/reducers/fetching-reducer";
 import {connect} from "react-redux";
 import {PropsList} from "./props-list";
 import {fetchData} from "../../store/actions/fetching-actions";
-import {withRouteRedirect} from "../../hoc/withAuthRedirect";
 import {itemDeleteById} from "../../store/actions/data-actions";
 
 export interface IPropsListStateProps {
@@ -19,4 +18,4 @@ const mapStateToProps = ({dataState, fetchState}:IMapState):TPropsListStateProps
 };
 
 export const PropsListContainer = connect(mapStateToProps,
-    {itemDeleteById, fetchData})(withRouteRedirect(PropsList));
+    {itemDeleteById, fetchData})(PropsList);

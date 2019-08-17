@@ -2,10 +2,10 @@ import {connect} from "react-redux";
 import {getAuthUserData} from "../../store/actions/auth-actions";
 import {Login} from "./login";
 import {IMapState} from "../../store/models/iState";
-import {IPrivateRouteProps} from "../../hoc/withAuthRedirect";
+import {IAuthState} from "../../store/reducers/auth-reducer";
 
 
-const mapStateToProps = ({authState}: IMapState): IPrivateRouteProps => {
+const mapStateToProps = ({authState}: IMapState): IAuthState => {
     const {isAuth} = authState;
     return {isAuth}
 };
