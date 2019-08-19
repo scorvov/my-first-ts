@@ -2,8 +2,8 @@ import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import {connect} from 'react-redux';
 import {OptionsObject, withSnackbar} from 'notistack';
-import {IMapState} from "../../../store/models/iState";
-import {INotification, IToastState} from "../../../store/models/IToastState";
+import {IMapState} from "../../store/models/iState";
+import {INotification, IToastState} from "../../store/models/IToastState";
 import {removeSnackbar} from 'store/actions/toast-actions';
 import IconButton from "@material-ui/core/IconButton";
 

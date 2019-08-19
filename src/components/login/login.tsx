@@ -3,11 +3,9 @@ import {IPropLogin, MyEnhancedLoginView} from "./with-formik-login";
 import {Redirect} from "react-router";
 import {IAuthState} from "../../store/reducers/auth-reducer";
 
-export class Login extends React.Component<IAuthState&IPropLogin> {
+export const Login: React.FC<IAuthState&IPropLogin> = (props) => {
 
-    render() {
-        return (!this.props.isAuth) ?
-            <MyEnhancedLoginView  getAuthUserData = {this.props.getAuthUserData} />
+        return (!props.isAuth) ?
+            <MyEnhancedLoginView  getAuthUserData = {props.getAuthUserData} />
             : <Redirect to={"/products"} />
-    }
-}
+};

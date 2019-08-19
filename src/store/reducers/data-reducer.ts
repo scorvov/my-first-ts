@@ -11,7 +11,7 @@ export interface IDataState {
 
 const initialProductState: IDataState = {
     productsList: {
-        products: [],
+        items: [],
         count: 0,
         perPage: 5,
         currentPage: 0,
@@ -19,7 +19,7 @@ const initialProductState: IDataState = {
         orderBy: 'id'
     },
     propsList: {
-        props: [],
+        items: [],
         count: 0,
         perPage: 5,
         currentPage: 0,

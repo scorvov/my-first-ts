@@ -40,8 +40,8 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
                     handleChangeSort={handleChangeSort}
                     headRows={headRows}
                 />
-                <TableBody>
-                    {propsList.props.map((prop: IProp) => {
+                {count > 0 && <TableBody>
+                    {propsList.items.map((prop: IProp) => {
                         const {id, name, type} = prop;
                         return (
                             <TableRow key={id}>
@@ -55,7 +55,7 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
                             </TableRow>
                         )
                     })}
-                </TableBody>
+                </TableBody>}
                 <TableFooter>
                     <TableRow>
                         <TablePagination

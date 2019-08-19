@@ -28,6 +28,7 @@ export const ProductsListView: React.FC<IActionTableProps & IProductListStatePro
 
     const {handleChangePage, handleChangePerPage, handleChangeSort, productsList, onDelete} = props;
     const {count, perPage, currentPage, order, orderBy} = productsList;
+    console.log(productsList);
 
     return (
         <div className="list">
@@ -44,8 +45,8 @@ export const ProductsListView: React.FC<IActionTableProps & IProductListStatePro
                     handleChangeSort={handleChangeSort}
                     headRows={headRows}
                 />
-                <TableBody>
-                    {productsList.products.map((product: IProduct) => {
+                {count > 0 ? <TableBody>
+                    {productsList.items.map((product: IProduct) => {
                         const {id, name, cost, dateUp} = product;
                         const date = new Date(dateUp).toLocaleDateString();
                         return (
@@ -70,7 +71,7 @@ export const ProductsListView: React.FC<IActionTableProps & IProductListStatePro
                             </TableRow>
                         )
                     })}
-                </TableBody>
+                </TableBody> : null}
                 <TableFooter>
                     <TableRow>
                         <TablePagination

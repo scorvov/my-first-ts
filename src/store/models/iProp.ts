@@ -8,7 +8,7 @@ export interface IProp {
 }
 
 export interface IPropsList {
-    props: IProp[];
+    items: IProp[];
     count: number;
     perPage: number;
     currentPage: number;

@@ -19,7 +19,7 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
     const {touched, errors, isSubmitting, rewriteProductProps, propsList} = props;
     const {productProps} = props.values;
     const header = (props.values.id !== 0) ? "Редактирование товара" : "Добавление товара";
-    props.values.productProps = rewriteProductProps(propsList.props, productProps);
+    props.values.productProps = rewriteProductProps(propsList.items, productProps);
     /*    if(props.values.cost !== '') {
             props.values.cost = (+props.values.cost.replace(/\s/g, '')).toLocaleString();
         }*/
@@ -80,17 +80,16 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                     <FieldArray name={"productProps"} render={arrayHelpers => (
                         <div className={"field-array"}>
                             <p className={"header"}>Добавление товару свойств
-                                <IconButton
+                                {propsList.count > productProps.length && <IconButton
                                     size={"small"}
                                     className={"add-button"}
-                                    // style={{color: '#0258FF'}}
                                     onClick={() => arrayHelpers.push({
                                         id: Math.floor(Math.random() * 1000),
                                         name: '',
                                         type: '',
                                         value: ''
                                     })}><Add/>
-                                </IconButton></p>
+                                </IconButton>}</p>
                             <hr className="line"/>
                             {(productProps.map((productProp: IProp, index: number) =>
                                 (<span key={index} className={"create-props"}>
@@ -109,7 +108,7 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                                         {(productProps[index].name) ?
                                             (<option value={index} label={productProps[index].name}/>)
                                             : (<option value={-1} label={"Select"}/>)}
-                                        {propsList.props.map((option: IProp) =>
+                                        {propsList.items.map((option: IProp) =>
                                             (!productProps.find((item: IProp) => item.name === option.name) ?
                                                 <option key={option.id} value={option.name} label={option.name}/>
                                                 : null))}

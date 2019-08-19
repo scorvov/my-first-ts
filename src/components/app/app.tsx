@@ -5,7 +5,7 @@ import {CreateUpdateProductContainer} from "../create-update-product/container";
 import {CreatePropContainer} from "../create-prop/container";
 import {ProductContainer} from "../product/container";
 import {LoginContainer} from "../login/container";
-import {Toaster} from "../common/notistack/toaster";
+import {Toaster} from "../notistack/toaster";
 import {connect} from "react-redux";
 import {initializeApp} from "../../store/actions/app-actions";
 import {IMapState} from "../../store/models/iState";
@@ -23,7 +23,6 @@ class App extends React.Component<IAppProps & IAppState> {
     }
 
     render() {
-        console.log(this.props);
         if (!this.props.initialized) return <Spinner/>;
 
         return (<>

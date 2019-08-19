@@ -12,7 +12,7 @@ export interface IProduct {
 }
 
 export interface IProductsList {
-        products: IProduct[];
+        items: IProduct[];
         count: number;
         perPage: number;
         currentPage: number;

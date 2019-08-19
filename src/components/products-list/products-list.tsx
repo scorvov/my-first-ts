@@ -32,9 +32,9 @@ export class ProductsList extends React.Component<TProductListStateProps & IProd
     };
 
     onDelete = (id: number) => {
-        const {perPage, currentPage, order, orderBy, products, count} = this.props.productsList;
+        const {perPage, currentPage, order, orderBy, items, count} = this.props.productsList;
         this.props.itemDeleteById(id, 'products', {perPage,
-            currentPage: products.length === 1 && count !== 1 ? currentPage - 1 : currentPage,
+            currentPage: items.length === 1 && count !== 1 ? currentPage - 1 : currentPage,
             order, orderBy});
     };
 
