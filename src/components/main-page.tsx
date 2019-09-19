@@ -6,7 +6,7 @@ import {withRouteRedirect} from "../hoc/withAuthRedirect";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-const MainPage: React.FC<RouteComponentProps> = (props) => {
+const MainPage: React.FC<RouteComponentProps> = React.memo((props) => {
 
     const {pathname} = props.history.location;
     if(pathname === '/') props.history.push('/products');
@@ -16,7 +16,6 @@ const MainPage: React.FC<RouteComponentProps> = (props) => {
         setValue(newValue);
         props.history.push(newValue);
     }
-
     return (
         <>
             <div className={"nav"}>
@@ -42,6 +41,6 @@ const MainPage: React.FC<RouteComponentProps> = (props) => {
             </div>
         </>
     );
-};
+});
 
 export default withRouteRedirect(MainPage);

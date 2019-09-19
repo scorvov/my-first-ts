@@ -6,8 +6,8 @@ import {
     TablePagination, TableRow
 } from "@material-ui/core";
 
-import {TablePaginationActions} from "../common/table/table-pagination-actions";
-import {EnhancedTableHead, Order} from "../common/table/table-head-enhanced";
+import {TablePaginationActions} from "../common";
+import {EnhancedTableHead, Order} from "../common/table-head-enhanced";
 import {IProductListStateProps} from "./container";
 import Button from "@material-ui/core/Button";
 
@@ -24,11 +24,10 @@ export interface IActionTableProps {
     handleChangePage: (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, currentPage: number) => void;
 }
 
-export const ProductsListView: React.FC<IActionTableProps & IProductListStateProps> = (props) => {
+export const ProductsListView: React.FC<IActionTableProps & IProductListStateProps> = React.memo(props => {
 
     const {handleChangePage, handleChangePerPage, handleChangeSort, productsList, onDelete} = props;
     const {count, perPage, currentPage, order, orderBy} = productsList;
-
     return (
         <div className="list">
             <Link to={"/product/create"} className={"wr-link"}>
@@ -57,9 +56,9 @@ export const ProductsListView: React.FC<IActionTableProps & IProductListStatePro
                                 </TableCell>
                                 <TableCell className={"cell cell-default"}>{cost && cost.toLocaleString()} $</TableCell>
                                 <TableCell className={"cell cell-default"}>{date}</TableCell>
-                                <TableCell className={"cell"}>
+                                <TableCell className={"cell cell-control"}>
                                     <Link to={`/product/update/${id}`}
-                                          className="link">Ред
+                                          className="link update">Ред
                                     </Link>
                                     <button
                                         onClick={() => onDelete(id)}
@@ -91,4 +90,4 @@ export const ProductsListView: React.FC<IActionTableProps & IProductListStatePro
                 </TableFooter>
             </Table>
         </div>)
-};
+});

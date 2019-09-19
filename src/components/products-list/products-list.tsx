@@ -1,8 +1,8 @@
 import * as React from "react";
 import {ProductsListView} from "./products-list-view";
-import {Order} from "../common/table/table-head-enhanced";
+import {Order} from "../common/table-head-enhanced";
 import {TProductListStateProps} from "./container";
-import {ErrorIndicator} from "../common/error-indicator";
+import {ErrorIndicator} from "../common";
 
 export interface IProductListDispatchProps {
     itemDeleteById: (id:number, typeData: string, fetchParams: any) => void;

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import './error-boundry.scss';
-import {ErrorIndicator} from "../error-indicator";
+import {ErrorIndicator} from "./error-indicator";
 
 type Props = {
     // label: string;

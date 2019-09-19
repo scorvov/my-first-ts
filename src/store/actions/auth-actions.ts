@@ -25,7 +25,6 @@ export interface ISetAuthUserData extends Action {
 export const setAuthUserData = (isAuth: boolean):ISetAuthUserData => ({type: SET_USER_DATA, payload: isAuth});
 
 export const getAuthUserData = (authData: any) => (dispatch: any) => {
-    console.log(authData);
     fetchRequest("POST", "auth", authData)
         .then((response) => {
             if (response.status === 200) {

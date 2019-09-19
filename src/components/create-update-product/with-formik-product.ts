@@ -51,7 +51,6 @@ export const EnhancedCreateUpdateProductView = withFormik<any & ISelectProduct &
     },
     handleSubmit: (values, {props: {productAction, history}, resetForm, setSubmitting}) => {
         productAction('products', {...values,
-            // dateUp: new Date(),
             cost: +values.cost.replace(/\s/g, '')
         });
         resetForm();

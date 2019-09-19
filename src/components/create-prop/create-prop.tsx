@@ -1,7 +1,6 @@
 import * as React from "react";
-import {Input} from "../common/input/input";
 import {Field, Form, FormikProps} from "formik";
-import {RadioButton, RadioButtonsGroup} from "../common/radio-buttons-group/radio-buttons-group";
+import {RadioButton, RadioButtonsGroup, Input} from "../common";
 import {ICreatePropValues} from "./with-formik-prop";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";

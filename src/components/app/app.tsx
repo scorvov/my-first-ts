@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 import {initializeApp} from "../../store/actions/app-actions";
 import {IMapState} from "../../store/models/iState";
 import {IAppState} from "../../store/reducers/app-reducer";
-import {Spinner} from "../common/spinner";
+import {Spinner} from "../common";
 import "./../../assests/styles/app.scss";
 
 interface IAppProps {

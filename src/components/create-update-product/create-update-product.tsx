@@ -2,8 +2,7 @@ import {FormikProps} from "formik";
 import {IProduct} from "../../store/models/iProduct";
 import * as React from "react";
 import {IProp} from "../../store/models/iProp";
-import {Spinner} from "../common/spinner";
-import {ErrorIndicator} from "../common/error-indicator";
+import {ErrorIndicator, Spinner} from "../common";
 import {EnhancedCreateUpdateProductView} from "./with-formik-product";
 import {TUpdateProductStateProps} from "./container";
 import {TRoute} from "../product/product";
@@ -17,7 +16,7 @@ interface IUpdateProductDispatchProps {
 
 type TProps = TUpdateProductStateProps & IUpdateProductDispatchProps & FormikProps<IProduct> & TRoute;
 
-export class CreateUpdateProduct extends React.Component<TProps> {
+export class CreateUpdateProduct extends React.PureComponent<TProps> {
 
     componentDidMount(): void {
         this.getSelectProduct();
@@ -44,11 +43,11 @@ export class CreateUpdateProduct extends React.Component<TProps> {
     };
 
     render() {
-        const {loading, error, selectProduct} = this.props;
+        const {loading, error, selectProduct, propsList} = this.props;
         if (loading) return <Spinner/>;
         if (error) return <ErrorIndicator/>;
-        if (selectProduct) return <EnhancedCreateUpdateProductView selectProduct={selectProduct}
-                                                                   propsList={this.props.propsList}
+        if (selectProduct && propsList) return <EnhancedCreateUpdateProductView selectProduct={selectProduct}
+                                                                   propsList={propsList}
                                                                    history={this.props.history}
                                                                    productAction={this.selectAction()}
                                                                    rewriteProductProps={this.rewriteProductProps}/>;

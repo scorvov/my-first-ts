@@ -1,7 +1,7 @@
 import * as React from "react";
 import {FieldArray, Form, FormikProps} from "formik";
 import {IProduct} from "../../store/models/iProduct";
-import {Input} from "../common/input/input";
+import {Input} from "../common";
 import {IProp} from "../../store/models/iProp";
 import {IProductCreate} from "./with-formik-product";
 import {IPropsListStateProps} from "../props-list/container";

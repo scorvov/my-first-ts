@@ -1,6 +1,5 @@
 import * as React from "react";
-import {Spinner} from "../common/spinner";
-import {ErrorIndicator} from "../common/error-indicator";
+import {Spinner, ErrorIndicator} from "../common";
 import {ProductView} from "./product-view";
 import {RouteComponentProps} from "react-router";
 import {TProductStateProps} from "./container";
@@ -25,10 +24,9 @@ export class Product extends React.Component<TProductProps> {
     }
 
     render() {
-        const {loading, error} = this.props;
+        const {loading, error, selectProduct} = this.props;
         if (loading) return <Spinner/>;
         if (error) return <ErrorIndicator/>;
-        if(this.props.selectProduct) return <ProductView selectProduct={this.props.selectProduct}/>;
-        else return <Spinner/>;
+        return <ProductView selectProduct={selectProduct}/>;
     }
 }

@@ -8,8 +8,7 @@ import {
     TablePagination,
     TableFooter
 } from "@material-ui/core";
-import {EnhancedTableHead} from "../common/table/table-head-enhanced";
-import {TablePaginationActions} from "../common/table/table-pagination-actions";
+import {EnhancedTableHead, TablePaginationActions} from "../common";
 import {IActionTableProps} from "../products-list/products-list-view";
 import {IPropsListStateProps} from "./container";
 import Button from "@material-ui/core/Button";
@@ -20,11 +19,10 @@ const headRows = [
     {label: 'Тип', name: 'type'},
     {label: 'Управление', name: 'control'}];
 
-export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> = (props) => {
+export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> = React.memo(props => {
 
     const {handleChangePage, handleChangePerPage, handleChangeSort, propsList, onDelete} = props;
     const {count, perPage, currentPage, order, orderBy} = propsList;
-
     return (
         <div className="list">
             <Link to="/prop/create" className={"wr-link"}>
@@ -78,4 +76,4 @@ export const PropsListView: React.FC<IActionTableProps & IPropsListStateProps> =
         </div>
 
     );
-};
+});

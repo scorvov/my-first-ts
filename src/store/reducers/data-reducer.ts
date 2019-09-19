@@ -13,7 +13,7 @@ const initialProductState: IDataState = {
     productsList: {
         items: [],
         count: 0,
-        perPage: 25,
+        perPage: 10,
         currentPage: 0,
         order: 'desc',
         orderBy: 'id'

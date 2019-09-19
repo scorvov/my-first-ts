@@ -17,20 +17,32 @@
   }
   .head {
     font-size: $text-head-size;
+    padding-right: 0;
   }
+/*  .control .head {
+    padding-left: 0;
+  }*/
   .cell {
     font-size: $text-input-size;
+    padding-right: 0;
   }
   .name {
     flex-direction: row-reverse;
     padding-left: 70px;
   }
+/*  .control {
+    padding-left: 0;
+  }*/
   .head-default {
     flex-direction: row-reverse;
     padding-left: 0;
   }
   .cell-name {
     padding-left: $margin-container-max;
+  }
+  .cell-control {
+    //padding-right: $margin-container-max;
+    //padding-left: 0;
   }
   .cell-default {
     padding-left: 25px;
@@ -70,10 +82,10 @@
 .link {
   @extend %link;
 }
-.delete {
-  margin-left: 66px;
+.update {
+  margin-right: 66px;
   @media(max-width: 600px) {
-    margin-left: 5px;
+    margin-right: 5px;
   }
 }
 

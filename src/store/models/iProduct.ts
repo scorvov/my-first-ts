@@ -1,4 +1,4 @@
-import {Order} from "../../components/common/table/table-head-enhanced";
+import {Order} from "../../components/common/table-head-enhanced";
 import {IProp} from "./iProp";
 
 export interface IProduct {
