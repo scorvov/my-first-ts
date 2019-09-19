@@ -29,21 +29,21 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
                         `${row.name} head` :
                         (row.name !== "control") ? "head-default head" : "control head");
                     return (
-                    <TableCell
-                        className={classHead}
-                        key={row.name}
-                        sortDirection={orderBy === row.name ? order : false}
-                    > {(row.name === 'control') ? row.label
-                        : <TableSortLabel
-                            IconComponent={SortLabel}
-                            active={orderBy === row.name}
-                            direction={order}
-                            onClick={createSortHandler(row.name)}
-                        >
-                            {row.label}
-                        </TableSortLabel>}
-                    </TableCell>
-                )})}
+                        <TableCell
+                            className={classHead}
+                            key={row.name}
+                            sortDirection={orderBy === row.name ? order : false}
+                        > {(row.name === 'control') ? row.label
+                            : <TableSortLabel
+                                IconComponent={SortLabel}
+                                active={orderBy === row.name}
+                                direction={order}
+                                onClick={createSortHandler(row.name)}
+                            >
+                                {row.label}
+                            </TableSortLabel>}
+                        </TableCell>
+                    )})}
             </TableRow>
         </TableHead>
     );

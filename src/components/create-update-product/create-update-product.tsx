@@ -48,10 +48,10 @@ export class CreateUpdateProduct extends React.Component<TProps> {
         if (loading) return <Spinner/>;
         if (error) return <ErrorIndicator/>;
         if (selectProduct) return <EnhancedCreateUpdateProductView selectProduct={selectProduct}
-                                                propsList={this.props.propsList}
-                                                history={this.props.history}
-                                                productAction={this.selectAction()}
-                                                rewriteProductProps={this.rewriteProductProps}/>;
+                                                                   propsList={this.props.propsList}
+                                                                   history={this.props.history}
+                                                                   productAction={this.selectAction()}
+                                                                   rewriteProductProps={this.rewriteProductProps}/>;
         else return <Spinner/>;
     }
 }

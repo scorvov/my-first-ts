@@ -1,9 +1,13 @@
 import {INotification} from "../models/IToastState";
 import { ENQUEUE_SNACKBAR, REMOVE_SNACKBAR} from "../constants";
+import {Action} from "redux";
 
-export const enqueueSnackbar = (notification: INotification) => {
-    // const key = notification.options && notification.key;
+export interface IEnqueueSnackbar extends Action {
+    notification?: INotification;
+    key?: number;
+}
 
+export const enqueueSnackbar = (notification: INotification):IEnqueueSnackbar => {
     return {
         type: ENQUEUE_SNACKBAR,
         notification: {
@@ -13,7 +17,7 @@ export const enqueueSnackbar = (notification: INotification) => {
     };
 };
 
-export const removeSnackbar = (key: number) => ({
+export const removeSnackbar = (key: number):IEnqueueSnackbar => ({
     type: REMOVE_SNACKBAR,
     key,
 });

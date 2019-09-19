@@ -1,14 +1,15 @@
-import {Action} from "redux";
-import {IProduct} from "../models/iProduct";
+import {Action, Dispatch} from "redux";
 import {EMPTY_SELECT_PRODUCT, RESET_SELECT_PRODUCT} from "../constants";
 import {ICreatePropValues} from "../../components/create-prop/with-formik-prop";
 import {fetchData, fetchError, fetchProductById} from "./fetching-actions";
 import {fetchRequest} from "./fetch-request";
 import {authResponse} from "./auth-actions";
 import {enqueueSnackbar} from "./toast-actions";
+import {IFetchParams} from "../models/IFetchParams";
+import {ICreateProductValues} from "../../components/create-update-product/with-formik-product";
 
 export const resetSelectProduct = (): Action => ({type: RESET_SELECT_PRODUCT});
-export const emptySelectProduct = ():Action => ({type: EMPTY_SELECT_PRODUCT});
+export const emptySelectProduct = (): Action => ({type: EMPTY_SELECT_PRODUCT});
 
 export const message = function (path: string) {
     if (path.includes("products")) {
@@ -23,7 +24,7 @@ export const message = function (path: string) {
     return "Загрузка прошла успешно";
 };
 
-export const baseDataAction = (method: string, path: string, params?: any) => (dispatch: any) => {
+export const baseDataAction = (method: string, path: string, params?: ICreateProductValues | ICreatePropValues) => (dispatch: Dispatch) => {
     return fetchRequest(method, path, params)
         .then((response) => authResponse(response))
         .then(() => {
@@ -41,18 +42,18 @@ export const baseDataAction = (method: string, path: string, params?: any) => (d
         })
 };
 
-export const itemDeleteById = (id: number, typeData: string, fetchParams: any) => (dispatch:any) => {
+export const itemDeleteById = (id: number, typeData: string, fetchParams: IFetchParams) => (dispatch: any) => {
     dispatch(baseDataAction("DELETE", typeData + "/delete/" + id))
         .then(() => dispatch(fetchData(typeData, fetchParams)));
 };
-export const itemCreate = (typeData: string, params: ICreatePropValues | IProduct) =>
-    baseDataAction("POST", typeData+"/add", params);
+export const itemCreate = (typeData: string, params: ICreateProductValues | ICreatePropValues) =>
+    baseDataAction("POST", typeData + "/add", params);
 
-export const productUpdate = (typeData: string, params: IProduct) =>
+export const productUpdate = (typeData: string, params: ICreateProductValues) =>
     baseDataAction("POST", typeData + "/update", params);
 
 
-export const fetchDataForUpdate = (id:number) => (dispatch:any) => {
+export const fetchDataForUpdate = (id: number) => (dispatch: any) => {
     dispatch(resetSelectProduct());
     (id) ? dispatch(fetchProductById(id)) : dispatch(emptySelectProduct());
     dispatch(fetchData('props', {perPage: 100, currentPage: 0}));

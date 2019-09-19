@@ -1,11 +1,10 @@
-
-import {Action} from "redux";
 import {
     FETCH_BY_ID_SUCCESS,
-    FETCH_PRODUCTS_FAILURE,
+    FETCH_FAILURE,
     FETCH_REQUEST,
     FETCH_SUCCESS
 } from "../constants";
+import {Action} from "redux";
 
 //разобраться с типом для error
 export interface IFetchingState {
@@ -36,7 +35,7 @@ export const fetchingReducer = (state = initialFetchingState, action:IFetchActio
                 loading: false,
                 error: null
             };
-        case FETCH_PRODUCTS_FAILURE:
+        case FETCH_FAILURE:
             return {
                 ...state,
                 loading: false,

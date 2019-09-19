@@ -28,7 +28,6 @@ export const ProductsListView: React.FC<IActionTableProps & IProductListStatePro
 
     const {handleChangePage, handleChangePerPage, handleChangeSort, productsList, onDelete} = props;
     const {count, perPage, currentPage, order, orderBy} = productsList;
-    console.log(productsList);
 
     return (
         <div className="list">

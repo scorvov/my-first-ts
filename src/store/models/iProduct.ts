@@ -12,10 +12,10 @@ export interface IProduct {
 }
 
 export interface IProductsList {
-        items: IProduct[];
-        count: number;
-        perPage: number;
-        currentPage: number;
-        order: Order;
-        orderBy: string;
+    items: IProduct[];
+    count: number;
+    perPage: number;
+    currentPage: number;
+    order: Order;
+    orderBy: string;
 }

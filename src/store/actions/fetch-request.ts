@@ -1,6 +1,11 @@
 import {baseURL} from "../constants";
+import {ICreateProductValues} from "../../components/create-update-product/with-formik-product";
+import {ICreatePropValues} from "../../components/create-prop/with-formik-prop";
+import {IFetchParams} from "../models/IFetchParams";
 
-export const fetchRequest = (method: string, path: string, params?: any) => {
+type TFetchParams = ICreateProductValues | ICreatePropValues | IFetchParams;
+
+export const fetchRequest = (method: string, path: string, params?: TFetchParams):Promise<Response> => {
     return fetch(baseURL + path, {
         method: method,
         headers: {

@@ -96,7 +96,6 @@ export const CreateUpdateProductView: React.FC<any & IUpdateProductView & IProps
                                     <IconButton
                                         className={"remove"}
                                         size={"small"}
-                                        // style={{color: '#0258FF'}}
                                         onClick={() => arrayHelpers.remove(index)}>
                                         <Remove/>
                                     </IconButton>

@@ -21,18 +21,18 @@ class Notifier extends React.Component<IToastState & INotifierDispatchProps> {
         notifications.forEach(({key, message, variant}: INotification) => {
             enqueueSnackbar(
                 message, {
-                variant,
-                autoHideDuration: 2500,
-                anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                },
-                action: (key: number) => (
-                    <IconButton key="close" aria-label="Close" color="inherit" onClick={() => closeSnackbar(key)} >
-                        <CloseIcon style={{fontSize: 15}}/>
-                    </IconButton>
-                )
-            });
+                    variant,
+                    autoHideDuration: 2500,
+                    anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                    },
+                    action: (key: number) => (
+                        <IconButton key="close" aria-label="Close" color="inherit" onClick={() => closeSnackbar(key)} >
+                            <CloseIcon style={{fontSize: 15}}/>
+                        </IconButton>
+                    )
+                });
             if(key) removeSnackbar(key);
         });
     }

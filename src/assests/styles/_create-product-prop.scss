@@ -55,12 +55,16 @@
     .field-array {
       margin-bottom: 24px;
       .header {
+        @extend %flex;
+        align-items: center;
         margin: 12px 0;
-        font-size: 14px;
+        height: 25px;
+        font-size: $text-input-size;
         opacity: 0.8;
 
         .add-button {
           margin-left: 36px;
+          padding: 0;
           background-color: transparent;
           color: $blue;
         }

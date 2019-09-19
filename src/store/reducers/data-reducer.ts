@@ -13,7 +13,7 @@ const initialProductState: IDataState = {
     productsList: {
         items: [],
         count: 0,
-        perPage: 5,
+        perPage: 25,
         currentPage: 0,
         order: 'desc',
         orderBy: 'id'
@@ -21,7 +21,7 @@ const initialProductState: IDataState = {
     propsList: {
         items: [],
         count: 0,
-        perPage: 5,
+        perPage: 25,
         currentPage: 0,
         order: 'desc',
         orderBy: 'id'

@@ -2,11 +2,11 @@ import * as React from "react";
 import {Radio} from "@material-ui/core";
 
 export const RadioButton = ({
-    field: {name, value, onChange, onBlur},
-    id,
-    label,
-    className,
-    ...props}: any) => {
+                                field: {name, value, onChange, onBlur},
+                                id,
+                                label,
+                                className,
+                                ...props}: any) => {
     return (
         <div className={"wrapper-radio"}>
             <Radio

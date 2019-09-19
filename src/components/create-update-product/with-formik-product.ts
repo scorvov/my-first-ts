@@ -11,7 +11,7 @@ export interface IProductCreate {
         push(url:string): void
     }
 }
-interface  ICreatePropsValues {
+export interface ICreateProductValues {
     id: number;
     name: string;
     cost: string;
@@ -21,7 +21,7 @@ interface  ICreatePropsValues {
     productProps: IProp[];
 }
 
-export const EnhancedCreateUpdateProductView = withFormik<any & ISelectProduct & IProductCreate, ICreatePropsValues>({
+export const EnhancedCreateUpdateProductView = withFormik<any & ISelectProduct & IProductCreate, ICreateProductValues>({
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .min(2, "Название свойство должно быть не менее 2 символов")
