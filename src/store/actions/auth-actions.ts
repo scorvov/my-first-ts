@@ -4,6 +4,12 @@ import {fetchRequest} from "./fetch-request";
 import {fetchError} from "./fetching-actions";
 import {Action, Dispatch} from "redux";
 
+export interface ISetAuthUserData extends Action {
+    payload: boolean;
+}
+
+export const setAuthUserData = (isAuth: boolean):ISetAuthUserData => ({type: SET_USER_DATA, payload: isAuth});
+
 export const authResponse = (response: Response):any => (dispatch: Dispatch) => {
     if (response.status === 200) {
         dispatch(setAuthUserData(true));
@@ -18,11 +24,18 @@ export const authResponse = (response: Response):any => (dispatch: Dispatch) => 
     return response;
 };
 
-export interface ISetAuthUserData extends Action {
-    payload: boolean;
-}
-
-export const setAuthUserData = (isAuth: boolean):ISetAuthUserData => ({type: SET_USER_DATA, payload: isAuth});
+export const isAuth = ():any => (dispatch: Dispatch) => {
+    return fetch(baseURL, {
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+    })
+        .then((response) => {
+            dispatch(authResponse(response))
+        });
+};
 
 export const getAuthUserData = (authData: any) => (dispatch: any) => {
     fetchRequest("POST", "auth", authData)
@@ -50,13 +63,4 @@ export const getAuthUserData = (authData: any) => (dispatch: any) => {
         })
 };
 
-export const isAuth = ():any => (dispatch: Dispatch) => {
-    return fetch(baseURL, {
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        credentials: "include",
-    })
-        .then((response) => dispatch(authResponse(response)));
-};
+

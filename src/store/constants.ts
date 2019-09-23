@@ -10,3 +10,4 @@ export const EMPTY_SELECT_PRODUCT = 'EMPTY_SELECT_PRODUCT';
 export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 export const baseURL = "https://rent-car-back.herokuapp.com/";
+// export const baseURL = "http://localhost:9000/";

@@ -24,23 +24,22 @@ class App extends React.Component<IAppProps & IAppState> {
 
     render() {
         if (!this.props.initialized) return <Spinner/>;
-
         return (<>
                 <Switch>
                     <Route
-                        exact path="/product/create"
+                        path="/product/create"
                         component={CreateUpdateProductContainer}/>
                     <Route
-                        exact path="/product/update/:id"
+                        path="/product/update/:id"
                         component={CreateUpdateProductContainer}/>
                     <Route
-                        exact path="/prop/create"
+                        path="/prop/create"
                         component={CreatePropContainer}/>
                     <Route
                         path="/product/:id"
                         component={ProductContainer}/>
                     <Route
-                        exact path="/login"
+                        path="/login"
                         component={LoginContainer}/>
                     <Route
                         path="/"

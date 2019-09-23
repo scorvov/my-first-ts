@@ -35,8 +35,8 @@ const MainPage: React.FC<RouteComponentProps> = React.memo((props) => {
             </div>
             <div className={"content"}>
                 <Switch>
-                    <Route exact path="/products" component={ProductsListContainer}/>
-                    <Route exact path="/properties" component={PropsListContainer}/>
+                    <Route exact path="/products" component={withRouteRedirect(ProductsListContainer)}/>
+                    <Route exact path="/properties" component={withRouteRedirect(PropsListContainer)}/>
                 </Switch>
             </div>
         </>

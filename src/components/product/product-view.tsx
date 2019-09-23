@@ -38,7 +38,8 @@ export const ProductView: React.FC<ISelectProduct> = ({selectProduct}) => {
                 </Link>
                 <hr className="line"/>
                 <Card className={"card"}>
-                    <CardMedia className={"image"} image={img} title="auto"/>
+                    {img ? <CardMedia className={"image"} image={img} title="auto"/>
+                    : <Spinner/> }
                     <CardContent className={"info"}>
                         <h5>{name}</h5>
                         {info !== "" ? <p>{info}</p> : null}

@@ -13,7 +13,7 @@ export const initializeApp = () => (dispatch:Dispatch) => {
             dispatch(initializedSuccess());
         })
         .catch(() => {
-            dispatch(initializedSuccess());
+            // dispatch(initializedSuccess());
             dispatch(enqueueSnackbar({
                 message: "Внутренняя ошибка, не удалось установить соединение!",
                 variant: "error"
