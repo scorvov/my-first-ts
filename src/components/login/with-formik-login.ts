@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import {AddProps, LoginView} from "./login-view";
 
 export interface IPropLogin {
-    getAuthUserData: ({login,password}: IPropValuesLogin) => void;
+    authorization: ({login,password}: IPropValuesLogin) => void;
 }
 export interface IPropValuesLogin {
     login: string;
@@ -25,8 +25,8 @@ export const MyEnhancedLoginView = withFormik<any&IPropValuesLogin & IPropLogin,
         login: login || '',
         password: password || ''
     }),
-    handleSubmit: ({login,password}, {props: {getAuthUserData}, resetForm, setSubmitting}) => {
-        getAuthUserData({login,password});
+    handleSubmit: ({login,password}, {props: {authorization}, resetForm, setSubmitting}) => {
+        authorization({login,password});
         resetForm();
         setSubmitting(false);
     },

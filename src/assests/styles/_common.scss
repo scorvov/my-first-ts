@@ -31,11 +31,10 @@
       border-radius: inherit;
       padding: $padding-input;
     }
-
     .visibility {
       color: $grey;
       cursor: pointer;
-      margin: 4px 4px 7px;
+      padding: 4px 4px 7px;
       &:hover {
         color: $blue;
       }

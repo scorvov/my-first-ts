@@ -5,6 +5,6 @@ import {IAuthState} from "../../store/reducers/auth-reducer";
 
 export const Login: React.FC<IAuthState&IPropLogin> = (props) => {
         return (!props.isAuth) ?
-            <MyEnhancedLoginView  getAuthUserData = {props.getAuthUserData} />
+            <MyEnhancedLoginView  authorization = {props.authorization} />
             : <Redirect to={"/products"} />
 };

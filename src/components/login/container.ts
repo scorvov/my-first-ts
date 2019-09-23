@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {getAuthUserData} from "../../store/actions/auth-actions";
+import {authorization} from "../../store/actions/auth-actions";
 import {Login} from "./login";
 import {IMapState} from "../../store/models/iState";
 import {IAuthState} from "../../store/reducers/auth-reducer";
@@ -11,4 +11,4 @@ const mapStateToProps = ({authState}: IMapState): IAuthState => {
 };
 
 export const LoginContainer = connect(mapStateToProps,
-    {getAuthUserData})(Login);
+    {authorization})(Login);

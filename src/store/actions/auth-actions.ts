@@ -16,29 +16,23 @@ export const authResponse = (response: Response):any => (dispatch: Dispatch) => 
     }
     if (response.status === 401) {
         dispatch(setAuthUserData(false));
-        dispatch(enqueueSnackbar({
+/*        dispatch(enqueueSnackbar({
             message: "Вы не авторизованы!",
             variant: "warning"
-        }));
+        }));*/
     }
     return response;
 };
 
 export const isAuth = ():any => (dispatch: Dispatch) => {
-    return fetch(baseURL, {
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        credentials: "include",
-    })
+    return fetch(baseURL, {credentials: "include"})
         .then((response) => {
-            dispatch(authResponse(response))
+            dispatch(authResponse(response));
         });
 };
 
-export const getAuthUserData = (authData: any) => (dispatch: any) => {
-    fetchRequest("POST", "", authData)
+export const authorization = (authData: any) => (dispatch: any) => {
+    fetchRequest("POST", "auth", authData)
         .then((response) => {
             if (response.status === 200) {
                 dispatch(enqueueSnackbar({

@@ -17,7 +17,6 @@ class Notifier extends React.Component<IToastState & INotifierDispatchProps> {
 
     componentDidUpdate() {
         const {notifications, removeSnackbar, enqueueSnackbar, closeSnackbar} = this.props;
-
         notifications.forEach(({key, message, variant}: INotification) => {
             enqueueSnackbar(
                 message, {
