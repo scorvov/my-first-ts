@@ -23,8 +23,10 @@ class App extends React.Component<IAppProps & IAppState> {
     }
 
     render() {
+        console.log(this.props.initialized)
         if (!this.props.initialized) return <Spinner/>;
         return (<>
+                <Toaster/>
                 <Switch>
                     <Route
                         path="/product/create"
@@ -45,7 +47,6 @@ class App extends React.Component<IAppProps & IAppState> {
                         path="/"
                         component={MainPage}/>
                 </Switch>
-                <Toaster/>
             </>
         );
     }

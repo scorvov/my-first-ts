@@ -38,7 +38,7 @@ export const isAuth = ():any => (dispatch: Dispatch) => {
 };
 
 export const getAuthUserData = (authData: any) => (dispatch: any) => {
-    fetchRequest("POST", "auth", authData)
+    fetchRequest("POST", "", authData)
         .then((response) => {
             if (response.status === 200) {
                 dispatch(enqueueSnackbar({
