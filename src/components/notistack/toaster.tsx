@@ -46,4 +46,5 @@ const mapStateToProps = ({toastState}: IMapState): IToastState => {
     return {notifications};
 };
 
+// @ts-ignore
 export const Toaster = (connect(mapStateToProps, {removeSnackbar})(withSnackbar(Notifier)));
